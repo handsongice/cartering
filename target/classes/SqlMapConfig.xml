@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!-- <setting name="logImpl" value="LOG4J"/>  -->
+        <setting name="useGeneratedKeys"  value="true" />  <!-- 允许 JDBC 支持自动生成主键 -->
+        <!-- 使用列标签替换列别名-->
+        <!--<setting name="useColumnLabel" value="true"></setting>-->
+        <!-- 开启驼峰命名转换 ：{name_id}  -> {nameId}    -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+    </settings>
+    <plugins>
+        <!--分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
+</configuration>

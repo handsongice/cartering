@@ -1,0 +1,59 @@
+server:
+  port: 8802
+#  servlet:
+spring:
+  application:
+    name: cartering
+  #设置页面访问路径，在controller返回页面时使用
+  thymeleaf:
+      prefix: classpath:/pages/
+      cache: false
+  #热部署生效
+  devtools:
+    restart:
+      enabled: true
+#      additional-paths: src/main/java
+#  mvc:
+#    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/upload,classpath:/File
+  datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://120.27.10.191:3306/chain_store?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+        username: root
+        password: jingci1122
+        driverClassName: com.mysql.cj.jdbc.Driver
+
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        url: jdbc:mysql://192.168.200.162:3306/dianlikaipiao?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+#        username: root
+#        password: EU*5mGVjw$
+#        driverClassName: com.mysql.jdbc.Driver
+
+        maxActive: 50
+        initialSize: 1
+        maxWait: 60000
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 1 from dual
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        filters: stat, log4j
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: cn.jy.entity
+  config-location: classpath:SqlMapConfig.xml
+
+logging:
+  level:
+    cn.jy.mapper: debug
+
+
+
+
+
+

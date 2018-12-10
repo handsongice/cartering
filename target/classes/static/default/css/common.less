@@ -1,0 +1,410 @@
+@import 'theme.less';
+body {
+    padding: 10px;
+    background: @medium-gray;
+    font: 13px "微软雅黑", Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
+    color: @main-color;
+}
+
+.layui-text {
+    font-size: @main-font-size;
+}
+
+
+/*
+ * changetheme
+ */
+
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-nav-child dd.layui-this a,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this>a,
+.layui-nav-tree .layui-this>a:hover,
+.layui-nav-tree .layui-nav-bar,
+.layui-nav .layui-this:after,
+.layui-nav-bar,
+.layui-nav-tree .layui-nav-itemed:after,
+.layui-form-checked span,
+.layui-form-checked:hover span,
+.layui-form-onswitch,
+.layui-form-select dl dd.layui-this,
+.layui-form-checked[lay-skin=primary] i,
+.layui-laydate .layui-this,
+.layui-laypage .layui-laypage-curr .layui-laypage-em,
+.layui-nav .layui-nav-child dd.layui-this a,
+.layui-nav-child dd.layui-this {
+    background-color: @main-blue;
+}
+
+.layui-form-checkbox[lay-skin=primary] span,
+.layui-form-checkbox[lay-skin=primary] span:hover {
+    background: #fff;
+}
+
+.layui-form-onswitch,
+.layui-form-checked[lay-skin=primary] i,
+.layui-btn-primary:hover,
+.layui-form-checkbox[lay-skin=primary]:hover i,
+.layui-laypage .layui-input:focus,
+.layui-laypage .layui-laypage-limits select:focus,
+.layui-tab-brief>.layui-tab-more li.layui-this:after,
+.layui-tab-brief>.layui-tab-title .layui-this:after {
+    border-color: @main-blue !important;
+}
+
+.layui-form-checked i,
+.layui-form-checked:hover i,
+.layui-form-radio>i:hover,
+.layui-form-radioed>i,
+.layui-btn-primary:hover,
+.layui-laydate-footer span:hover,
+.layui-laydate-header i:hover,
+.layui-laydate-header span:hover,
+.layui-laypage a:hover,
+.layui-timeline-axis,
+.layui-tab-brief>.layui-tab-title .layui-this {
+    color: @main-blue;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.layui-tab-title .layui-this {
+    color: @main-blue;
+}
+
+.search-form {
+    padding: 10px;
+    background: #f2f2f2;
+    border: @comm-border;
+    >ul {
+        display: block;
+        >li {
+            display: block;
+            float: left;
+            padding-right: 20px;
+            white-space: nowrap;
+            margin: 5px 0;
+            label,
+            .layui-form-select,
+            .layui-btn,
+            .search-condition-box {
+                display: inline-block;
+                height: @input-height;
+                line-height: @input-height;
+            }
+            .layui-input {
+                width: 180px;
+                display: inline-block;
+                height: @input-height;
+            }
+            .layui-form-radio {
+                margin: 0 10px 0 0;
+            }
+            .layui-form-select dl {
+                top: @input-height + 5;
+            }
+            .search-condition-box {
+                li {
+                    display: inline-block;
+                    background: #fff;
+                    border: @comm-border;
+                    padding: 0 5px;
+                    cursor: pointer;
+                    &:hover {
+                        color: @main-blue;
+                        border-color: @main-blue;
+                        background: #fff;
+                    }
+                    &.active {
+                        background: @main-blue;
+                        color: #fff;
+                        border-color: @main-blue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layui-btn {
+    //.linear-gradient(@color-green, @color-blue);
+}
+
+.clear-fixed {
+    clear: both;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.layui-card-header {
+    .layui-badge {
+        line-height: 24px;
+        height: 24px;
+    }
+}
+
+.form-operate-area {
+    margin-top: 8px;
+    border: @comm-border;
+    background: #fff;
+}
+
+.message-box-1 {
+    padding: 10px 10px 5px 10px;
+    h3 {
+        font-size: @main-font-size - 1;
+        i {
+            background: #56b4eb;
+            //border-radius: 50%;
+            .radius(50%);
+            padding: 3px;
+            color: #fff;
+            margin-right: 5px;
+        }
+        .message-logo {
+            .radius(50%);
+        }
+    }
+    cite {
+        color: #333;
+        font-size: 20px;
+        font-style: normal;
+        height: 55px;
+        line-height: 55px;
+        display: block;
+    }
+    p {
+        border-top: @comm-border;
+        line-height: 30px;
+        height: 30px;
+        i {
+            margin-left: 10px;
+        }
+    }
+}
+
+.message-box {
+    background: #fff;
+    padding: 10px;
+    display: block;
+    height: 80px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .1);
+    position: relative;
+    cite {
+        display: block;
+        font-size: 25px;
+        height: 45px;
+        line-height: 45px;
+        color: @main-blue;
+    }
+    span {
+        display: block;
+        .opacity(.8);
+        width: 50%;
+        height: 25px;
+        line-height: 25px;
+    }
+    i {
+        position: absolute;
+        right: 20px;
+        font-size: 50px;
+        top: 50%;
+        margin-top: -25px;
+        .opacity(.2);
+    }
+    &:hover {
+        .opacity(.8);
+    }
+}
+
+.margin-top10 {
+    margin-top: 10px;
+}
+
+.margin-top0 {
+    margin-top: 0;
+}
+
+.bg-white {
+    background: #fff;
+}
+
+.fluid-width {
+    width: 100%;
+}
+
+.news-box li {
+    line-height: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: @main-font-size - 1;
+    cite {
+        padding-right: 5px;
+        .opacity(.5);
+        font-style: normal;
+    }
+    &:hover {
+        color: @main-blue;
+    }
+}
+
+.layui-timeline-item {
+    padding-bottom: 8px;
+    .layui-timeline-title {
+        font-size: @main-font-size + 2;
+        color: @main-blue;
+    }
+    p {
+        font-size: @main-font-size - 1;
+    }
+}
+
+.layui-input,
+.layui-select,
+.layui-textarea {
+    height: 35px;
+    line-height: 35px;
+}
+
+.layui-form {
+    .layui-form-label {
+        height: 35px;
+        line-height: 35px;
+        padding: 0 15px;
+    }
+    .layui-form-item {
+        margin-bottom: 10px;
+    }
+}
+
+.layui-xtree-item {
+    .layui-form-checkbox {
+        margin-top: 0 !important;
+    }
+}
+
+.bg-light-red {
+    background-color: @color-red !important;
+    color: #fff;
+}
+
+.bg-light-blue {
+    background-color: @color-blue !important;
+    color: #fff;
+}
+
+.bg-light-orange {
+    background-color: @color-orange !important;
+    color: #fff;
+}
+
+.bg-light-green {
+    background-color: @color-green !important;
+    color: #fff;
+}
+
+.bg-light-gray {
+    background-color: @color-gray !important;
+    color: #fff;
+}
+
+.color-green {
+    color: @color-green;
+}
+
+.color-red {
+    color: @color-red;
+}
+
+.layui-laydate-content td:hover,
+.layui-laydate-list li:hover,
+.layui-laydate td.layui-this {
+    background-color: @color-blue !important;
+}
+
+.layui-laydate-header i:hover,
+.layui-laydate-header span:hover,
+.layui-laydate-footer span:hover {
+    color: @color-blue !important;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.fpzl-item {
+    border: 1px solid #e6e6e6;
+    margin: 5px;
+    cursor: pointer;
+    line-height: 25px;
+    height: 25px;
+    padding-right: 5px;
+    background-color: #fff;
+}
+.fpzl-item label {
+    width: 25px;
+    height: 25px !important;
+    display: inline-block !important;
+    text-align: center;
+    line-height: 25px !important;
+    background: #bbb;
+    margin-right: 3px;
+    color: #fff;
+}
+.fpzl-item.active.dzfp,
+.fpzl-item:hover.dzfp {
+    color: #58b1ed;
+    border-color: #69c2fe;
+}
+.fpzl-item.active.dzfp label,
+.fpzl-item:hover.dzfp label {
+    background-color: #58b1ed;
+}
+.fpzl-item.active.ptfp,
+.fpzl-item:hover.ptfp {
+    color: #35c3c7;
+    border-color: #46d4d8;
+}
+.fpzl-item.active.ptfp label,
+.fpzl-item:hover.ptfp label {
+    background-color: #35c3c7;
+}
+.fpzl-item.active.zyfp,
+.fpzl-item:hover.zyfp {
+    color: #f4984d;
+    border-color: #ffa95e;
+}
+.fpzl-item.active.zyfp label,
+.fpzl-item:hover.zyfp label {
+    background-color: #f4984d;
+}
+.bg-white {
+    background-color: #fff
+}
+.align-center {
+    text-align: center;
+}
+.popup-area>* {
+    display: none;
+}
+
+.popup-area>.layui-layer {
+    display: block;
+}

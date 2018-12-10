@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jy.mapper.ActionMapper" >
+  <resultMap id="BaseResultMap" type="cn.jy.entity.Action" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="simple" property="simple" jdbcType="VARCHAR" />
+    <result column="href" property="href" jdbcType="VARCHAR" />
+    <result column="tree_code" property="treeCode" jdbcType="VARCHAR" />
+    <result column="logo_icon" property="logoIcon" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="BIGINT" />
+    <result column="is_menu" property="isMenu" jdbcType="INTEGER" />
+    <result column="display" property="display" jdbcType="SMALLINT" />
+    <result column="mixed" property="mixed" jdbcType="SMALLINT" />
+    <result column="is_super" property="isSuper" jdbcType="SMALLINT" />
+    <result column="founder" property="founder" jdbcType="SMALLINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="SMALLINT" />
+    <result column="item" property="item" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, `type`, `name`, simple, href, tree_code, logo_icon, sort, is_menu, display,
+    mixed, is_super, founder, create_time, update_time, is_del, item
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from yl_action
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from yl_action
+    <where>
+      is_del = 0
+      <if test="parentId != null">
+        and parent_id = #{parentId}
+      </if>
+      <if test="isMenu != null">
+        and is_menu = #{isMenu}
+      </if>
+      <if test="display != null">
+        and display = #{display}
+      </if>
+      <if test="type != null">
+        and `type` = #{type}
+      </if>
+      <if test="treeCode != null">
+        and tree_code like CONCAT(#{treeCode},'%')
+      </if>
+      <if test="name != null">
+        and name like CONCAT('%',#{name},'%')
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="item != null">
+        and item = #{item}
+      </if>
+    </where>
+    order by sort asc
+  </select>
+  <select id="selectRoleByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+      DISTINCT
+      c.*
+    FROM
+      yl_role_employee a
+      JOIN yl_role_action b ON a.role_id = b.role_id
+      JOIN yl_employee e ON a.employee_id = e.id
+      AND e.is_del = 0
+      JOIN yl_role r ON a.role_id = r.id
+      AND r.is_del = 0
+      JOIN yl_action c ON b.action_id = c.id
+      AND c.is_del = 0
+    <where>
+      1=1
+      <if test="parentId != null">
+        and c.parent_id = #{parentId}
+      </if>
+      <if test="employeeId != null">
+        and a.employee_id = #{employeeId}
+      </if>
+      <if test="isMenu != null">
+        and c.is_menu = #{isMenu}
+      </if>
+      <if test="display != null">
+        and c.display = #{display}
+      </if>
+      <if test="type != null">
+        and c.`type` = #{type}
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="item != null">
+        and item = #{item}
+      </if>
+    </where>
+    order by c.sort asc
+  </select>
+  <select id="maxSort" resultType="java.lang.Long" parameterType="java.lang.Long" >
+    select
+      max(sort)
+    from yl_action
+    where parent_id = #{parentId,jdbcType=BIGINT} and is_del = 0
+  </select>
+  <select id="maxTreeCode" resultType="java.lang.String" parameterType="java.lang.Long" >
+    select
+      max(tree_code)
+    from yl_action
+    where parent_id = #{parentId,jdbcType=BIGINT} and is_del = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from yl_action
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.jy.entity.Action" >
+    insert into yl_action (id, parent_id, type,
+      name, simple, href, 
+      tree_code, logo_icon, sort, 
+      is_menu, display, mixed, 
+      is_super, founder, create_time, 
+      update_time, is_del, item)
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{simple,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, 
+      #{treeCode,jdbcType=VARCHAR}, #{logoIcon,jdbcType=VARCHAR}, #{sort,jdbcType=BIGINT}, 
+      #{isMenu,jdbcType=INTEGER}, #{display,jdbcType=SMALLINT}, #{mixed,jdbcType=SMALLINT}, 
+      #{isSuper,jdbcType=SMALLINT}, #{founder,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=SMALLINT}, #{item,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jy.entity.Action" >
+    insert into yl_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="simple != null" >
+        simple,
+      </if>
+      <if test="href != null" >
+        href,
+      </if>
+      <if test="treeCode != null" >
+        tree_code,
+      </if>
+      <if test="logoIcon != null" >
+        logo_icon,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isMenu != null" >
+        is_menu,
+      </if>
+      <if test="display != null" >
+        display,
+      </if>
+      <if test="mixed != null" >
+        mixed,
+      </if>
+      <if test="isSuper != null" >
+        is_super,
+      </if>
+      <if test="founder != null" >
+        founder,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="item != null" >
+        item,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="simple != null" >
+        #{simple,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="treeCode != null" >
+        #{treeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoIcon != null" >
+        #{logoIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=BIGINT},
+      </if>
+      <if test="isMenu != null" >
+        #{isMenu,jdbcType=INTEGER},
+      </if>
+      <if test="display != null" >
+        #{display,jdbcType=SMALLINT},
+      </if>
+      <if test="mixed != null" >
+        #{mixed,jdbcType=SMALLINT},
+      </if>
+      <if test="isSuper != null" >
+        #{isSuper,jdbcType=SMALLINT},
+      </if>
+      <if test="founder != null" >
+        #{founder,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=SMALLINT},
+      </if>
+      <if test="item != null" >
+        #{item,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.Action" >
+    update yl_action
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="simple != null" >
+        simple = #{simple,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null" >
+        href = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="treeCode != null" >
+        tree_code = #{treeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logoIcon != null" >
+        logo_icon = #{logoIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=BIGINT},
+      </if>
+      <if test="isMenu != null" >
+        is_menu = #{isMenu,jdbcType=INTEGER},
+      </if>
+      <if test="display != null" >
+        display = #{display,jdbcType=SMALLINT},
+      </if>
+      <if test="mixed != null" >
+        mixed = #{mixed,jdbcType=SMALLINT},
+      </if>
+      <if test="isSuper != null" >
+        is_super = #{isSuper,jdbcType=SMALLINT},
+      </if>
+      <if test="founder != null" >
+        founder = #{founder,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=SMALLINT},
+      </if>
+      <if test="item != null" >
+        item = #{item,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.Action" >
+    update yl_action
+    set `name` = #{name,jdbcType=VARCHAR},
+      simple = #{simple,jdbcType=VARCHAR},
+      href = #{href,jdbcType=VARCHAR},
+      logo_icon = #{logoIcon,jdbcType=VARCHAR},
+      is_menu = #{isMenu,jdbcType=INTEGER},
+      display = #{display,jdbcType=SMALLINT},
+      item = #{item,jdbcType=SMALLINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="delAction" parameterType="java.lang.Long" >
+    update yl_action
+    set is_del = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

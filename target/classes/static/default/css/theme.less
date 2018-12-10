@@ -1,0 +1,42 @@
+//@main-blue: #5ab1ef;
+@main-blue: @color-blue;
+@main-font-size: 13px;
+@medium-gray: #eee;
+@input-height: 30px;
+@comm-border: 1px solid #e6e6e6;
+@nav-height: 40px;
+@tab-height: 35px;
+@menu-width: 200px;
+@shrink-menu-width: 60px;
+@main-color: #666;
+@menu-color: #666;
+@nav-color: #666;
+@nav-background-color: #eee;
+@menu-child-background-color: #f1f1f1;
+@color-red: #f35e68;
+@color-green: #2ec7c9;
+@color-gray: #696969;
+@color-purple: #b6a2de;
+@color-blue: #4178be;
+@color-orange: #ffb980;
+.linear-gradient(@color1, @color2) {
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(@color1), to(@color2));
+    background: -webkit-linear-gradient(left, @color1, @color2);
+    background: -moz-linear-gradient(left, @color1, @color2);
+    background: -o-linear-gradient(left, @color1, @color2);
+    background: -ms-linear-gradient(left, @color1, @color2);
+    background: linear-gradient(left, @color1, @color2);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=@color1, endColorstr=@color2);
+}
+
+.opacity(@opacity, @filter: @opacity * 100) {
+    opacity: @opacity;
+    filter: alpha(opacity=@filter);
+}
+
+.radius(@radius) {
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    border-radius: @radius;
+//  behavior: url(ie-css3.htc);
+}

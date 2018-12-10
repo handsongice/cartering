@@ -1,0 +1,303 @@
+.layui-layout-body {
+  padding: 0;
+  background: #eee;
+}
+.layui-layout-admin .layui-side {
+  top: 0;
+  border-right: 1px solid #e6e6e6;
+}
+.layui-layout-admin .layui-side .layui-side-scroll {
+  top: 40px;
+  bottom: 0;
+  height: auto;
+  left: 0;
+  position: absolute;
+  width: 220px;
+  overflow-x: hidden;
+}
+.layui-layout-admin .layui-side #left-menu {
+  background-color: #fff;
+  color: #666;
+}
+.layui-layout-admin .layui-side #left-menu .layui-nav-item a {
+  color: #666 !important;
+}
+.layui-layout-admin .layui-side #left-menu .layui-nav-item a:hover {
+  background: none;
+  color: #4178be !important;
+}
+.layui-layout-admin .layui-side #left-menu .layui-nav-item > .layui-nav-child > dd > a {
+  text-indent: 1.5em;
+  height: 35px;
+  line-height: 35px;
+}
+.layui-layout-admin .layui-side #left-menu .layui-nav-item > .layui-nav-child .layui-nav-child a {
+  text-indent: 2.5em;
+  height: 35px;
+  line-height: 35px;
+}
+.layui-layout-admin .layui-side #left-menu .layui-nav-itemed > .layui-nav-child {
+  background-color: #f1f1f1 !important;
+}
+.layui-layout-admin .layui-side #left-menu .layui-this {
+  background: none;
+}
+.layui-layout-admin .layui-side #left-menu .layui-this > a {
+  background: none !important;
+  color: #4178be !important;
+}
+.layui-layout-admin #layui-main-area {
+  position: absolute;
+  left: 200px;
+  right: 0;
+  height: 100%;
+  width: auto;
+}
+.layui-layout-admin .layui-body {
+  top: 76px;
+  left: 0;
+  overflow: hidden;
+  bottom: 0;
+}
+.layui-layout-admin .layui-header {
+  height: 40px;
+  background-color: #eee;
+  border-bottom: 1px solid #e6e6e6;
+  box-sizing: border-box;
+}
+.layui-layout-admin .layui-header .layui-layout-left a {
+  color: #666;
+  cursor: pointer;
+  padding: 0 8px;
+}
+.layui-layout-admin .layui-header .layui-layout-left a:hover {
+  color: #4178be;
+}
+.layui-layout-admin .layui-header .layui-layout-left a i {
+  line-height: 35px;
+}
+.layui-layout-admin .layui-header .layui-nav {
+  color: #666 !important;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-child {
+  top: 45px;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item a {
+  color: #666 !important;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item .layui-this a {
+  color: #fff !important;
+}
+.layui-layout-admin .layui-header .layui-nav .layui-nav-item .layui-nav-mored {
+  border-color: transparent transparent #666;
+}
+.layui-layout-admin .layui-logo,
+.layui-layout-admin .layui-nav .layui-nav-item {
+  line-height: 40px;
+}
+.layui-layout-admin .layui-logo {
+  color: #fff;
+  background: #4178be;
+  /*background: -webkit-linear-gradient(left, #2ec7c9, #5ab1ef);*/
+  /*background: -moz-linear-gradient(left, #2ec7c9, #5ab1ef);*/
+  /*background: -o-linear-gradient(left, #2ec7c9, #5ab1ef);*/
+  /*background: -ms-linear-gradient(left, #2ec7c9, #5ab1ef);*/
+  /*background: linear-gradient(left, #2ec7c9, #5ab1ef);*/
+  /*filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#2ec7c9, endColorstr=#5ab1ef);*/
+  font-weight: 900;
+  height: 40px;
+}
+.layui-layout-admin .layui-logo i {
+  font-size: 22px;
+}
+#nav-user-area > a,
+#tools-area > a {
+  height: 40px;
+  line-height: 40px;
+}
+#nav-user-area > a:hover,
+#tools-area > a:hover {
+  color: #4178be;
+}
+#tools-area {
+  display: inline-block;
+}
+#tools-area a {
+  margin: 0 0 0 10px;
+  font-size: 13px;
+}
+#nav-user-area {
+  float: right;
+}
+#nav-user-area > * {
+  float: left;
+  display: block;
+}
+#nav-user-area > a {
+  padding: 0 20px 0 0;
+}
+#system-user-message {
+  position: relative;
+}
+#system-user-message span {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+.shrink-layout .layui-side {
+  width: 60px !important;
+}
+.shrink-layout .layui-logo {
+  width: 60px !important;
+  text-align: center;
+}
+.shrink-layout .layui-logo i {
+  font-size: 25px;
+}
+.shrink-layout .layui-logo span {
+  display: none;
+}
+.shrink-layout #left-menu {
+  width: 60px;
+}
+.shrink-layout #left-menu .layui-nav-child {
+  display: none;
+}
+.shrink-layout #left-menu .layui-nav-item a {
+  padding: 0;
+  text-align: center;
+}
+.shrink-layout #left-menu .layui-nav-item a span {
+  display: none;
+}
+.shrink-layout #left-menu .layui-nav-item a i {
+  font-size: 16px;
+}
+.shrink-layout #left-menu .layui-this > a {
+  background: #eee !important;
+}
+.shrink-layout #layui-main-area {
+  left: 60px !important;
+}
+.layui-nav .layui-nav-item .layui-nav-more {
+  border-color: #666 transparent transparent;
+  border-top-color: rgba(0, 0, 0, 0.7);
+}
+.layui-nav .layui-nav-itemed > a .layui-nav-more {
+  margin-top: -9px;
+  border-style: dashed dashed solid;
+  border-color: transparent transparent #666;
+}
+.main-container {
+  border: none;
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.layui-nav * {
+  font-size: 13px;
+}
+.layui-nav-item i {
+  margin-right: 5px;
+  font-size: 14px;
+}
+#system-tabs-area {
+  height: 35px;
+  line-height: 35px;
+  padding: 0 70px 0 35px;
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
+}
+#system-tabs-area #tabs-operation {
+  position: absolute;
+  z-index: 10000;
+  background: #fff;
+  top: 35px;
+  right: 0;
+  border: 1px solid #e6e6e6;
+}
+#system-tabs-area #tabs-operation li {
+  padding: 0 10px;
+  cursor: pointer;
+}
+#system-tabs-area #tabs-operation li:hover {
+  background: #eff2f9;
+}
+#system-tabs-area > #prev-tab,
+#system-tabs-area #next-tab,
+#system-tabs-area #other-tab {
+  position: absolute;
+  top: 0;
+  width: 35px;
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 1px solid #f6f6f6;
+  padding: 0;
+  background: none;
+}
+
+#system-tabs-area > #other-tab {
+  right: 0;
+}
+#system-tabs-area .layui-tab {
+  margin: 0;
+}
+#system-tabs-area > .layui-icon-prev {
+  left: 0;
+  border-right: 1px solid #f6f6f6;
+}
+#system-tabs-area > .layui-icon-next {
+  right: 35px;
+}
+#system-tabs-area .layui-tab {
+  overflow: hidden;
+}
+#system-tabs-area .layui-tab .layui-tab-title {
+  height: 35px;
+  border: none;
+}
+#system-tabs-area .layui-tab .layui-tab-title li {
+  min-width: 0;
+  height: 35px;
+  line-height: 35px;
+  max-width: 160px;
+  text-overflow: ellipsis;
+  padding: 0 30px 0 10px;
+  overflow: hidden;
+  border-right: 1px solid #f6f6f6;
+  vertical-align: top;
+}
+#system-tabs-area .layui-tab .layui-tab-title li .layui-tab-close {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin: -7px 0 0;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+#system-tabs-area .layui-tab .layui-tab-title li:first-child {
+  padding-right: 15px;
+}
+#system-tabs-area .layui-tab .layui-tab-title li:first-child .layui-tab-close {
+  display: none;
+}
+#system-tabs-area .layui-tab .layui-tab-title li.layui-this,
+#system-tabs-area .layui-tab .layui-tab-title li:hover {
+  background: #f6f6f6;
+}
+#system-tabs-area .layui-tab .layui-tab-title li.layui-this:after {
+  border-top: 2px solid #4178be;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}

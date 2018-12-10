@@ -1,0 +1,307 @@
+@import 'theme.less';
+.layui-layout-body {
+    padding: 0;
+    background: @medium-gray;
+}
+
+.layui-layout-admin {
+    .layui-side {
+        top: 0;
+        border-right: @comm-border;
+        .layui-side-scroll {
+            top: @nav-height;
+            bottom: 0;
+            height: auto;
+            left: 0;
+            position: absolute;
+            width: 220px;
+            overflow-x: hidden;
+        }
+        #left-menu {
+            background-color: #fff;
+            color: @menu-color;
+            .layui-nav-item {
+                a {
+                    color: @menu-color !important;
+                    &:hover {
+                        background: none;
+                        color: @main-blue !important;
+                    }
+                }
+                >.layui-nav-child {
+                    >dd>a {
+                        text-indent: 1.5em;
+                        height: 35px;
+                        line-height: 35px;
+                    }
+                    .layui-nav-child {
+                        a {
+                            text-indent: 2.5em;
+                            height: 35px;
+                            line-height: 35px;
+                        }
+                    }
+                }
+            }
+            .layui-nav-itemed {
+                >.layui-nav-child {
+                    background-color: @menu-child-background-color !important;
+                }
+            }
+            .layui-this {
+                background: none;
+                >a {
+                    background: none !important;
+                    color: @main-blue !important;
+                }
+            }
+        }
+    }
+    #layui-main-area {
+        position: absolute;
+        left: @menu-width;
+        right: 0;
+        height: 100%;
+        width: auto;
+    }
+    .layui-body {
+        top: @nav-height + @tab-height+1;
+        left: 0;
+        overflow: hidden;
+        bottom: 0;
+    }
+    .layui-header {
+        height: @nav-height;
+        background-color: @nav-background-color;
+        border-bottom: @comm-border;
+        box-sizing: border-box;
+        .layui-layout-left {
+            a {
+                color: @nav-color;
+                cursor: pointer;
+                padding: 0 8px;
+                &:hover {
+                    color: @main-blue;
+                }
+                i {
+                    line-height: @tab-height;
+                }
+            }
+        }
+        .layui-nav {
+            color: @nav-color !important;
+            .layui-nav-child {
+                top: @nav-height + 5;
+            }
+            .layui-nav-item {
+                a {
+                    color: @nav-color !important;
+                }
+                .layui-this a{
+                    color: #fff !important;
+                }
+                .layui-nav-mored {
+                    border-color: transparent transparent @nav-color;
+                }
+            }
+        }
+    }
+    .layui-logo,
+    .layui-nav .layui-nav-item {
+        line-height: @nav-height;
+    }
+    .layui-logo {
+        color: #fff;
+        .linear-gradient(@color-green, @color-blue);
+        font-weight: 900;
+        height: @nav-height;
+        i {
+            font-size: 22px;
+        }
+    }
+}
+
+#nav-user-area>a,
+#tools-area>a {
+    height: @nav-height;
+    line-height: @nav-height;
+    &:hover {
+        color: @main-blue;
+    }
+}
+
+#tools-area {
+    display: inline-block;
+    a {
+        margin: 0 0 0 10px;
+        font-size: 13px;
+    }
+}
+
+#nav-user-area {
+    float: right;
+    >* {
+        float: left;
+        display: block;
+    }
+}
+
+#nav-user-area>a {
+    padding: 0 20px 0 0;
+}
+
+#system-user-message {
+    position: relative;
+    span {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+}
+
+.shrink-layout {
+    .layui-side {
+        width: @shrink-menu-width !important;
+    }
+    .layui-logo {
+        width: @shrink-menu-width !important;
+        text-align: center;
+        i {
+            font-size: 25px;
+        }
+        span {
+            display: none;
+        }
+    }
+    #left-menu {
+        width: @shrink-menu-width;
+        .layui-nav-child {
+            display: none;
+        }
+        .layui-nav-item a {
+            padding: 0;
+            text-align: center;
+            span {
+                display: none;
+            }
+            i {
+                font-size: 16px;
+            }
+        }
+        .layui-this>a {
+            background: #eee !important;
+        }
+    }
+    #layui-main-area {
+        left: @shrink-menu-width !important;
+    }
+}
+
+.layui-nav {
+    .layui-nav-item {
+        .layui-nav-more {
+            border-color: @menu-color transparent transparent;
+            border-top-color: rgba(0, 0, 0, 0.7);
+        }
+    }
+    .layui-nav-itemed {
+        >a .layui-nav-more {
+            margin-top: -9px;
+            border-style: dashed dashed solid;
+            border-color: transparent transparent @menu-color;
+        }
+    }
+}
+
+.main-container {
+    border: none;
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.layui-nav * {
+    font-size: @main-font-size;
+}
+
+.layui-nav-item i {
+    margin-right: 5px;
+    font-size: @main-font-size + 1;
+}
+
+#system-tabs-area {
+    height: @tab-height;
+    line-height: @tab-height;
+    padding: 0 @tab-height;
+    background-color: #fff;
+    border-bottom: @comm-border;
+    position: relative;
+    >.layui-icon {
+        position: absolute;
+        top: 0;
+        width: @tab-height;
+        height: 100%;
+        text-align: center;
+        cursor: pointer;
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        box-sizing: border-box;
+        border-left: 1px solid #f6f6f6;
+    }
+    .layui-tab {
+        margin: 0;
+    }
+    >.layui-icon-prev {
+        left: 0;
+        border-right: 1px solid #f6f6f6;
+    }
+    >.layui-icon-next {
+        right: 0;
+    }
+    .layui-tab {
+        overflow: hidden;
+        .layui-tab-title {
+            height: @tab-height;
+            border: none;
+            li {
+                min-width: 0;
+                height: @tab-height;
+                line-height: @tab-height;
+                max-width: 160px;
+                text-overflow: ellipsis;
+                padding: 0 30px 0 10px;
+                overflow: hidden;
+                border-right: 1px solid #f6f6f6;
+                vertical-align: top;
+                .layui-tab-close {
+                    position: absolute;
+                    right: 8px;
+                    top: 50%;
+                    margin: -7px 0 0;
+                    width: 16px;
+                    height: 16px;
+                    line-height: 16px;
+                    border-radius: 50%;
+                    font-size: 12px;
+                }
+                &:first-child {
+                    padding-right: 15px;
+                    .layui-tab-close {
+                        display: none;
+                    }
+                }
+                &.layui-this,
+                &:hover {
+                    background: #f6f6f6;
+                }
+                &.layui-this:after {
+                    border-top: 2px solid @main-blue;
+                    border-left: none;
+                    border-right: none;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}

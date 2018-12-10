@@ -1,0 +1,47 @@
+body {
+				padding: 0;
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			#back-img {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+			}
+			
+			#login-cont {
+				width: 350px;
+				height: 300px;
+				position: absolute;
+				background: #fff;
+				padding: 20px;
+				box-sizing: border-box;
+				left: 50%;
+				margin-left: -175px;
+				top: 50%;
+				margin-top: -150px;
+			}
+			
+			#login-cont h1 {
+				text-align: center;
+				margin: 10px 0 24px 0;
+				font-size: 22px;
+			}
+			
+			.layui-form-pane .layui-input-block {
+				margin-left: 85px;
+			}
+			
+			.layui-form-pane .layui-form-label {
+				width: 85px;
+			}
+			
+			#yzm-img {
+				height: 33px;
+				width: 80px;
+				border: 1px solid #e6e6e6;
+				float: right;
+				cursor: pointer;
+			}
