@@ -1,5 +1,6 @@
 package cn.jy.service.impl;
 
+import cn.jy.constent.Constent;
 import cn.jy.dto.ResultMap;
 import cn.jy.entity.Employee;
 import cn.jy.mapper.EmployeeMapper;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +49,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ResultMap updateMyInfo(Employee employee) {
-        return null;
+        employee.setUpdateTime(new Date());
+        //设置创建时间
+        int dbResult = employeeMapper.updateByPrimaryKeySelective(employee);
+        if(dbResult <=0){
+            throw new RuntimeException(Constent.DB_UPDATE_FAILURE);
+        }
+        return ResultMap.success(Constent.DB_UPDATE_SUCCESS);
     }
 
     @Override

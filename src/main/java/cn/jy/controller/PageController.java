@@ -37,6 +37,7 @@ public class PageController extends BaseController {
         if(null == employee || StringUtils.isEmpty(employee.getLoginCode())) {
             return mv;
         }
+        mv.addObject("employee", employee);
         try {
             List<Action> actions = actionService.leftMenus(employee);
             mv.addObject("actions", actions);

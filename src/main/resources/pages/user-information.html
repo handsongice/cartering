@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-card">
+				<div class="layui-card-body" style="padding: 15px;">
+					<form class="layui-form" action="" lay-filter="component-form-group">
+						<input type="hidden" name="id" th:value="${employee.id}">
+						<div class="layui-form-item">
+							<label class="layui-form-label">姓名<span style='color:red'>*</span></label>
+							<div class="layui-input-block">
+								<input type="text" name="name" required lay-verType="tips" lay-verify="required" th:value="${employee.name}" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">性别<span style='color:red'>*</span></label>
+							<div class="layui-input-block">
+								<select name="sex" lay-verify="required" lay-verType="tips" th:if="${employee.sex eq 1}">
+									<option value="1" selected>男</option>
+									<option value="2">女</option>
+								</select>
+								<select name="type" lay-verify="required" lay-verType="tips" th:if="${employee.sex eq 2}">
+									<option value="1">男</option>
+									<option value="2" selected>女</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">手机</label>
+							<div class="layui-input-block">
+								<input type="text" name="phone" th:value="${employee.phone}" lay-verify="phone" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">邮箱</label>
+							<div class="layui-input-block">
+								<input type="text" name="email" th:value="${employee.email}" lay-verify="email" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">备注</label>
+							<div class="layui-input-block">
+								<textarea name="desc" placeholder="请输入内容" th:utext="${employee.desc}" class="layui-textarea"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item layui-layout-admin">
+							<div class="layui-input-block">
+								<div class="layui-footer" style="left: 0;">
+									<button type="button" class="layui-btn" lay-submit  lay-filter="addOrEdit">立即提交</button>
+									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="/static/default/js/jquery.min.js"></script>
+		<script src="/static/layuiadmin/layui/layui.js?t=1"></script>
+		<script th:inline="javascript">
+            $(document).ready(function () {
+                layui.config({
+                    base: '/static/layuiadmin/' //静态资源所在路径
+                }).extend({
+                    index: 'lib/index' //主入口模块
+                }).use(['index','form', 'layer'], function() {
+                    var form = layui.form;
+                    var layer = layui.layer;
+                    //表单提交验证
+                    form.on('submit(addOrEdit)', function(data){
+                        if(!data.field.id) {
+                            layer.msg('数据异常');
+                            return false;
+                        }
+                        var loadindex;
+                        $.ajax({
+                            url: "/noc/updateMyInfo",
+                            type: 'post',
+                            async : true,
+                            dataType: 'json',
+                            data: data.field,
+                            beforeSend:function(rs){
+                                loadindex = layer.load(2, {
+                                    time: 1500,
+                                    shade: [0.3,'#000'],
+                                });
+                            },
+                            complete:function(rs){
+                                layer.close(loadindex);
+                            },
+                            success: function(rlt) {
+                                if(rlt && rlt.status == 200) {
+                                    layer.msg(rlt.msg, {icon: 1,time: 1000,title:'温馨提示'}, function(){
+                                    });
+                                } else {
+                                    layer.alert(rlt.msg,{icon: 2, title:'温馨提示'});
+                                    return false;
+                                }
+                            },error: function(rlt) {
+                                layer.alert(rlt.msg,{icon: 2, title:'温馨提示'});
+                                return false;
+                            }
+                        });
+                        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                    });
+                    //表单自定义验证规则
+                    form.verify({
+                        hm: function(value, item){
+                            if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                                return '不能含有有特殊字符';
+                            }
+                        },
+                        je: function(value,item) {
+                            if(!/^\d+(?:.\d{1,2})?$/.test(value)){
+                                return '输入不合法,只能为整数或小数点2位以内的数字';
+                            }
+                        }
+                    });
+                });
+			})
+		</script>
+	</body>
+
+</html>
