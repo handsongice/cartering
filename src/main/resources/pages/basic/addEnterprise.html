@@ -22,7 +22,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">税号<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="tax_num" required lay-verType="tips" lay-verify="required|hm" placeholder="请输入税号" autocomplete="off" class="layui-input">
+								<input type="text" name="taxNum" required lay-verType="tips" lay-verify="required|hm" placeholder="请输入税号" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -61,7 +61,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">登录账号<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="login_code" required lay-verType="tips" lay-verify="required|hm" placeholder="请输入登录账号" autocomplete="off" class="layui-input">
+								<input type="text" name="loginCode" required lay-verType="tips" lay-verify="required|hm" placeholder="请输入登录账号" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -73,13 +73,13 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">起止时间<span style='color:red'>*</span></label>
 							<div class="layui-input-inline">
-								<input type="text" id="start_time" name="start_time" lay-verify="required" lay-verType="tips" placeholder="开始时间" autocomplete="off" class="layui-input">
+								<input type="text" id="startTime" name="startTime" lay-verify="required" lay-verType="tips" placeholder="开始时间" autocomplete="off" class="layui-input">
 							</div>
 							<div class="layui-form-mid">
 								-
 							</div>
 							<div class="layui-input-inline">
-								<input type="text" id="end_time" name="end_time" lay-verify="required" lay-verType="tips" placeholder="结束时间" autocomplete="off" class="layui-input">
+								<input type="text" id="endTime" name="endTime" lay-verify="required" lay-verType="tips" placeholder="结束时间" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -119,7 +119,7 @@
                     var layedit = layui.layedit;
                     //开始日期
                     var insStart = laydate.render({
-                        elem: '#start_time'
+                        elem: '#startTime'
                         ,min: 0
                         ,done: function(value, date){
                             //自动弹出结束日期的选择器
@@ -128,7 +128,7 @@
                     });
                     //结束日期
                     var insEnd = laydate.render({
-                        elem: '#end_time'
+                        elem: '#endTime'
                         ,min: 0
                         ,done: function(value, date){
                         }
@@ -192,28 +192,14 @@
                     var ieditor = layedit.build('layeditDemo');
                     //表单提交验证
                     form.on('submit(addOrEdit)', function(data){
-                        var nodes = treeObj.getCheckedNodes();
-                        var parent_id = 0;
-                        if(nodes.length>0){
-                            parent_id = nodes[0].id;
-                        }
+                        data.field.introduction = layedit.getContent(ieditor);
                         var loadindex;
                         $.ajax({
-                            url: "/noc/insertAction",
+                            url: "/noc/insertEnterprise",
                             type: 'post',
                             async : true,
                             dataType: 'json',
-                            data: {
-                                name:data.field.name,
-                                simple:data.field.simple,
-                                href:data.field.href,
-                                type:data.field.type,
-                                parentId:parent_id,
-                                logoIcon:data.field.logo_icon,
-                                isMenu:data.field.is_menu,
-                                display:data.field.display,
-                                item:data.field.item,
-                            },
+                            data: data.field,
                             beforeSend:function(rs){
                                 loadindex = layer.load(2, {
                                     time: 1500,

@@ -23,10 +23,10 @@ public class Enterprise {
     private Integer status;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date startTime;
+    private String startTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date endTime;
+    private String endTime;
 
     private Byte nature;
 
@@ -118,19 +118,19 @@ public class Enterprise {
         this.status = status;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
