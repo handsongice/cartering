@@ -1,80 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92604fdc-df02-4acf-aadb-3cf3eb974d99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_2_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/common/LayUiResultData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EnterpriseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/service/EnterpriseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/EnterpriseServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/addAction.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/editAction.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/enterprise.html" afterDir="false" />
+    <list default="true" id="92604fdc-df02-4acf-aadb-3cf3eb974d99" name="Default Changelist" comment="12.11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cartering.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cartering.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/constent/Constent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/constent/Constent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/controller/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/ActionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/ActionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pages/basic/action.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/action.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/common/BaseResultData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/common/BaseResultData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/common/CommonHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/common/CommonHandle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig$SecurityInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig$SecurityInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/BaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/CodeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/CodeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/ActionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/ActionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/dto/ResultMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/dto/ResultMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/entity/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/entity/Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/entity/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/entity/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/entity/RoleAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/entity/RoleAction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/filter/MyFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/filter/MyFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/GlobalDefultExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/GlobalDefultExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/UserInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/UserInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/mapper/ActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/mapper/ActionMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/mapper/EmployeeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/mapper/EmployeeMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/mapper/RoleActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/mapper/RoleActionMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/pojo/LayUiPageParams.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/pojo/LayUiPageParams.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/ActionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/ActionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/EmployeeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/ActionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/ActionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/EmployeeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/EmployeeServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/Base64Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/Base64Util.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/BeanToMapUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/BeanToMapUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/BigDecimalUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/BigDecimalUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/CodeUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/CodeUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/CookieUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/CookieUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/DateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/DateUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/DecodeUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/DecodeUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/HttpUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/HttpUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/JWTUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/JWTUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/JsonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/JsonUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/MD5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/MD5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/MathUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/MathUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PassWordCreate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PassWordCreate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtilForStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtilForStatistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PropertiesUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PropertiesUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ReadTxt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ReadTxt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/RegexUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/RegexUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ServletUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ServletUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/SpecialCharUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/SpecialCharUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ThreeDESUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ThreeDESUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ZipUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ZipUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pages/basic/action.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/basic/action.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/layuiadmin/modules/contlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/layuiadmin/modules/contlist.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -151,6 +79,7 @@
           <entry key="html" value="297" />
           <entry key="java" value="249" />
           <entry key="js" value="12" />
+          <entry key="txt" value="6" />
           <entry key="xml" value="63" />
         </counts>
       </usages-collector>
@@ -159,6 +88,7 @@
           <entry key="HTML" value="297" />
           <entry key="JAVA" value="249" />
           <entry key="JavaScript" value="12" />
+          <entry key="PLAIN_TEXT" value="6" />
           <entry key="SQL" value="12" />
           <entry key="XML" value="51" />
         </counts>
@@ -249,7 +179,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-356">
+            <state relative-caret-position="-242">
               <caret line="143" column="39" lean-forward="true" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -591,7 +521,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544519570541" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544519735104" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -642,18 +572,26 @@
       <option name="presentableId" value="Default" />
       <updated>1544478637645</updated>
       <workItem from="1544478642869" duration="2293000" />
-      <workItem from="1544490927342" duration="21169000" />
+      <workItem from="1544490927342" duration="21420000" />
     </task>
+    <task id="LOCAL-00001" summary="12.11">
+      <created>1544519639585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544519639585</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23462000" />
+    <option name="totallyTimeSpent" value="23713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25286534" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25286534" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -664,7 +602,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3301887" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39892185" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39892185" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -692,6 +630,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="12.11" />
+    <option name="LAST_COMMIT_MESSAGE" value="12.11" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/common/CommonHandle.java">
@@ -973,7 +915,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-356">
+        <state relative-caret-position="-242">
           <caret line="143" column="39" lean-forward="true" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />

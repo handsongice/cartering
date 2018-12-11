@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jy.mapper.EnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="cn.jy.entity.Enterprise" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="partener_id" property="partenerId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="end_time" property="endTime" jdbcType="DATE" />
+    <result column="nature" property="nature" jdbcType="TINYINT" />
+    <result column="employee_amount" property="employeeAmount" jdbcType="TINYINT" />
+    <result column="employees" property="employees" jdbcType="INTEGER" />
+    <result column="logo" property="logo" jdbcType="CHAR" />
+    <result column="ranking" property="ranking" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="login_code" property="loginCode" jdbcType="VARCHAR" />
+    <result column="tax_num" property="taxNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.jy.entity.Enterprise" extends="BaseResultMap" >
+    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, partener_id, `type`, `name`, address, phone, pic, status, start_time, end_time, nature,
+    employee_amount, employees, logo, ranking, create_time, update_time, is_del,login_code,tax_num
+  </sql>
+  <sql id="Blob_Column_List" >
+    introduction
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yl_enterprise
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="findByParams" resultMap="BaseResultMap" parameterType="cn.jy.entity.Enterprise" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yl_enterprise
+    <where>
+      is_del = 0
+      <if test="name != null">
+        and `name` = #{name}
+      </if>
+      <if test="taxNum != null">
+        and tax_num = #{taxNum}
+      </if>
+      <if test="loginCode != null">
+        and login_code = #{loginCode}
+      </if>
+      <if test="id != null">
+        and id != #{id}
+      </if>
+    </where>
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yl_enterprise
+    <where>
+      is_del = 0
+      <if test="name != null">
+        and name like CONCAT('%',#{name},'%')
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from yl_enterprise
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.jy.entity.Enterprise" >
+    insert into yl_enterprise (id, partener_id, `type`,
+      `name`, address, phone,
+      pic, status, start_time, 
+      end_time, nature, employee_amount, 
+      employees, logo, ranking, 
+      create_time, update_time, is_del, 
+      introduction,login_code,tax_num)
+    values (#{id,jdbcType=BIGINT}, #{partenerId,jdbcType=BIGINT}, #{type,jdbcType=BIGINT}, 
+      #{name,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{startTime,jdbcType=DATE}, 
+      #{endTime,jdbcType=DATE}, #{nature,jdbcType=TINYINT}, #{employeeAmount,jdbcType=TINYINT}, 
+      #{employees,jdbcType=INTEGER}, #{logo,jdbcType=CHAR}, #{ranking,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=BIT}, 
+      #{introduction,jdbcType=LONGVARCHAR}, #{loginCode,jdbcType=VARCHAR}, #{taxNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jy.entity.Enterprise" >
+    insert into yl_enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="partenerId != null" >
+        partener_id,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="nature != null" >
+        nature,
+      </if>
+      <if test="employeeAmount != null" >
+        employee_amount,
+      </if>
+      <if test="employees != null" >
+        employees,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="ranking != null" >
+        ranking,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="loginCode != null" >
+        login_code,
+      </if>
+      <if test="taxNum != null" >
+        tax_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="partenerId != null" >
+        #{partenerId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="nature != null" >
+        #{nature,jdbcType=TINYINT},
+      </if>
+      <if test="employeeAmount != null" >
+        #{employeeAmount,jdbcType=TINYINT},
+      </if>
+      <if test="employees != null" >
+        #{employees,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=CHAR},
+      </if>
+      <if test="ranking != null" >
+        #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="loginCode != null" >
+        #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNum != null" >
+        #{taxNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.Enterprise" >
+    update yl_enterprise
+    <set >
+      <if test="partenerId != null" >
+        partener_id = #{partenerId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="nature != null" >
+        nature = #{nature,jdbcType=TINYINT},
+      </if>
+      <if test="employeeAmount != null" >
+        employee_amount = #{employeeAmount,jdbcType=TINYINT},
+      </if>
+      <if test="employees != null" >
+        employees = #{employees,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=CHAR},
+      </if>
+      <if test="ranking != null" >
+        ranking = #{ranking,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="loginCode != null" >
+        login_code = #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNum != null" >
+        tax_num = #{taxNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.jy.entity.Enterprise" >
+    update yl_enterprise
+    set partener_id = #{partenerId,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      nature = #{nature,jdbcType=TINYINT},
+      employee_amount = #{employeeAmount,jdbcType=TINYINT},
+      employees = #{employees,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=CHAR},
+      ranking = #{ranking,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=BIT},
+      login_code = #{loginCode,jdbcType=VARCHAR},
+      tax_num = #{taxNum,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.Enterprise" >
+    update yl_enterprise
+    set partener_id = #{partenerId,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=DATE},
+      end_time = #{endTime,jdbcType=DATE},
+      nature = #{nature,jdbcType=TINYINT},
+      employee_amount = #{employeeAmount,jdbcType=TINYINT},
+      employees = #{employees,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=CHAR},
+      ranking = #{ranking,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      login_code = #{loginCode,jdbcType=VARCHAR},
+      tax_num = #{taxNum,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="delEnterprise" parameterType="java.lang.Long" >
+    update yl_enterprise
+    set is_del = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
