@@ -105,7 +105,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             return ResultMap.fail("税号重复！");
         }
         try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             //设置创建时间
             enterprise.setUpdateTime(new Date());
             int dbResult = enterpriseMapper.updateByPrimaryKeySelective(enterprise);
