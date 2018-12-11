@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+
+	</head>
+
+	<body>
+	<div class="layui-fluid">
+		<div class="layui-card">
+			<div class="layui-card-body" style="padding: 15px;">
+				<form class="layui-form" action="" lay-filter="component-form-group">
+					<div class="layui-form-item">
+						<input type="hidden" name="id" th:value="${action.id}">
+						<label class="layui-form-label">菜单名称<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="name" th:value="${action.name}" lay-verType="tips" lay-verify="required|hm" placeholder="请输入菜单名称" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">菜单简称<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="simple" th:value="${action.simple}" lay-verType="tips" lay-verify="required|hm" placeholder="请输入菜单简称" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">菜单类型<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<select name="type" lay-verify="required" lay-verType="tips" th:if="${action.type eq 1}">
+								<option value="1" selected>平台菜单</option>
+								<option value="2">企业菜单</option>
+							</select>
+							<select name="type" lay-verify="required" lay-verType="tips" th:if="${action.type eq 2}">
+								<option value="1">平台菜单</option>
+								<option value="2" selected>企业菜单</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">URL<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="href" th:value="${action.href}" lay-verType="tips" lay-verify="required" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">icon</label>
+						<div class="layui-input-block">
+							<input type="text" name="logo_icon" th:value="${action.logoIcon}" placeholder="请输入icon" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">是否是菜单<span style='color:red'>*</span></label>
+						<div class="layui-input-block" th:if="${action.isMenu eq 1}">
+							<input type="radio" name="is_menu" value="1" title="是" checked>
+							<input type="radio" name="is_menu" value="0" title="否" >
+						</div>
+						<div class="layui-input-block" th:if="${action.isMenu ne 1}">
+							<input type="radio" name="is_menu" value="1" title="是" >
+							<input type="radio" name="is_menu" value="0" title="否" checked>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">是否显示<span style='color:red'>*</span></label>
+						<div class="layui-input-block" th:if="${action.display eq 1}">
+							<input type="radio" name="display" value="1" title="是" checked>
+							<input type="radio" name="display" value="0" title="否" >
+						</div>
+						<div class="layui-input-block" th:if="${action.display ne 1}">
+							<input type="radio" name="display" value="1" title="是" >
+							<input type="radio" name="display" value="0" title="否" checked>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">设备<span style='color:red'>*</span></label>
+						<div class="layui-input-block" th:if="${action.item eq 1}">
+							<input type="radio" name="item" value="1" title="PC" checked>
+							<input type="radio" name="item" value="2" title="APP" >
+						</div>
+						<div class="layui-input-block" th:if="${action.item ne 1}">
+							<input type="radio" name="item" value="1" title="PC" >
+							<input type="radio" name="item" value="2" title="APP" checked>
+						</div>
+					</div>
+					<div class="layui-form-item layui-layout-admin">
+						<div class="layui-input-block">
+							<div class="layui-footer" style="left: 0;">
+								<button type="button" class="layui-btn" lay-submit  lay-filter="addOrEdit">立即提交</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="/static/default/js/jquery.min.js"></script>
+	<script src="/static/layuiadmin/layui/layui.js?t=1"></script>
+	<script th:inline="javascript">
+		var windowindex = parent.layer.getFrameIndex(window.name);
+		$(document).ready(function () {
+			layui.use(['form', 'layer'], function() {
+				var form = layui.form;
+				var layer = layui.layer;
+
+				//表单提交验证
+				form.on('submit(addOrEdit)', function(data){
+					if(!data.field.id) {
+						layer.msg('数据异常');
+						return false;
+					}
+					var loadindex;
+					$.ajax({
+						url: "/noc/updateAction",
+						type: 'post',
+						async : true,
+						dataType: 'json',
+						data: {
+							id:data.field.id,
+							name:data.field.name,
+							simple:data.field.simple,
+							href:data.field.href,
+							type:data.field.type,
+							logoIcon:data.field.logo_icon,
+							isMenu:data.field.is_menu,
+							display:data.field.display,
+                            item:data.field.item,
+						},
+						beforeSend:function(rs){
+							loadindex = layer.load(2, {
+								time: 1500,
+								shade: [0.3,'#000'],
+							});
+						},
+						complete:function(rs){
+							layer.close(loadindex);
+						},
+						success: function(rlt) {
+							if(rlt && rlt.status == 200) {
+								layer.msg(rlt.msg, {icon: 1,time: 1000,title:'温馨提示'}, function(){
+									parent._search();
+									parent.layer.close(windowindex); //再执行关闭
+								});
+							} else {
+								layer.alert(rlt.msg,{icon: 2, title:'温馨提示'});
+								return false;
+							}
+						},error: function(rlt) {
+							layer.alert(rlt.msg,{icon: 2, title:'温馨提示'});
+							return false;
+						}
+					});
+					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				});
+				//表单自定义验证规则
+				form.verify({
+					hm: function(value, item){
+						if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+							return '不能含有有特殊字符';
+						}
+					},
+					je: function(value,item) {
+						if(!/^\d+(?:.\d{1,2})?$/.test(value)){
+							return '输入不合法,只能为整数或小数点2位以内的数字';
+						}
+					}
+				});
+			});
+		})
+	</script>
+	</body>
+
+</html>

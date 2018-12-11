@@ -10,7 +10,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://120.27.10.191:3306/chain_store?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"
                         userId="root"
                         password="jingci1122">
@@ -131,7 +131,7 @@
         <!--<table tableName="fpsg" domainObjectName="Fpsg" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 
-        <table tableName="yl_employee" domainObjectName="Employee" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="yl_enterprise" domainObjectName="Enterprise" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
 
     </context>

@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>菜单管理</title>
+    <title>公司管理</title>
     <link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+
 </head>
 
 <body>
@@ -16,18 +17,8 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">名称：</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="name" placeholder="请输入菜单名" autocomplete="off"
+                        <input type="text" name="name" placeholder="请输入公司名" autocomplete="off"
                                class="layui-input name">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">类型：</label>
-                    <div class="layui-input-inline">
-                        <select class="type" name="type">
-                            <option value="" selected>请选择</option>
-                            <option value="1">平台菜单</option>
-                            <option value="2">企业菜单</option>
-                        </select>
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -46,11 +37,10 @@
         </div>
     </div>
 </div>
-
 <script src="/static/default/js/jquery.min.js"></script>
 <script src="/static/layuiadmin/layui/layui.js?t=1"></script>
 <script type="text/html" id="toolbarDemo">
-    <button class="layui-btn layuiadmin-btn-list "  lay-event="add" title="添加菜单">
+    <button class="layui-btn layuiadmin-btn-list"  lay-event="add" title="添加公司">
         <i class="fa fa-plus"></i><span>添加</span>
     </button>
 </script>
@@ -68,31 +58,36 @@
                     var _this = this;
                     var colsData = [
                         [
-                            {field: 'name', title: '菜单名', sort: true},
-                            {field: 'simple', title: '菜单简称', sort: true},
+                            {field: 'name', title: '公司名', sort: true},
+                            {field: 'taxNum', title: '税号', sort: true},
                             {
                                 field: 'type', title: '类型', unresize: true, sort: true, templet: function (res) {
 
                                     if (res.type == 1) {
-                                        return "平台菜单";
+                                        return "连锁";
                                     } else if (res.type == 2) {
-                                        return "企业菜单";
+                                        return "单店";
                                     }
                                 }
                             },
-                            {field: 'href', title: '路由地址', sort: true},
+                            {field: 'loginCode', title: '管理账号', sort: true},
+                            {field: 'address', title: '公司地址', sort: true},
+                            {field: 'phone', title: '联系电话', sort: true},
+                            {field: 'startTime', title: '开始时间'},
+                            {field: 'endTime', title: '结束时间'},
                             {field: 'createTime', title: '创建时间'},
                             {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
                     ];
                     table.render({
                         id: "dataList",
                         elem: '#test',
-                        url: '/noc/pageActionList',
+                        url: '/noc/pageEnterpriseList',
                         toolbar: '#toolbarDemo' ,
                         where: _this.getRequestParams(),
                         title: '数据列表',
                         cols: colsData,
                         even: true, //开启隔行背景
+                        size: 'sm', //小尺寸的表格
                         page: true,
                         done: function (res, curr, count) {
                             //alert(res);
@@ -106,7 +101,7 @@
                                 var index = layer.open({
                                     title: "新建",
                                     type: 2,
-                                    content: "/main/addAction",
+                                    content: "/main/addEnterprise",
                                     success: function(layero, index) {
                                         setTimeout(function() {
                                             layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -133,7 +128,7 @@
                             var index = layer.open({
                                 title: "编辑",
                                 type: 2,
-                                content: "/main/editAction?id="+dataId,
+                                content: "/main/editEnterprise?id="+dataId,
                                 success: function(layero, index) {
                                     setTimeout(function() {
                                         layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -151,7 +146,7 @@
                             layer.confirm('是否确认删除?',{icon: 3, title:'温馨提示'}, function(index) {
                                 var loadindex;
                                 $.ajax({
-                                    url: "/noc/delAction",
+                                    url: "/noc/delEnterprise",
                                     type: 'post',
                                     async : true,
                                     dataType: 'json',
@@ -195,9 +190,6 @@
                     var params = {};
                     if($('.name').val()) {
                         params.name = $('.name').val();
-                    }
-                    if($('.type').val()) {
-                        params.type = $('.type').val();
                     }
                     params.timestamp = (new Date()).getTime()
                     return params;

@@ -37,42 +37,182 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="layui-card-body">
-        <div style="padding-bottom: 10px;">
-            <button class="layui-btn layuiadmin-btn-list" data-type="add">新建</button>
+        <div class="layui-card-body">
+            <table class="layui-table" id="test" lay-filter="test"></table>
+            <script type="text/html" id="tableOperation">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
         </div>
-        <table class="layui-table" id="test" lay-filter="test"></table>
-        <script type="text/html" id="table-content-list">
-            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
-        </script>
     </div>
 </div>
 
 <script src="/static/default/js/jquery.min.js"></script>
 <script src="/static/layuiadmin/layui/layui.js?t=1"></script>
-
+<script type="text/html" id="toolbarDemo">
+    <button class="layui-btn layuiadmin-btn-list "  lay-event="add" title="添加菜单">
+        <i class="fa fa-plus"></i><span>添加</span>
+    </button>
+</script>
 <script>
-    layui.config({
-        base: '/static/layuiadmin/' //静态资源所在路径
-    }).extend({
-        index: 'lib/index' //主入口模块
-    }).use(['index','console','table', 'laypage', 'layer', 'laydate'], function () {
-        var table = layui.table
-            ,form = layui.form
-            ,laypage = layui.laypage
-            ,laydate = layui.laydate
-            ,layer = layui.layer;
-        //监听搜索
-        form.on('submit(searchBut)', function(data){
-            var field = data.field;
-            //执行重载
-            table.reload('test', {
-                where: field
+    var sgshObj = {};
+    $(document).ready(function () {
+        layui.use(['table', 'laypage', 'layer', 'laydate'], function () {
+            var table = layui.table,laypage = layui.laypage,laydate = layui.laydate,layer = layui.layer;
+            sgshObj = {
+                loadPage: function () {
+                    var _this = this;
+                    _this.tableRender();
+                },
+                tableRender: function () {
+                    var _this = this;
+                    var colsData = [
+                        [
+                            {field: 'name', title: '菜单名', sort: true},
+                            {field: 'simple', title: '菜单简称', sort: true},
+                            {
+                                field: 'type', title: '类型', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.type == 1) {
+                                        return "平台菜单";
+                                    } else if (res.type == 2) {
+                                        return "企业菜单";
+                                    }
+                                }
+                            },
+                            {field: 'href', title: '路由地址', sort: true},
+                            {field: 'createTime', title: '创建时间'},
+                            {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
+                    ];
+                    table.render({
+                        id: "dataList",
+                        elem: '#test',
+                        url: '/noc/pageActionList',
+                        toolbar: '#toolbarDemo' ,
+                        where: _this.getRequestParams(),
+                        title: '数据列表',
+                        cols: colsData,
+                        even: true, //开启隔行背景
+                        page: true,
+                        done: function (res, curr, count) {
+                            //alert(res);
+                        }
+                    });
+                    table.on('toolbar(test)', function(obj){
+                        var checkStatus = table.checkStatus(obj.config.id);
+                        switch(obj.event){
+                            case 'add':
+                                //添加通知单
+                                var index = layer.open({
+                                    title: "新建",
+                                    type: 2,
+                                    content: "/main/addAction",
+                                    success: function(layero, index) {
+                                        setTimeout(function() {
+                                            layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                                tips: 3
+                                            });
+                                        }, 500)
+                                    }
+                                })
+                                layer.full(index);
+                                //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+                                $(window).on("resize", function() {
+                                    layer.full(index);
+                                });
+                                break;
+                        };
+                    });
+                    // 列表按钮
+                    table.on('tool(test)', function (obj) {
+                        var tableEvent = obj.event;
+                        var data = obj.data;
+                        var dataId = data.id;
+
+                        if (tableEvent === 'edit') {
+                            var index = layer.open({
+                                title: "编辑",
+                                type: 2,
+                                content: "/main/editAction?id="+dataId,
+                                success: function(layero, index) {
+                                    setTimeout(function() {
+                                        layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                            tips: 3
+                                        });
+                                    }, 500)
+                                }
+                            })
+                            layer.full(index);
+                            //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+                            $(window).on("resize", function() {
+                                layer.full(index);
+                            });
+                        } else if (tableEvent === 'del') {
+                            layer.confirm('是否确认删除?',{icon: 3, title:'温馨提示'}, function(index) {
+                                var loadindex;
+                                $.ajax({
+                                    url: "/noc/delAction",
+                                    type: 'post',
+                                    async : true,
+                                    dataType: 'json',
+                                    data: {
+                                        id:dataId,
+                                    },
+                                    beforeSend:function(rs){
+                                        loadindex = layer.load(2, {
+                                            time: 1500,
+                                            shade: [0.3,'#000'],
+                                        });
+                                    },
+                                    complete:function(rs){
+                                        layer.close(loadindex);
+                                        layer.close(index);
+                                    },
+                                    success: function(rlt) {
+                                        if(rlt && rlt.status == 200) {
+                                            layer.msg(rlt.msg, {icon: 1,time: 1000,title:'温馨提示'}, function(){
+                                                _search();
+                                            });
+                                        } else {
+                                            layer.alert(rlt.msg,{icon: 2, title:'温馨提示'});
+                                            return false;
+                                        }
+                                    },error: function(rlt) {
+                                        layer.alert(rlt.msg,{icon: 2, title:'温馨提示'});
+                                        return false;
+                                    }
+                                });
+                            });
+                        } else if (tableEvent === 'export') {
+                            layer.confirm('是否确定提交审核？', function (index) {
+                                _this.loadPage();
+                                layer.close(index);
+                            });
+                        }
+                    });
+                },
+                getRequestParams: function () { //获取查询参数
+                    var params = {};
+                    if($('.name').val()) {
+                        params.name = $('.name').val();
+                    }
+                    if($('.type').val()) {
+                        params.type = $('.type').val();
+                    }
+                    params.timestamp = (new Date()).getTime()
+                    return params;
+                }
+            }
+            sgshObj.loadPage();
+
+            $('#searchBut').on('click', function () {
+                sgshObj.loadPage();
             });
         });
     });
+    function _search() {
+        sgshObj.loadPage();
+    }
 
 </script>
 </body>

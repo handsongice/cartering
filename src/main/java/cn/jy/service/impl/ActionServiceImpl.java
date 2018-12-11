@@ -147,7 +147,20 @@ public class ActionServiceImpl implements ActionService {
 
     @Override
     public ResultMap updateAction(Action action) {
-        return null;
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //设置创建时间
+            action.setUpdateTime(df.format(new Date()));
+            int dbResult = actionMapper.updateByPrimaryKey(action);
+            if(dbResult >0){
+                return ResultMap.success(Constent.DB_UPDATE_SUCCESS);
+            }else{
+                return ResultMap.fail(Constent.DB_UPDATE_FAILURE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultMap.fail(Constent.DB_UPDATE_FAILURE);
+        }
     }
 
     @Override

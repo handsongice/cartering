@@ -1,6 +1,7 @@
 package cn.jy.controller;
 
 import cn.jy.entity.Employee;
+import cn.jy.entity.Enterprise;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -9,8 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import static cn.jy.constent.Constent.SESSION_EMPLOYEE;
+import static cn.jy.constent.Constent.SESSION_ENTERPRISE;
 
 public abstract class BaseController {
+    /**
+     * 获取当前登录的企业信息
+     *
+     * @return
+     */
+    public Enterprise getLoginEnterprise() {
+        Enterprise enterprise = (Enterprise) this.getSession().getAttribute(SESSION_ENTERPRISE);
+        if (enterprise != null) {
+            return enterprise;
+        }
+        return null;
+    }
     /**
      * 获取当前登录的用户信息
      *

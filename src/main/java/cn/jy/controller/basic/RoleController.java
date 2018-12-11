@@ -3,7 +3,9 @@ package cn.jy.controller.basic;
 import cn.jy.common.BaseResultData;
 import cn.jy.constent.Constent;
 import cn.jy.entity.Employee;
+import cn.jy.entity.Enterprise;
 import cn.jy.service.EmployeeService;
+import cn.jy.service.EnterpriseService;
 import cn.jy.util.MD5;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class RoleController {
     @Autowired
     EmployeeService employeeService;
 
+    @Autowired
+    EnterpriseService enterpriseService;
+
     /**
      * 登录
      * @param params
@@ -30,7 +35,7 @@ public class RoleController {
     @RequestMapping("dologin")
     @ResponseBody
     public Object doLogin(@RequestParam Map<String, Object> params, HttpServletRequest request) {
-
+        HttpSession session = request.getSession();
         //输入检查
         String username = params.get("username").toString();
         if (null == username || "".equalsIgnoreCase(username)) {
@@ -63,8 +68,15 @@ public class RoleController {
             if(!MD5.md5(password).equals(employee.getPassword())) {
                 return BaseResultData.resultError("6", null);
             }
+            //企业验证
+            if(1 != employee.getType()) {
+                Enterprise enterprise = enterpriseService.getEnterpriseById(employee.getEnterpriseId());
+                if(null == enterprise || enterprise.getIsDel().equals(1)) {
+                    return BaseResultData.resultError("7", null);
+                }
+                session.setAttribute(Constent.SESSION_ENTERPRISE, enterprise);
+            }
             //登录成功
-            HttpSession session = request.getSession();
             session.setAttribute(Constent.SESSION_EMPLOYEE, employee);
         }catch (Exception e) {
             return BaseResultData.resultError("0", null);

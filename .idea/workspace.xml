@@ -2,13 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92604fdc-df02-4acf-aadb-3cf3eb974d99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_qiniu_qiniu_java_sdk_7_2_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/common/LayUiResultData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EnterpriseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/service/EnterpriseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/EnterpriseServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/addAction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/editAction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/enterprise.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.2018-12-11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/info.2018-12-11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cartering.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cartering.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/constent/Constent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/constent/Constent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/ActionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/ActionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/pages/basic/action.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pages/basic/action.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/common/BaseResultData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/common/BaseResultData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/common/CommonHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/common/CommonHandle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig$SecurityInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig$SecurityInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/config/AdminSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/config/WebMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/CodeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/CodeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/ActionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/ActionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/controller/basic/RoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/dto/ResultMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/dto/ResultMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/entity/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/entity/Action.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/entity/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/entity/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/entity/RoleAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/entity/RoleAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/filter/MyFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/filter/MyFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/GlobalDefultExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/GlobalDefultExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/UserInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/interceptor/UserInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/mapper/ActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/mapper/ActionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/mapper/EmployeeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/mapper/EmployeeMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/mapper/RoleActionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/mapper/RoleActionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/pojo/LayUiPageParams.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/pojo/LayUiPageParams.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/ActionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/ActionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/EmployeeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/ActionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/ActionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/EmployeeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/service/impl/EmployeeServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/Base64Util.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/Base64Util.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/BeanToMapUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/BeanToMapUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/BigDecimalUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/BigDecimalUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/CodeUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/CodeUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/CookieUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/CookieUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/DateUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/DateUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/DecodeUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/DecodeUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/HttpUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/HttpUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/JWTUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/JWTUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/JsonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/JsonUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/MD5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/MD5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/MathUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/MathUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PassWordCreate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PassWordCreate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtilForStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PoiExcelExportUtilForStatistics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/PropertiesUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/PropertiesUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ReadTxt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ReadTxt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/RegexUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/RegexUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ServletUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ServletUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/SpecialCharUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/SpecialCharUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ThreeDESUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ThreeDESUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/jy/util/ZipUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/jy/util/ZipUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pages/basic/action.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pages/basic/action.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/layuiadmin/modules/contlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/layuiadmin/modules/contlist.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,35 +119,150 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-2060253812">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="1" />
+          <entry key="html" value="5" />
+          <entry key="java" value="21" />
+          <entry key="js" value="4" />
+          <entry key="xml" value="3" />
+          <entry key="yml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="1" />
+          <entry key="HTML" value="5" />
+          <entry key="JAVA" value="21" />
+          <entry key="JavaScript" value="4" />
+          <entry key="XML" value="3" />
+          <entry key="YAML" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="297" />
+          <entry key="java" value="249" />
+          <entry key="js" value="12" />
+          <entry key="xml" value="63" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="297" />
+          <entry key="JAVA" value="249" />
+          <entry key="JavaScript" value="12" />
+          <entry key="SQL" value="12" />
+          <entry key="XML" value="51" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EmployeeController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="51" lean-forward="true" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/action.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/ActionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="53" column="61" lean-forward="true" selection-start-line="53" selection-start-column="61" selection-end-line="53" selection-end-column="61" />
+            <state relative-caret-position="253">
+              <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EnterpriseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="85" column="55" lean-forward="true" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiPageParams.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="131" column="60" lean-forward="true" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="60" />
+            <state relative-caret-position="139">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="20" column="23" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/dto/ResultMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
+              <folding>
+                <element signature="e#1563#1564#0" expanded="true" />
+                <element signature="e#1605#1606#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.3.RELEASE/spring-web-5.1.3.RELEASE.jar!/org/springframework/web/multipart/MultipartFile.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/common/LayUiResultData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-356">
+              <caret line="143" column="39" lean-forward="true" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="708" column="65" selection-start-line="708" selection-start-column="61" selection-end-line="708" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -93,7 +274,20 @@
       <find>addData</find>
       <find>add</find>
       <find>toolbarDemo</find>
+      <find>searchBut</find>
+      <find>insertAction</find>
+      <find>/noc/updateAction</find>
+      <find>updateAction</find>
+      <find>EnterpriseMapper</find>
+      <find>@JSON</find>
+      <find>addEnt</find>
+      <find>LAY_avatarSrc</find>
+      <find>uploadImage</find>
+      <find>image_alt</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -101,9 +295,28 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layuiadmin/modules/contlist.js" />
         <option value="$PROJECT_DIR$/src/main/resources/pages/basic/action.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/pages/basic/addAction.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/pages/basic/editAction.html" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/ActionServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/mapper/EnterpriseMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/service/EnterpriseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/service/impl/EnterpriseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/RoleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/controller/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/EnterpriseMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/entity/Enterprise.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/pages/basic/enterprise.html" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/constent/Constent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/common/LayUiResultData.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiImage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EnterpriseController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html" />
       </list>
     </option>
   </component>
@@ -120,6 +333,22 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="cartering" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="cartering" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="22" />
     <option name="width" value="1380" />
@@ -132,7 +361,7 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,7 +385,113 @@
               <item name="cartering" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="constent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="basic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="jy" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
@@ -175,11 +510,78 @@
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="basic" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="default" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cartering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cartering" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -189,9 +591,24 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544481016897" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544519570541" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.jy.pojo" />
+      <recent name="cn.jy.common" />
+      <recent name="cn.jy.controller.basic" />
+      <recent name="cn.jy.service.impl" />
+      <recent name="cn.jy.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\git\cartering\cartering\src\main\resources\static\layuiadmin\layui\lay\modules" />
+      <recent name="D:\git\cartering\cartering\src\main\resources\pages\basic" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -225,48 +642,49 @@
       <option name="presentableId" value="Default" />
       <updated>1544478637645</updated>
       <workItem from="1544478642869" duration="2293000" />
+      <workItem from="1544490927342" duration="21169000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2293000" />
+    <option name="totallyTimeSpent" value="23462000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1293" height="777" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Capture Tool" />
-      <window_info id="Web" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25286534" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32972136" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33023256" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3301887" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39892185" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32884097" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.3295129" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,24 +694,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/common/BaseResultData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/common/CommonHandle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -307,13 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="51" lean-forward="true" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/pages/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -321,19 +718,265 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layuiadmin/lib/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="131" column="60" lean-forward="true" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="60" />
+        <state relative-caret-position="-19">
+          <caret line="131" column="60" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layuiadmin/modules/contlist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/addAction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="155" column="37" selection-start-line="155" selection-start-column="37" selection-end-line="155" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#8;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/editAction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="115" column="34" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#7;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/service/ActionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-374">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/service/impl/ActionServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="157" column="30" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/entity/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="71" column="46" lean-forward="true" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/common/BaseResultData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/service/EnterpriseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-518">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-760">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/mapper/EnterpriseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/service/impl/EnterpriseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1786">
+          <caret line="130" column="13" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/EnterpriseMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/entity/Enterprise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3820#3821#0" expanded="true" />
+            <element signature="e#3848#3849#0" expanded="true" />
+            <element signature="e#3887#3888#0" expanded="true" />
+            <element signature="e#3914#3915#0" expanded="true" />
+            <element signature="e#3950#3951#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4032#4033#0" expanded="true" />
+            <element signature="e#4074#4075#0" expanded="true" />
+            <element signature="e#4109#4110#0" expanded="true" />
+            <element signature="e#4140#4141#0" expanded="true" />
+            <element signature="e#4188#4189#0" expanded="true" />
+            <element signature="e#4228#4229#0" expanded="true" />
+            <element signature="e#4289#4290#0" expanded="true" />
+            <element signature="e#4318#4319#0" expanded="true" />
+            <element signature="e#4362#4363#0" expanded="true" />
+            <element signature="e#4398#4399#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/action.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="53" column="61" lean-forward="true" selection-start-line="53" selection-start-column="61" selection-end-line="53" selection-end-column="61" />
+        <state relative-caret-position="133">
+          <caret line="49" selection-start-line="49" selection-end-line="49" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="156" column="20" lean-forward="true" selection-start-line="156" selection-start-column="20" selection-end-line="156" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/constent/Constent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="21" column="86" selection-start-line="21" selection-start-column="86" selection-end-line="21" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/enterprise.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-709">
+          <caret line="49" column="36" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.3.RELEASE/spring-web-5.1.3.RELEASE.jar!/org/springframework/web/multipart/MultipartFile.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/ActionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/dto/ResultMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1563#1564#0" expanded="true" />
+            <element signature="e#1605#1606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiPageParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/layuiadmin/layui/lay/modules/layedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="708" column="65" selection-start-line="708" selection-start-column="61" selection-end-line="708" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/pojo/LayUiImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/controller/basic/EnterpriseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="85" column="55" lean-forward="true" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/jy/common/LayUiResultData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/pages/basic/addEnterprise.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-356">
+          <caret line="143" column="39" lean-forward="true" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -344,6 +987,17 @@
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
