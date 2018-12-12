@@ -138,6 +138,7 @@
                     var _this = this;
                     var colsData = [
                         [
+                            {field: 'fromName', title: '发送者', sort: true},
                             {field: 'title', title: '标题', sort: true},
                             {field: 'content', title: '内容', sort: true},
                             {
@@ -199,7 +200,7 @@
                 }
             }
             noticeObj.loadPage();
-
+            directObj.loadPage();
         });
     });
     function _search() {

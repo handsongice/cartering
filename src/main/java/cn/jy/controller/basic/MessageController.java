@@ -4,8 +4,10 @@ import cn.jy.controller.BaseController;
 import cn.jy.entity.Broadcast;
 import cn.jy.entity.Employee;
 import cn.jy.entity.Enterprise;
+import cn.jy.entity.Message;
 import cn.jy.pojo.LayUiPageParams;
 import cn.jy.service.BroadcastService;
+import cn.jy.service.MessageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class MessageController extends BaseController {
     @Autowired
     BroadcastService broadcastService;
 
+    @Autowired
+    MessageService messageService;
     /**
      * 消息页面
      * @return
@@ -51,6 +55,32 @@ public class MessageController extends BaseController {
             PageInfo<Broadcast> pageInfo = new PageInfo<>(broadcasts);
 
             LayUiPageParams<Broadcast> pageParams = LayUiPageParams.defaultResult(pageInfo.getTotal(), broadcasts);
+            return pageParams;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 列表
+     * @param params
+     * @return
+     */
+    @RequestMapping("/noc/pageMessageList")
+    @ResponseBody
+    public Object pageMessageList(@RequestParam Map<String, Object> params) {
+        int pageNum = params.get("page") == null ? 1 : Integer.parseInt(params.get("page").toString());
+        int pageSize = params.get("limit") == null ? 10 : Integer.parseInt(params.get("limit").toString());
+        PageHelper.startPage(pageNum, pageSize, true);
+        Employee employee = getLoginEmployee();
+        params.put("to_id",employee.getId());
+        params.put("enterprise_id",employee.getEnterpriseId());
+        params.put("to_type",1);
+        try {
+            List<Message> messages = messageService.getMessageList(params);
+            PageInfo<Message> pageInfo = new PageInfo<>(messages);
+
+            LayUiPageParams<Message> pageParams = LayUiPageParams.defaultResult(pageInfo.getTotal(), messages);
             return pageParams;
         } catch (Exception e) {
             e.printStackTrace();
