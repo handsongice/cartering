@@ -24,7 +24,5 @@ public interface EnterpriseMapper {
 
     List<Enterprise> selectByParams(Map<String, Object> map);
 
-    Enterprise findByParams(Enterprise record);
-
     int delEnterprise(Long id);
 }
