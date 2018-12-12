@@ -15,6 +15,23 @@
     from yl_broadcast_employee
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="findByParams" resultMap="BaseResultMap" parameterType="cn.jy.entity.BroadcastEmployee" >
+    select
+    <include refid="Base_Column_List" />
+    from yl_broadcast_employee
+    <where>
+      1 = 1
+      <if test="employeeId != null">
+        and employee_id = #{employeeId}
+      </if>
+      <if test="broadcastId != null">
+        and broadcast_id = #{broadcastId}
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from yl_broadcast_employee
     where id = #{id,jdbcType=BIGINT}

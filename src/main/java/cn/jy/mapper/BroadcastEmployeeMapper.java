@@ -1,7 +1,9 @@
 package cn.jy.mapper;
 
 import cn.jy.entity.BroadcastEmployee;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BroadcastEmployeeMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface BroadcastEmployeeMapper {
     int updateByPrimaryKeySelective(BroadcastEmployee record);
 
     int updateByPrimaryKey(BroadcastEmployee record);
+
+    BroadcastEmployee findByParams(BroadcastEmployee record);
 }

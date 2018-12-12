@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>菜单管理</title>
+    <link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">通知</li>
+                <li>私信</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-events="del">删除</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-events="ready">标记已读</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="all" data-events="readyAll">全部已读</button>
+                    </div>
+                    <table id="LAY-app-message-notice" lay-filter="LAY-app-message-notice"></table>
+                    <script type="text/html" id="tableOperation">
+                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>查看</a>
+                    </script>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="LAY-app-message-btns" style="margin-bottom: 10px;">
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="del">删除</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="ready">标记已读</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-sm" data-type="direct" data-events="readyAll">全部已读</button>
+                    </div>
+                    <table id="LAY-app-message-direct" lay-filter="LAY-app-message-direct"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/default/js/jquery.min.js"></script>
+<script src="/static/layuiadmin/layui/layui.js?t=1"></script>
+<script>
+    var noticeObj = {};
+    var directObj = {};
+    $(document).ready(function () {
+        layui.use(['element','table', 'layer'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                l = (layui.element, {
+                    notice: {
+                        text: "通知",
+                        id: "LAY-app-message-notice"
+                    },
+                    direct: {
+                        text: "私信",
+                        id: "LAY-app-message-direct"
+                    }
+                });
+            noticeObj = {
+                loadPage: function () {
+                    var _this = this;
+                    _this.tableRender();
+                },
+                tableRender: function () {
+                    var _this = this;
+                    var colsData = [
+                        [
+                            {field: 'title', title: '标题', sort: true},
+                            {field: 'content', title: '内容', sort: true},
+                            {
+                                field: 'isRead', title: '状态', unresize: true, sort: true, templet: function (res) {
+                                    if (res.isRead == 1) {
+                                        return '<span class="layui-btn layui-btn-danger layui-btn-xs">未读</span>';
+                                    } else if (res.isRead == 2) {
+                                        return '<span class="layui-btn layui-btn-xs">已读</span>';
+                                    }
+                                }
+                            },
+                            {field: 'createTime', title: '创建时间'},
+                            {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
+                    ];
+                    table.render({
+                        id: "noticeDataList",
+                        elem: '#LAY-app-message-notice',
+                        url: '/noc/pageBroadcastList',
+                        where: _this.getRequestParams(),
+                        title: '数据列表',
+                        cols: colsData,
+                        even: true, //开启隔行背景
+                        page: true,
+                        done: function (res, curr, count) {
+                            //alert(res);
+                        }
+                    });
+                    // 列表按钮
+                    table.on('tool(test)', function (obj) {
+                        var tableEvent = obj.event;
+                        var data = obj.data;
+                        var dataId = data.id;
+
+                        if (tableEvent === 'edit') {
+                            var index = layer.open({
+                                title: "查看",
+                                type: 2,
+                                content: "/main/editAction?id="+dataId,
+                                success: function(layero, index) {
+                                    setTimeout(function() {
+                                        layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                            tips: 3
+                                        });
+                                    }, 500)
+                                }
+                            })
+                            layer.full(index);
+                            //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+                            $(window).on("resize", function() {
+                                layer.full(index);
+                            });
+                        }
+                    });
+                },
+                getRequestParams: function () { //获取查询参数
+                    var params = {};
+                    params.timestamp = (new Date()).getTime()
+                    return params;
+                }
+            }
+            directObj = {
+                loadPage: function () {
+                    var _this = this;
+                    _this.tableRender();
+                },
+                tableRender: function () {
+                    var _this = this;
+                    var colsData = [
+                        [
+                            {field: 'title', title: '标题', sort: true},
+                            {field: 'content', title: '内容', sort: true},
+                            {
+                                field: 'isRead', title: '状态', unresize: true, sort: true, templet: function (res) {
+                                    if (res.isRead == 1) {
+                                        return '<span class="layui-btn layui-btn-danger layui-btn-xs">未读</span>';
+                                    } else if (res.isRead == 2) {
+                                        return '<span class="layui-btn layui-btn-xs">已读</span>';
+                                    }
+                                }
+                            },
+                            {field: 'createTime', title: '创建时间'},
+                            {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
+                    ];
+                    table.render({
+                        id: "noticeDataList",
+                        elem: '#LAY-app-message-direct',
+                        url: '/noc/pageMessageList',
+                        where: _this.getRequestParams(),
+                        title: '数据列表',
+                        cols: colsData,
+                        even: true, //开启隔行背景
+                        page: true,
+                        done: function (res, curr, count) {
+                            //alert(res);
+                        }
+                    });
+                    // 列表按钮
+                    table.on('tool(test)', function (obj) {
+                        var tableEvent = obj.event;
+                        var data = obj.data;
+                        var dataId = data.id;
+
+                        if (tableEvent === 'edit') {
+                            var index = layer.open({
+                                title: "查看",
+                                type: 2,
+                                content: "/main/editAction?id="+dataId,
+                                success: function(layero, index) {
+                                    setTimeout(function() {
+                                        layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                            tips: 3
+                                        });
+                                    }, 500)
+                                }
+                            })
+                            layer.full(index);
+                            //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+                            $(window).on("resize", function() {
+                                layer.full(index);
+                            });
+                        }
+                    });
+                },
+                getRequestParams: function () { //获取查询参数
+                    var params = {};
+                    params.timestamp = (new Date()).getTime()
+                    return params;
+                }
+            }
+            noticeObj.loadPage();
+
+        });
+    });
+    function _search() {
+        noticeObj.loadPage();
+    }
+
+</script>
+</body>
+
+</html>

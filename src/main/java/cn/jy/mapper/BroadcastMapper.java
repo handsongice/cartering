@@ -1,10 +1,12 @@
 package cn.jy.mapper;
 
 import cn.jy.entity.Broadcast;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public interface BroadcastMapper {
     int deleteByPrimaryKey(Long id);
 

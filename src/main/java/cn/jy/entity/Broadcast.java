@@ -22,6 +22,8 @@ public class Broadcast {
 
     private Long sender;
 
+    private Integer isRead = 1;
+
     public Long getId() {
         return id;
     }
@@ -84,5 +86,13 @@ public class Broadcast {
 
     public void setSender(Long sender) {
         this.sender = sender;
+    }
+
+    public Integer getisRead() {
+        return isRead;
+    }
+
+    public void setisRead(Integer isRead) {
+        this.isRead = isRead;
     }
 }
