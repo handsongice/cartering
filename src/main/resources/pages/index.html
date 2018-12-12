@@ -50,6 +50,7 @@
                         </a>
                     </li>
                     <li class="layui-nav-item" lay-unselect>
+                        <input type="hidden" class="clientid" th:value="${employee.id}">
                         <a href="javascript:;">
                             <cite th:text="${employee.name}"></cite>
                         </a>
@@ -126,6 +127,7 @@
     </div>
     <script src="/static/default/js/jquery.min.js"></script>
     <script src="/static/layuiadmin/layui/layui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script>
 
     layui.config({
@@ -146,26 +148,24 @@
         // }
         //countMsg()
     });
+    var clientid = $('.clientid').val();
+    var socket;
+    $(document).ready(function () {
+        initSocket()
+    });
 
-    function countMsg() {
-        $.ajax({
-            url: "/noc/allMessage",
-            type: 'post',
-            async : true,
-            dataType: 'json',
-            data: {
-            },
-            success: function(rlt) {
-                if(rlt && rlt.length > 0) {
-                    $('.message_dot').addClass('layui-badge-dot')
-                    msgObj.loadMsg(rlt.length)
-                } else {
-                    $('.message_dot').removeClass('layui-badge-dot')
-                }
-                setTimeout(function(){
-                    countMsg()
-                }, 20000);
-            }
+    function initSocket(){
+        socket = io('http://localhost:9092?clientid='+clientid+'&type=1');
+        //var socket = io('远程服务器ip:9092'); //正式发布环境
+        socket.on('connect', function () {
+            console.log('socket连接成功');
+        });
+        socket.on('disconnect', function () {
+            console.log('socket连接失败');
+        });
+        socket.on('enewbuy', function (time, res) {
+            //....收到消息后具体操作
+            console.log(res)
         });
     }
     </script>

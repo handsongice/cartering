@@ -83,6 +83,11 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         if(edbResult <=0){
             throw new RuntimeException("管理员添加失败");
         }
+        Employee input_employee = new Employee();
+        input_employee.setId(_employee.getId());
+        input_employee.setCode("E"+_employee.getId());
+        input_employee.setUpdateTime(new Date());
+        employeeMapper.updateByPrimaryKeySelective(input_employee);
         return ResultMap.success(Constent.DB_INSERT_SUCCESS);
     }
 
