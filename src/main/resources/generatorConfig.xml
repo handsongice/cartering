@@ -128,10 +128,10 @@
         <!--<table tableName="sys_setting" domainObjectName="SysSetting" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 
-        <!--<table tableName="fpsg" domainObjectName="Fpsg" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--<table tableName="yl_broadcast_employee" domainObjectName="BroadcastEmployee" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 
-        <!--<table tableName="yl_message" domainObjectName="Message" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--<table tableName="yl_broadcast" domainObjectName="Broadcast" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 
     </context>

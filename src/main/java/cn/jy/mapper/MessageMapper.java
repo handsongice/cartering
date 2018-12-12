@@ -22,7 +22,5 @@ public interface MessageMapper {
 
     List<Message> selectByParams(Map<String, Object> map);
 
-    Message findByParams(Message record);
-
     int delMessage(Long id);
 }
