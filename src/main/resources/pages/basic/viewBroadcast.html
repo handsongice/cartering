@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+
+	</head>
+
+	<body>
+	<div class="layui-fluid">
+		<div class="layui-card">
+			<div class="layui-card-body" style="padding: 15px;">
+				<form class="layui-form" action="" lay-filter="component-form-group">
+					<div class="layui-form-item">
+						<input type="hidden" name="id" th:value="${broadcast.id}">
+						<label class="layui-form-label">标题</label>
+						<div class="layui-input-block">
+							<input type="text" name="name" th:value="${broadcast.title}" class="layui-input" disabled>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">内容</label>
+						<div class="layui-input-block">
+							<textarea name="content" th:utext="${broadcast.content}" class="layui-textarea" disabled></textarea>
+						</div>
+					</div>
+					<div class="layui-form-item layui-layout-admin">
+						<div class="layui-input-block">
+							<div class="layui-footer" style="left: 0;">
+								<button id="closePopBut" type="button" class="layui-btn layui-btn-primary">关闭</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="/static/default/js/jquery.min.js"></script>
+	<script src="/static/layuiadmin/layui/layui.js?t=1"></script>
+	<script th:inline="javascript">
+		var windowindex = parent.layer.getFrameIndex(window.name);
+		$(document).ready(function () {
+			layui.use(['form', 'layer'], function() {
+				var form = layui.form;
+				var layer = layui.layer;
+			});
+            $('#closePopBut').on('click', function () {
+                // 获取窗口索引
+                parent._search()
+                // 关闭layer弹出层
+                parent.layer.close(windowindex);
+            });
+		})
+	</script>
+	</body>
+
+</html>

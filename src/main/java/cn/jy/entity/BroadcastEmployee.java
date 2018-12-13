@@ -7,6 +7,8 @@ public class BroadcastEmployee {
 
     private Long broadcastId;
 
+    private String broads;
+
     public Long getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class BroadcastEmployee {
 
     public void setBroadcastId(Long broadcastId) {
         this.broadcastId = broadcastId;
+    }
+
+    public String getBroads() {
+        return broads;
+    }
+
+    public void setBroads(String broads) {
+        this.broads = broads;
     }
 }

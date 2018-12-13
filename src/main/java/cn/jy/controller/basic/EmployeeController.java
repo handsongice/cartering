@@ -8,11 +8,13 @@ import cn.jy.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 public class EmployeeController extends BaseController {
@@ -61,6 +63,24 @@ public class EmployeeController extends BaseController {
             Employee _employee = employeeService.getEmployeeById(employee.getId());
             HttpSession session = request.getSession();
             session.setAttribute(Constent.SESSION_EMPLOYEE, _employee);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultMap.fail(e.getMessage());
+        }
+        return ret;
+    }
+
+    /**
+     * 更新密码
+     * @param params
+     * @return
+     */
+    @RequestMapping(value = "/noc/updateMyPassword")
+    @ResponseBody
+    public ResultMap updateMyPassword(@RequestParam Map<String, Object> params) {
+        ResultMap ret = null;
+        try {
+            ret = employeeService.updateMyPassword(params);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultMap.fail(e.getMessage());

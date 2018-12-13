@@ -49,10 +49,10 @@ public interface EmployeeService {
 
     /**
      * 更新密码
-     * @param employee
+     * @param params
      * @return
      */
-    ResultMap updateMyPassword(Employee employee);
+    ResultMap updateMyPassword(Map<String, Object> params);
     /**
      * 获取信息
      * @param id

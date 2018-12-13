@@ -1,5 +1,6 @@
 package cn.jy.service.impl;
 
+import cn.jy.constent.Constent;
 import cn.jy.dto.ResultMap;
 import cn.jy.entity.Broadcast;
 import cn.jy.entity.BroadcastEmployee;
@@ -7,6 +8,7 @@ import cn.jy.entity.Enterprise;
 import cn.jy.mapper.BroadcastEmployeeMapper;
 import cn.jy.mapper.BroadcastMapper;
 import cn.jy.service.BroadcastService;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,10 +35,16 @@ public class BroadcastServiceImpl implements BroadcastService {
             input.setBroadcastId(broadcast.getId());
             BroadcastEmployee broadcastEmployee = broadcastEmployeeMapper.findByParams(input);
             if(null != broadcastEmployee && null != broadcastEmployee.getId()) {
-                broadcast.setisRead(2);
+                broadcast.setIsRead(2);
             }
         }
         return broadcasts;
+    }
+
+    @Override
+    public BroadcastEmployee findBroadcastEmployee(BroadcastEmployee input) {
+        BroadcastEmployee broadcastEmployee = broadcastEmployeeMapper.findByParams(input);
+        return broadcastEmployee;
     }
 
     @Override
@@ -45,13 +53,47 @@ public class BroadcastServiceImpl implements BroadcastService {
     }
 
     @Override
+    public ResultMap addBroadcastEmployee(BroadcastEmployee broadcastEmployee) throws Exception {
+        int adbResult = broadcastEmployeeMapper.insertSelective(broadcastEmployee);
+        if(adbResult <=0){
+            throw new RuntimeException("标记失败");
+        }
+        return ResultMap.success("标记成功");
+    }
+
+    @Override
+    public ResultMap addBroadcastsEmployee(Map<String, Object> params) throws Exception {
+        JSONArray nodes = JSONArray.parseArray(params.get("nodes").toString());
+        if(null != nodes) {
+            for (int i=0;i<nodes.size();i++) {
+                BroadcastEmployee input = new BroadcastEmployee();
+                input.setBroadcastId(Long.parseLong(nodes.getJSONObject(i).get("id").toString()));
+                input.setEmployeeId(Long.parseLong(params.get("employee_id").toString()));
+                BroadcastEmployee broadcastEmployee = broadcastEmployeeMapper.findByParams(input);
+                if(null == broadcastEmployee || null == broadcastEmployee.getId()) {
+                    int adbResult = broadcastEmployeeMapper.insertSelective(input);
+                    if(adbResult <=0){
+                        throw new RuntimeException("标记失败");
+                    }
+                }
+            }
+        }
+        return ResultMap.success("标记成功");
+    }
+
+    @Override
     public ResultMap updateBroadcast(Broadcast broadcast) {
         return null;
     }
 
     @Override
-    public Enterprise getBroadcastById(Long id) {
-        return null;
+    public Broadcast getBroadcastById(Long id) {
+        return broadcastMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public BroadcastEmployee getBroadcastEmployeeById(Long id) {
+        return broadcastEmployeeMapper.selectByPrimaryKey(id);
     }
 
     @Override

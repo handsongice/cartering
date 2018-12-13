@@ -2,7 +2,7 @@ package cn.jy.service;
 
 import cn.jy.dto.ResultMap;
 import cn.jy.entity.Broadcast;
-import cn.jy.entity.Enterprise;
+import cn.jy.entity.BroadcastEmployee;
 
 import java.util.List;
 import java.util.Map;
@@ -21,11 +21,32 @@ public interface BroadcastService {
     List<Broadcast> getBroadcastList(Map<String, Object> params) throws Exception;
 
     /**
+     * find
+     * @param broadcastEmployee
+     * @return
+     * @throws Exception
+     */
+    BroadcastEmployee findBroadcastEmployee(BroadcastEmployee broadcastEmployee);
+    /**
      * 插入数据
      * @param broadcast
      * @return
      */
     ResultMap addBroadcast(Broadcast broadcast) throws Exception;
+
+    /**
+     * 插入数据
+     * @param broadcastEmployee
+     * @return
+     */
+    ResultMap addBroadcastEmployee(BroadcastEmployee broadcastEmployee) throws Exception;
+
+    /**
+     * 批量插入数据
+     * @param params
+     * @return
+     */
+    ResultMap addBroadcastsEmployee(Map<String, Object> params) throws Exception;
 
     /**
      * 更新数据
@@ -39,7 +60,14 @@ public interface BroadcastService {
      * @param id
      * @return
      */
-    Enterprise getBroadcastById(Long id);
+    Broadcast getBroadcastById(Long id);
+
+    /**
+     * 获取信息
+     * @param id
+     * @return
+     */
+    BroadcastEmployee getBroadcastEmployeeById(Long id);
 
     /**
      * 逻辑删除

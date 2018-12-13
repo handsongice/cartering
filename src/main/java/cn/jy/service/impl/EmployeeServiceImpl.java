@@ -5,6 +5,7 @@ import cn.jy.dto.ResultMap;
 import cn.jy.entity.Employee;
 import cn.jy.mapper.EmployeeMapper;
 import cn.jy.service.EmployeeService;
+import cn.jy.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,8 +60,21 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ResultMap updateMyPassword(Employee employee) {
-        return null;
+    public ResultMap updateMyPassword(Map<String, Object> params) {
+        Employee _employee = employeeMapper.selectByPrimaryKey(Long.parseLong(params.get("id").toString()));
+        if(!_employee.getPassword().equals(MD5.md5(params.get("oldPassword").toString()))) {
+            throw new RuntimeException("当前密码错误！");
+        }
+        Employee input = new Employee();
+        input.setId(Long.parseLong(params.get("id").toString()));
+        input.setPassword(MD5.md5(params.get("password").toString()));
+        input.setUpdateTime(new Date());
+        //设置创建时间
+        int dbResult = employeeMapper.updateByPrimaryKeySelective(input);
+        if(dbResult <=0){
+            throw new RuntimeException(Constent.DB_UPDATE_FAILURE);
+        }
+        return ResultMap.success(Constent.DB_UPDATE_SUCCESS);
     }
 
     @Override

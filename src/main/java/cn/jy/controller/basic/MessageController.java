@@ -1,9 +1,10 @@
 package cn.jy.controller.basic;
 
 import cn.jy.controller.BaseController;
+import cn.jy.dto.ResultMap;
 import cn.jy.entity.Broadcast;
+import cn.jy.entity.BroadcastEmployee;
 import cn.jy.entity.Employee;
-import cn.jy.entity.Enterprise;
 import cn.jy.entity.Message;
 import cn.jy.pojo.LayUiPageParams;
 import cn.jy.service.BroadcastService;
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,30 @@ public class MessageController extends BaseController {
     @RequestMapping(value = "/main/message")
     public String message() {
         return "basic/message";
+    }
+
+    /**
+     * 查看消息
+     * @return
+     */
+    @RequestMapping(value = "/viewBroadcast")
+    public ModelAndView viewBroadcast(@RequestParam Map<String, Object> params) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("basic/viewBroadcast");
+        Long _id = Long.parseLong(params.get("id").toString());
+        Broadcast broadcast = broadcastService.getBroadcastById(_id);
+        Employee employee = getLoginEmployee();
+        if(null != broadcast && null != broadcast.getId()) {
+            BroadcastEmployee input = new BroadcastEmployee();
+            input.setBroadcastId(broadcast.getId());
+            input.setEmployeeId(employee.getId());
+            BroadcastEmployee broadcastEmployee = broadcastService.findBroadcastEmployee(input);
+            if(null == broadcastEmployee || null == broadcastEmployee.getId()) {
+                broadcastService.addBroadcastEmployee(input);
+            }
+        }
+        mv.addObject("broadcast", broadcast);
+        return mv;
     }
     /**
      * 列表
@@ -86,5 +111,22 @@ public class MessageController extends BaseController {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @RequestMapping(value = "/noc/readMessage")
+    @ResponseBody
+    public ResultMap readMessage(@RequestParam Map<String, Object> params) {
+        ResultMap ret = null;
+        Employee employee = getLoginEmployee();
+        params.put("employee_id",employee.getId());
+        try {
+            if("1".equals(params.get("type").toString())) {
+                ret = broadcastService.addBroadcastsEmployee(params);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultMap.fail(e.getMessage());
+        }
+        return ret;
     }
 }

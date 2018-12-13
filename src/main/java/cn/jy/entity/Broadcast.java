@@ -1,6 +1,6 @@
 package cn.jy.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
@@ -17,7 +17,9 @@ public class Broadcast {
 
     private Integer toCustomer;
 
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private String broads;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     private Long sender;
@@ -88,11 +90,19 @@ public class Broadcast {
         this.sender = sender;
     }
 
-    public Integer getisRead() {
+    public Integer getIsRead() {
         return isRead;
     }
 
-    public void setisRead(Integer isRead) {
+    public void setIsRead(Integer isRead) {
         this.isRead = isRead;
+    }
+
+    public String getBroads() {
+        return broads;
+    }
+
+    public void setBroads(String broads) {
+        this.broads = broads;
     }
 }
