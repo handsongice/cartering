@@ -66,11 +66,20 @@
                   <td>零门槛 / 响应式 / 清爽 / 极简</td>
                 </tr>
                 <tr>
+                  <td>手机号</td>
+                  <td><input type="text" autocomplete="off" class="layui-input phone"></td>
+                </tr>
+                <tr>
+                  <td>密码</td>
+                  <td><input type="password" autocomplete="off" class="layui-input password"></td>
+                </tr>
+                <tr>
                   <td>获取渠道</td>
                   <td style="padding-bottom: 0;">
                     <div class="layui-btn-container">
-                      <a href="http://www.layui.com/admin/" target="_blank" class="layui-btn layui-btn-danger">获取授权</a>
-                      <a href="http://fly.layui.com/download/layuiAdmin/" target="_blank" class="layui-btn">立即下载</a>
+                      <a href="javascript:;" class="layui-btn layui-btn-danger register">注册</a>
+                      <a href="javascript:;" class="layui-btn layui-btn-warm login">登录</a>
+                      <a href="javascript:;" class="layui-btn yanzheng">验证</a>
                     </div>
                   </td>
                 </tr>
@@ -82,14 +91,122 @@
       
     </div>
   </div>
-
+  <script src="/static/default/js/jquery-2.1.4.min.js"></script>
   <script src="/static/layuiadmin/layui/layui.js?t=1"></script>
   <script>
   layui.config({
     base: '/static/layuiadmin/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
-  }).use(['index','console']);
+  }).use(['index','console', 'layer'],function () {
+      var layer = layui.layer;
+      $('.register').click(function() {
+          var loadindex;
+          $.ajax({
+              url: "http://tgo.qdjingci.com/user/register",
+              type: 'post',
+              async : true,
+              dataType: 'json',
+              data: {
+                  phone:$('.phone').val(),
+                  password:$('.password').val(),
+              },
+              beforeSend:function(xhr){
+                  xhr.setRequestHeader("token", "1112212");
+                  loadindex = layer.load(2, {
+                      time: 1500,
+                      shade: [0.3,'#000'],
+                  });
+              },
+              complete:function(rs){
+                  layer.close(loadindex);
+              },
+              success: function(datas) {
+                  console.log(datas)
+                  if(datas && datas.msg) {
+                      layer.msg(datas.msg)
+                  }
+                  if(datas && datas.status == 200) {
+                      window.localStorage.setItem("token",datas.data.token);
+                  }
+              },
+              error:function (jqXHR, textStatus, errorThrown) {
+                  console.log(jqXHR)
+                  console.log(textStatus)
+                  console.log(errorThrown)
+                  layer.msg('请求失败！')
+              }
+          });
+      })
+      $('.login').click(function() {
+          var loadindex;
+          $.ajax({
+              url: "http://tgo.qdjingci.com/user/login",
+              type: 'post',
+              async : true,
+              dataType: 'json',
+              data: {
+                  phone:$('.phone').val(),
+                  password:$('.password').val(),
+              },
+              beforeSend:function(xhr){
+                  loadindex = layer.load(2, {
+                      time: 1500,
+                      shade: [0.3,'#000'],
+                  });
+              },
+              complete:function(rs){
+                  layer.close(loadindex);
+              },
+              success: function(datas) {
+                  console.log(datas)
+                  if(datas && datas.msg) {
+                      layer.msg(datas.msg)
+                  }
+                  if(datas && datas.status == 200) {
+                      window.localStorage.setItem("token",datas.data.token);
+                  }
+              },
+              error:function (jqXHR, textStatus, errorThrown) {
+                  layer.msg(jqXHR.responseJSON.message)
+              }
+          });
+      })
+      $('.yanzheng').click(function() {
+          var loadindex;
+          var _token = "Cartering "+ window.localStorage.getItem("token");
+          $.ajax({
+              url: "http://tgo.qdjingci.com/api/role",
+              type: 'post',
+              async : true,
+              dataType: 'json',
+              data: {
+              },
+              beforeSend:function(xhr){
+                  xhr.setRequestHeader("token", _token);
+                  loadindex = layer.load(2, {
+                      time: 1500,
+                      shade: [0.3,'#000'],
+                  });
+              },
+              complete:function(rs){
+                  layer.close(loadindex);
+              },
+              success: function(datas) {
+                  if(datas && datas.msg) {
+                      layer.msg(datas.msg)
+                  }
+                  if(datas && datas.status == 200) {
+                      console.log(datas.data)
+                      //window.localStorage.setItem("token",datas.data.token);
+                  }
+              },
+              error:function (jqXHR, textStatus, errorThrown) {
+                  layer.msg(jqXHR.responseJSON.message)
+              }
+          });
+      })
+  });
   </script>
 </body>
 </html>

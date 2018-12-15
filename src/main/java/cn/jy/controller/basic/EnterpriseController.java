@@ -42,19 +42,6 @@ public class EnterpriseController extends BaseController {
     @Autowired
     EnterpriseService enterpriseService;
 
-    /**
-     * 列表
-     * @return
-     */
-    @RequestMapping(value = "/main/myEnterprise")
-    public ModelAndView enterprise(HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("role/enterprise");
-        Enterprise enterprise = getLoginEnterprise();
-        Enterprise _enterprise = enterpriseService.getEnterpriseById(enterprise.getId());
-        mv.addObject("enterprise", _enterprise);
-        return mv;
-    }
 
     @RequestMapping(value = "/noc/uploadFile")
     @ResponseBody
