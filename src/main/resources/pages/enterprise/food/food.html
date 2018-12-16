@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>菜品分类</title>
+    <title>菜品管理</title>
     <link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
 </head>
@@ -18,6 +18,13 @@
                     <div class="layui-input-inline">
                         <input type="text" name="name" placeholder="请输入名称" autocomplete="off"
                                class="layui-input name">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">拼音：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="code" placeholder="请输入拼音" autocomplete="off"
+                               class="layui-input code">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -60,14 +67,50 @@
                     var colsData = [
                         [
                             {field: 'name', title: '名称', sort: true},
-                            {field: 'sort', title: '序号', sort: true},
-                            {field: 'createTime', title: '创建时间'},
+                            {field: 'code', title: '拼音', sort: true},
+                            {
+                                field: 'pic', title: '图片', templet: function (res) {
+                                    return '<img src="'+res.pic+'" alt="" style="width: 40px;height: 40px;border-radius: 100%">';
+                                }
+                            },
+                            {field: 'price', title: '市场价', sort: true},
+                            {field: 'salePrice', title: '售价', sort: true},
+                            {
+                                field: 'isNew', title: '新品', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.isNew == 1) {
+                                        return '<span style="color: #009688;">是</span>';
+                                    } else {
+                                        return '否';
+                                    }
+                                }
+                            },
+                            {
+                                field: 'isHot', title: '推荐', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.isHot == 1) {
+                                        return '<span style="color: #009688;">是</span>';
+                                    } else {
+                                        return '否';
+                                    }
+                                }
+                            },
+                            {
+                                field: 'status', title: '状态', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.status == 2) {
+                                        return '<span style="color: #009688;">在售</span>';
+                                    } else {
+                                        return '下架';
+                                    }
+                                }
+                            },
                             {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
                     ];
                     table.render({
                         id: "dataList",
                         elem: '#test',
-                        url: '/noc/food/pageTypeList',
+                        url: '/noc/food/pageFoodList',
                         toolbar: '#toolbarDemo' ,
                         where: _this.getRequestParams(),
                         title: '数据列表',
@@ -86,7 +129,7 @@
                                 var index = layer.open({
                                     title: "新建",
                                     type: 2,
-                                    content: "/main/food/addType",
+                                    content: "/main/food/addFood",
                                     success: function(layero, index) {
                                         setTimeout(function() {
                                             layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -170,6 +213,9 @@
                     var params = {};
                     if($('.name').val()) {
                         params.name = $('.name').val();
+                    }
+                    if($('.code').val()) {
+                        params.code = $('.code').val();
                     }
                     params.timestamp = (new Date()).getTime()
                     return params;

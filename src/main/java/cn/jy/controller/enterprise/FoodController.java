@@ -50,7 +50,14 @@ public class FoodController extends BaseController {
     public String addType() {
         return "enterprise/food/addType";
     }
-
+    /**
+     * 添加菜品页面
+     * @return
+     */
+    @RequestMapping(value = "/main/food/addFood")
+    public String addFood() {
+        return "enterprise/food/addFood";
+    }
     /**
      * 编辑菜单页面
      * @param params
