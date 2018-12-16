@@ -22,5 +22,9 @@ public interface FoodTypeMapper {
 
     List<FoodType> selectByParams(Map<String, Object> map);
 
+    Long maxSort(Long parentId);
+
+    String maxTreeCode(Long parentId);
+
     int delFoodType(Long id);
 }

@@ -1,8 +1,6 @@
 package cn.jy.service;
 
 import cn.jy.dto.ResultMap;
-import cn.jy.entity.Broadcast;
-import cn.jy.entity.Enterprise;
 import cn.jy.entity.Message;
 
 import java.util.List;
@@ -40,7 +38,7 @@ public interface MessageService {
      * @param id
      * @return
      */
-    Enterprise getMessageById(Long id);
+    Message getMessageById(Long id);
 
     /**
      * 逻辑删除

@@ -5,6 +5,7 @@
 		<title></title>
 		<link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
 		<link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" type="text/css" href="/static/default/js/ztree/css/zTreeStyle.css" />
 
 	</head>
 
@@ -13,72 +14,28 @@
 			<div class="layui-card">
 				<div class="layui-card-body" style="padding: 15px;">
 					<form class="layui-form" action="" lay-filter="component-form-group">
-						<input type="hidden" class="id" name="id" th:value="${enterprise.id}">
 						<div class="layui-form-item">
-							<label class="layui-form-label">公司名称<span style='color:red'>*</span></label>
+							<label class="layui-form-label">名称<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="name" required lay-verType="tips" lay-verify="required|hm" th:value="${enterprise.name}" placeholder="请输入公司名称" autocomplete="off" class="layui-input">
+								<input type="text" name="name" required lay-verType="tips" lay-verify="required|hm" placeholder="请输入名称" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 						<div class="layui-form-item">
-							<label class="layui-form-label">税号<span style='color:red'>*</span></label>
+							<label class="layui-form-label">上级类型</label>
 							<div class="layui-input-block">
-								<input type="text" name="taxNum" required lay-verType="tips" lay-verify="required|hm" th:value="${enterprise.taxNum}" placeholder="请输入税号" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">类型<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<select name="type" lay-verify="required" th:if="${enterprise.type eq 1}" lay-verType="tips">
-									<option value="1" selected>连锁</option>
-									<option value="2">单店</option>
-								</select>
-								<select name="type" lay-verify="required" th:if="${enterprise.type eq 2}" lay-verType="tips">
-									<option value="1">连锁</option>
-									<option value="2" selected>单店</option>
-								</select>
+								<ul id="treeDemo"  class="ztree"></ul>
 							</div>
 						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label">LOGO</label>
 							<div class="layui-input-inline">
-								<input type="text" name="logo" id="logo" th:value="${enterprise.logo}" placeholder="图片地址" class="layui-input">
+								<input type="text" name="pic" id="logo"  placeholder="图片地址" class="layui-input">
 							</div>
 							<div class="layui-input-inline layui-btn-container" style="width: auto;">
 								<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
 									<i class="layui-icon">&#xe67c;</i>上传图片
 								</button>
 								<button type="button" class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">地址</label>
-							<div class="layui-input-block">
-								<input type="text" name="address" th:value="${enterprise.address}" placeholder="请输入地址" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">联系电话<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="text" name="phone" th:value="${enterprise.phone}" lay-verify="required|phone" lay-verType="tips" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">起止时间<span style='color:red'>*</span></label>
-							<div class="layui-input-inline">
-								<input type="text" id="startTime" name="startTime" th:value="${enterprise.startTime}" lay-verify="required" lay-verType="tips" placeholder="开始时间" autocomplete="off" class="layui-input">
-							</div>
-							<div class="layui-form-mid">
-								-
-							</div>
-							<div class="layui-input-inline">
-								<input type="text" id="endTime" name="endTime" th:value="${enterprise.endTime}" lay-verify="required" lay-verType="tips" placeholder="结束时间" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">背景描述</label>
-							<div class="layui-input-block">
-								<textarea id="layeditDemo" th:text="${enterprise.introduction}"></textarea>
 							</div>
 						</div>
 						<div class="layui-form-item layui-layout-admin">
@@ -95,37 +52,38 @@
 		</div>
 		<script src="/static/default/js/jquery.min.js"></script>
 		<script src="/static/layuiadmin/layui/layui.js?t=1"></script>
+		<script src="/static/default/js/ztree/js/jquery.ztree.all-3.5.js"></script>
 		<script th:inline="javascript">
             var windowindex = parent.layer.getFrameIndex(window.name);
+            var setting = {
+                view: {
+                    showLine: false
+                },
+                check: {
+                    enable: true,
+                    chkStyle:"radio",
+                    radioType: "all"
+                },
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "parentId",
+                        rootPId: 0
+                    }
+                }
+            };
             var treeObj;
             $(document).ready(function () {
                 layui.config({
                     base: '/static/layuiadmin/' //静态资源所在路径
                 }).extend({
                     index: 'lib/index' //主入口模块
-                }).use(['index','form', 'layer', 'laydate', 'layedit',"upload"], function() {
+                }).use(['index','form', 'layer',"upload"], function() {
                     var form = layui.form;
                     var layer = layui.layer;
-                    var laydate = layui.laydate;
                     var s = layui.upload;
                     var a = (layui.laytpl, layui.setter, layui.view, layui.admin);
-                    var layedit = layui.layedit;
-                    //开始日期
-                    var insStart = laydate.render({
-                        elem: '#startTime'
-                        ,min: 0
-                        ,done: function(value, date){
-                            //自动弹出结束日期的选择器
-                            insEnd.config.elem[0].focus();
-                        }
-                    });
-                    //结束日期
-                    var insEnd = laydate.render({
-                        elem: '#endTime'
-                        ,min: 0
-                        ,done: function(value, date){
-                        }
-                    });
                     var r = $("#logo");
                     var loadindex1;
                     s.render({
@@ -137,10 +95,10 @@
                                 time: 1500,
                                 shade: [0.3,'#000'],
                             });
-                        },
+						},
                         done: function (t) {
-                            console.log(t)
                             layer.close(loadindex1);
+                            console.log(t)
                             0 == t.code ? r.val(t.data.src) : e.msg(t.msg, {
                                 icon: 5
                             })
@@ -164,43 +122,39 @@
                             anim: 5
                         })
                     };
-                    layedit.set({
-                        //暴露layupload参数设置接口 --详细查看layupload参数说明
-                        uploadImage: {
-                            url: '/noc/uploadFile',
-                            accept: 'image',
-                            acceptMime: 'image/*',
-                            exts: 'jpg|png|gif|bmp|jpeg',
-                            size: '10240'
+                    var loadindex;
+                    $.ajax({
+                        url: "/noc/food/allTypeList",
+                        type: 'post',
+                        async : true,
+                        dataType: 'json',
+                        data: {
+                        },
+                        beforeSend:function(rs){
+                            loadindex = layer.load(2, {
+                                time: 1500,
+                                shade: [0.3,'#000'],
+                            });
+                        },
+                        complete:function(rs){
+                            layer.close(loadindex);
+                        },
+                        success: function(datas) {
+                            $.fn.zTree.init($("#treeDemo"), setting, datas);
+                            treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+                            treeObj.expandAll(true);
                         }
-                        //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，
-                        //传递参数：
-                        //图片： imgpath --图片路径
-                        //视频： filepath --视频路径 imgpath --封面路径
-                        , calldel: {
-                            url: '/Attachment/DeleteFile'
-                        }
-                        //开发者模式 --默认为false
-                        , devmode: true
-                        //插入代码设置
-                        , codeConfig: {
-                            hide: true,  //是否显示编码语言选择框
-                            default: 'javascript' //hide为true时的默认语言格式
-                        }
-                        , tool: [
-                            'html', 'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'fontFomatt', 'colorpicker', 'face'
-                            , '|', 'left', 'center', 'right', '|', 'link', 'unlink','images', 'image_alt', 'anchors'
-                            , '|','table', 'fullScreen'
-                        ]
-                        , height: '90%'
                     });
-                    var ieditor = layedit.build('layeditDemo');
                     //表单提交验证
                     form.on('submit(addOrEdit)', function(data){
-                        data.field.introduction = layedit.getContent(ieditor);
+                        var nodes = treeObj.getCheckedNodes();
+                        data.field.parentId = 0;
+                        if(nodes.length>0){
+                            data.field.parentId = nodes[0].id;
+                        }
                         var loadindex;
                         $.ajax({
-                            url: "/noc/updateEnterprise",
+                            url: "/noc/food/insertType",
                             type: 'post',
                             async : true,
                             dataType: 'json',

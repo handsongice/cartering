@@ -37,7 +37,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Enterprise getMessageById(Long id) {
+    public Message getMessageById(Long id) {
         return null;
     }
 

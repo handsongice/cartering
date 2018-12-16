@@ -25,7 +25,7 @@ public class FoodType {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
-    private Short isDel;
+    private Integer isDel;
 
     public Long getId() {
         return id;
@@ -91,11 +91,11 @@ public class FoodType {
         this.updateTime = updateTime;
     }
 
-    public Short getIsDel() {
+    public Integer getIsDel() {
         return isDel;
     }
 
-    public void setIsDel(Short isDel) {
+    public void setIsDel(Integer isDel) {
         this.isDel = isDel;
     }
 

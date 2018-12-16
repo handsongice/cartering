@@ -11,7 +11,7 @@
     <result column="sort" property="sort" jdbcType="BIGINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="is_del" property="isDel" jdbcType="SMALLINT" />
+    <result column="is_del" property="isDel" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, parent_id,enterprise_id, `name`, tree_code, pic, sort, create_time, update_time, is_del
@@ -46,6 +46,18 @@
     </where>
     order by create_time desc
   </select>
+  <select id="maxSort" resultType="java.lang.Long" parameterType="java.lang.Long" >
+    select
+      max(sort)
+    from yl_food_type
+    where parent_id = #{parentId,jdbcType=BIGINT} and is_del = 0
+  </select>
+  <select id="maxTreeCode" resultType="java.lang.String" parameterType="java.lang.Long" >
+    select
+      max(tree_code)
+    from yl_food_type
+    where parent_id = #{parentId,jdbcType=BIGINT} and is_del = 0
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from yl_food_type
     where id = #{id,jdbcType=BIGINT}
@@ -57,7 +69,7 @@
       )
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT},#{enterpriseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
       #{treeCode,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{sort,jdbcType=BIGINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=SMALLINT}
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDel}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.jy.entity.FoodType" >
@@ -123,7 +135,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDel != null" >
-        #{isDel,jdbcType=SMALLINT},
+        #{isDel},
       </if>
     </trim>
   </insert>
@@ -155,7 +167,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDel != null" >
-        is_del = #{isDel,jdbcType=SMALLINT},
+        is_del = #{isDel},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -170,7 +182,7 @@
       sort = #{sort,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      is_del = #{isDel,jdbcType=SMALLINT}
+      is_del = #{isDel}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="delFoodType" parameterType="java.lang.Long" >

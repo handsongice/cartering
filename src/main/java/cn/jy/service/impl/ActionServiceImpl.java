@@ -128,7 +128,7 @@ public class ActionServiceImpl implements ActionService {
                     action.setTreeCode(action0.get(0).getTreeCode()+"10001");
                 }
             }
-            int dbResult = actionMapper.insert(action);
+            int dbResult = actionMapper.insertSelective(action);
             if(dbResult >0){
                 return ResultMap.success(Constent.DB_INSERT_SUCCESS);
             }else{
@@ -151,7 +151,7 @@ public class ActionServiceImpl implements ActionService {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             //设置创建时间
             action.setUpdateTime(df.format(new Date()));
-            int dbResult = actionMapper.updateByPrimaryKey(action);
+            int dbResult = actionMapper.updateByPrimaryKeySelective(action);
             if(dbResult >0){
                 return ResultMap.success(Constent.DB_UPDATE_SUCCESS);
             }else{
