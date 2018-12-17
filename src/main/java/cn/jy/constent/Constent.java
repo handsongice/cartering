@@ -27,7 +27,7 @@ public class Constent {
 
     public static String QN_ACCESS_KEY = "qt76dnkPqAAr3hQsH2jpQALH9Jsm9BcAg359nX3s";
     public static String QN_SECRET_KEY = "oEmtd_oIbfytfSiVQc9oD2eT30xmqvu9-QUprbkH";
-    public static String QN_DOMAIN = "http://pih9q368w.bkt.clouddn.com/";
+    public static String QN_DOMAIN = "http://img.qdjingci.com/";
     public static String QN_BUCKET = "qdjingci";
 
 }

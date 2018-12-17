@@ -59,17 +59,38 @@ public class FoodController extends BaseController {
         return "enterprise/food/addFood";
     }
     /**
+     * 添加菜品规格页面
+     * @return
+     */
+    @RequestMapping(value = "/main/food/addFoodSpec")
+    public String addFoodSpec() {
+        return "enterprise/food/addFoodSpec";
+    }
+    /**
      * 编辑菜单页面
      * @param params
      * @return
      */
-    @RequestMapping(value = "/main/food//editType")
+    @RequestMapping(value = "/main/food/editType")
     public ModelAndView editType(@RequestParam Map<String, Object> params) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("enterprise/food/editType");
         Long _id = Long.parseLong(params.get("id").toString());
         FoodType foodType = foodService.getFoodTypeById(_id);
         mv.addObject("foodType", foodType);
+        return mv;
+    }
+    /**
+     * 编辑规格页面
+     * @param params
+     * @return
+     */
+    @RequestMapping(value = "/main/food/editFoodSpec")
+    public ModelAndView editFoodSpec(@RequestParam Map<String, Object> params) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/food/editFoodSpec");
+        Long _id = Long.parseLong(params.get("id").toString());
+        mv.addObject("id", _id);
         return mv;
     }
     /**

@@ -5,116 +5,415 @@
 		<title></title>
 		<link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
 		<link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
-
+		<link rel="stylesheet" type="text/css" href="/static/default/js/ztree/css/zTreeStyle.css" />
+		<style>
+			/*图片管理*/
+			#Images li {float: left;}
+			#Images li .operate{ display: block; width:92px; background:#f4f5f9; }
+			#Images li img{ width: 92px; height: 92px; margin: 0 10px 10px 0; cursor:pointer; }
+			/*#Images li .operate .img_del{ font-size: 22px !important; cursor:pointer; }*/
+			/*#Images li .operate .img_del:hover{ color:#f00; }*/
+			#Images2 li {float: left;}
+			#Images2 li .operate{ display: block; width:92px; background:#f4f5f9; }
+			#Images2 li img{ width: 92px; height: 92px; margin: 0 10px 10px 0; cursor:pointer; }
+			/*#Images2 li .operate .img_del2{ font-size: 22px !important; cursor:pointer; }*/
+			/*#Images2 li .operate .img_del2:hover{ color:#f00; }*/
+		</style>
 	</head>
 
 	<body>
-		<div class="layui-fluid">
+		<div class="layui-fluid layui-form">
 			<div class="layui-card">
+				<div class="layui-card-header">菜品介绍</div>
 				<div class="layui-card-body" style="padding: 15px;">
-					<form class="layui-form" action="" lay-filter="component-form-group">
-						<div class="layui-form-item">
-							<label class="layui-form-label">名称<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="text" name="name" required lay-verType="tips" lay-verify="required|hm" placeholder="请输入名称" autocomplete="off" class="layui-input">
+					<div class="layui-form-item">
+						<label class="layui-form-label">名称<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="name" lay-verType="tips" lay-verify="required|hm" placeholder="请输入名称" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">拼音<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="code" lay-verType="tips" lay-verify="required|cd" placeholder="请输入拼音" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">原价<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="price" lay-verType="tips" lay-verify="required|number" placeholder="0.00" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">售价<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="salePrice" lay-verType="tips" lay-verify="required|number" placeholder="0.00" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">是否新品<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="radio" name="isNew" value="1" title="是" >
+							<input type="radio" name="isNew" value="0" title="否" checked>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">是否推荐<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="radio" name="isHot" value="1" title="是" >
+							<input type="radio" name="isHot" value="0" title="否" checked>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">是否在售<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="radio" name="status" value="2" title="在售" checked>
+							<input type="radio" name="status" value="1" title="未售" >
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">商品图片</label>
+						<div class="layui-input-inline">
+							<input type="text" name="pic" id="logo"  placeholder="图片地址" class="layui-input">
+						</div>
+						<div class="layui-input-inline layui-btn-container" style="width: auto;">
+							<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+								<i class="layui-icon">&#xe67c;</i>上传图片
+							</button>
+							<button type="button" class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">内页轮播图</label>
+						<div class="layui-input-block">
+							<div class="layui-upload">
+								<button type="button" class="layui-btn layui-btn-normal" id="test2">选择多文件</button>
+								<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+									预览图：
+									<ul class="layer-photos-demo" id="Images" style='overflow: hidden;'></ul>
+								</blockquote>
 							</div>
 						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">拼音<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="text" name="code" required lay-verType="tips" lay-verify="required|cd" placeholder="请输入拼音" autocomplete="off" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">单位<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<input type="text" name="unit" lay-verType="tips" lay-verify="required|hm" placeholder="件/个/盒" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">类型<span style='color:red'>*</span></label>
+						<div class="layui-input-block">
+							<ul id="treeDemo"  class="ztree"></ul>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">简介</label>
+						<div class="layui-input-block">
+							<input type="text" name="sign"  autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">详细介绍</label>
+						<div class="layui-input-block">
+							<textarea id="layeditDemo"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-card">
+				<div class="layui-card-header">菜品规格</div>
+				<div class="layui-card-body" style="padding: 15px;">
+					<div class="layui-form-item">
+						<table class="layui-table" id="ggTable" lay-filter="ggTable"></table>
+						<script type="text/html" id="tableOperation">
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+						</script>
+					</div>
+				</div>
+			</div>
+			<div class="layui-card">
+				<div class="layui-card-header">菜品库存</div>
+				<div class="layui-card-body" style="padding: 15px;">
+					<div class="layui-form-item">
+						<table class="layui-table" id="kcTable" lay-filter="kcTable"></table>
+						<script type="text/html" id="kctableOperation">
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>设置</a>
+						</script>
+					</div>
+					<div class="layui-form-item layui-layout-admin">
+						<div class="layui-input-block">
+							<div class="layui-footer" style="left: 0;">
+								<button type="button" class="layui-btn" lay-submit  lay-filter="addOrEdit">立即提交</button>
+								<button id="closePopBut" type="reset" class="layui-btn layui-btn-primary">关闭</button>
 							</div>
 						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">原价<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="text" name="price" required lay-verType="tips" lay-verify="required|number" placeholder="0.00" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">售价<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="text" name="salePrice" required lay-verType="tips" lay-verify="required|number" placeholder="0.00" autocomplete="off" class="layui-input">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">是否新品<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="radio" name="isNew" value="1" title="是" >
-								<input type="radio" name="isNew" value="0" title="否" checked>
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">是否推荐<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="radio" name="isHot" value="1" title="是" >
-								<input type="radio" name="isHot" value="0" title="否" checked>
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">是否在售<span style='color:red'>*</span></label>
-							<div class="layui-input-block">
-								<input type="radio" name="status" value="2" title="在售" checked>
-								<input type="radio" name="status" value="1" title="未售" >
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">商品图片</label>
-							<div class="layui-input-inline">
-								<input type="text" name="pic" id="logo"  placeholder="图片地址" class="layui-input">
-							</div>
-							<div class="layui-input-inline layui-btn-container" style="width: auto;">
-								<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
-									<i class="layui-icon">&#xe67c;</i>上传图片
-								</button>
-								<button type="button" class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">内页轮播图</label>
-							<div class="layui-input-block">
-								<div class="layui-upload">
-									<button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-									<div class="layui-upload-list">
-										<table class="layui-table">
-											<thead>
-											<tr><th>文件名</th>
-												<th>大小</th>
-												<th>状态</th>
-												<th>操作</th>
-											</tr></thead>
-											<tbody id="demoList"></tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="layui-form-item layui-layout-admin">
-							<div class="layui-input-block">
-								<div class="layui-footer" style="left: 0;">
-									<button type="button" class="layui-btn" lay-submit  lay-filter="addOrEdit">立即提交</button>
-									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-								</div>
-							</div>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 		<script src="/static/default/js/jquery.min.js"></script>
+		<script src="/static/default/js/underscore-min.js"></script>
 		<script src="/static/layuiadmin/layui/layui.js?t=1"></script>
-		<script th:inline="javascript">
+		<script src="/static/default/js/ztree/js/jquery.ztree.all-3.5.js"></script>
+		<script type="text/html" id="toolbarDemo">
+			<button class="layui-btn layuiadmin-btn-list "  lay-event="add" title="添加">
+				<i class="fa fa-plus"></i><span>添加</span>
+			</button>
+		</script>
+		<script>
             var windowindex = parent.layer.getFrameIndex(window.name);
+            var setting = {
+                view: {
+                    showLine: false
+                },
+                check: {
+                    enable: true,
+                    chkStyle:"radio",
+                    radioType: "all"
+                },
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "parentId",
+                        rootPId: 0
+                    }
+                }
+            };
+            var treeObj;
+            var imgindex;
+            var files = [];
+            var ggObj = {};
+            var ggData = [];
+            var kcObj = {};
+            var kcData = [];
             $(document).ready(function () {
                 layui.config({
                     base: '/static/layuiadmin/' //静态资源所在路径
                 }).extend({
                     index: 'lib/index' //主入口模块
-                }).use(['index','form', 'layer',"upload"], function() {
+                }).use(['index','table','form', 'layer', 'layedit',"upload"], function() {
                     var form = layui.form;
                     var layer = layui.layer;
                     var s = layui.upload;
                     var a = (layui.laytpl, layui.setter, layui.view, layui.admin);
+                    var layedit = layui.layedit;
+                    var table = layui.table;
+                    var _bj = {
+                        id: 1,
+						name:'规格',
+						key:'标准',
+						pic:'',
+					}
+                    ggData.push(_bj)
+                    var _bjkc = {
+                        id: 1,
+                        keys:['标准'],
+                        price:0,
+                        num:0,
+                        pic:'',
+                    }
+                    kcData.push(_bjkc)
+                    ggObj = {
+                        loadPage: function () {
+                            var _this = this;
+                            _this.tableRender();
+                        },
+                        tableRender: function () {
+                            var _this = this;
+                            var colsData = [
+                                [
+                                    {field: 'name', title: '规格名', sort: true},
+                                    {
+                                        field: 'key', title: '规格值', templet: function (res) {
+                                            if(res.key) {
+                                                return '<a href="javascript:;" class="layui-table-link" >'+res.key+'</a>';
+                                            } else {
+                                                return ''
+                                            }
+                                        }
+                                    },
+                                    {
+                                        field: 'pic', title: '图片', templet: function (res) {
+                                            if(res.pic) {
+                                                return '<a href="javascript:;" layadmin-event="avartatPreviews" class="layui-table-link" >'+res.pic+'</a>';
+											} else {
+                                                return ''
+											}
+                                        }
+                                    },
+                                    {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
+                            ];
+                            table.render({
+                                id: "ggDataList",
+                                elem: '#ggTable',
+                                data: ggData,
+                                toolbar: '#toolbarDemo' ,
+                                title: '数据列表',
+                                cols: colsData,
+                                even: true, //开启隔行背景
+                                done: function (res, curr, count) {
+                                    //alert(res);
+                                }
+                            });
+                            table.on('toolbar(ggTable)', function(obj){
+                                switch(obj.event){
+                                    case 'add':
+                                        //添加通知单
+                                        var index = layer.open({
+                                            title: "新建",
+                                            type: 2,
+                                            content: "/main/food/addFoodSpec",
+                                            area: ['800px', '450px'],
+                                            success: function(layero, index) {
+                                                setTimeout(function() {
+                                                    layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                                        tips: 3
+                                                    });
+                                                }, 500)
+                                            }
+                                        })
+                                        break;
+                                };
+                            });
+                            // 列表按钮
+                            table.on('tool(ggTable)', function (obj) {
+                                var tableEvent = obj.event;
+                                var data = obj.data;
+                                var dataId = data.id;
+
+                                if (tableEvent === 'edit') {
+                                    var index = layer.open({
+                                        title: "编辑",
+                                        type: 2,
+                                        content: "/main/food/editFoodSpec?id="+dataId,
+                                        area: ['800px', '450px'],
+                                        success: function(layero, index) {
+                                            setTimeout(function() {
+                                                layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                                    tips: 3
+                                                });
+                                            }, 500)
+                                        }
+                                    })
+                                } else if (tableEvent === 'del') {
+                                    layer.confirm('是否确认删除?',{icon: 3, title:'温馨提示'}, function(index) {
+                                        if(ggData.length <= 1) {
+                                            layer.msg('至少保留一个规格！');
+											return false;
+										}
+                                        var _k = 0;
+                                        _.each(ggData,function(v,k){
+                                            if(v.id == dataId) {
+                                                _k = k;
+                                            }
+                                        });
+                                        ggData.splice(_k,1);
+                                        ggObj.loadPage();
+                                        layer.close(index);
+                                    });
+                                }
+                            });
+                        },
+                    }
+                    ggObj.loadPage();
+                    kcObj = {
+                        loadPage: function () {
+                            var _this = this;
+                            _this.tableRender();
+                        },
+                        tableRender: function () {
+                            var _this = this;
+                            var colsData = [
+                                [
+                                    {
+                                        field: 'key', title: '货品规格', templet: function (res) {
+                                            if(res.keys) {
+                                                var _r = '';
+                                                _.each(res.keys,function (_v,_k) {
+                                                    _r += '<a href="javascript:;" class="layui-table-link" >'+_v+'</a> &nbsp;&nbsp;'
+                                                })
+                                                return _r;
+                                            } else {
+                                                return ''
+                                            }
+                                        }
+                                    },
+                                    {field: 'price', title: '售价', sort: true},
+                                    {field: 'num', title: '数量', sort: true},
+                                    {
+                                        field: 'pic', title: '图片', templet: function (res) {
+                                            if(res.pic) {
+                                                return '<a href="javascript:;" layadmin-event="avartatPreviews" class="layui-table-link" >'+res.pic+'</a>';
+                                            } else {
+                                                return ''
+                                            }
+                                        }
+                                    },
+                                    {fixed: 'right', title: '操作', width: '15%', toolbar: '#kctableOperation'}]
+                            ];
+                            table.render({
+                                id: "kcDataList",
+                                elem: '#kcTable',
+                                data: kcData,
+                                title: '数据列表',
+                                cols: colsData,
+                                even: true, //开启隔行背景
+                                done: function (res, curr, count) {
+                                    //alert(res);
+                                }
+                            });
+                            // 列表按钮
+                            table.on('tool(kcTable)', function (obj) {
+                                var tableEvent = obj.event;
+                                var data = obj.data;
+                                var dataId = data.id;
+
+                                if (tableEvent === 'edit') {
+                                    var index = layer.open({
+                                        title: "编辑",
+                                        type: 2,
+                                        content: "/main/food/editFoodSpecKc?id="+dataId,
+                                        area: ['800px', '450px'],
+                                        success: function(layero, index) {
+                                            setTimeout(function() {
+                                                layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                                    tips: 3
+                                                });
+                                            }, 500)
+                                        }
+                                    })
+                                }
+                            });
+                        },
+                    }
+                    kcObj.loadPage();
+                    //类型
+                    var loadindex;
+                    $.ajax({
+                        url: "/noc/food/allTypeList",
+                        type: 'post',
+                        async : true,
+                        dataType: 'json',
+                        data: {
+                        },
+                        beforeSend:function(rs){
+                            loadindex = layer.load(2, {
+                                time: 1500,
+                                shade: [0.3,'#000'],
+                            });
+                        },
+                        complete:function(rs){
+                            layer.close(loadindex);
+                        },
+                        success: function(datas) {
+                            $.fn.zTree.init($("#treeDemo"), setting, datas);
+                            treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+                            treeObj.expandAll(true);
+                        }
+                    });
                     var r = $("#logo");
                     var loadindex1;
                     s.render({
@@ -153,36 +452,116 @@
                             anim: 5
                         })
                     };
+                    a.events.avartatPreviews = function (t) {
+                        var i = $(this).html();
+                        layer.photos({
+                            photos: {
+                                title: "查看头像",
+                                data: [{
+                                    src: i
+                                }]
+                            },
+                            shade: .01,
+                            closeBtn: 1,
+                            anim: 5
+                        })
+                    };
                     var loadindex2;
                     var demoListView = $('#demoList');
-                    var uploadListIns = s.render({
-                        elem: '#testList',
-                        url: "/noc/uploadFile",
-                        accept: "images",
-                        before: function(obj){
+                    s.render({
+                        elem: '#test2'
+						,accept: "images"
+                        ,url: '/noc/uploadFile'
+                        ,multiple: true
+                        ,before: function(obj){
                             loadindex1 = layer.load(2, {
                                 time: 1500,
                                 shade: [0.3,'#000'],
                             });
-                        },
-                        done: function (t) {
+                            //预读本地文件示例，不支持ie8
+                            obj.preview(function(index, file, result){
+                                imgindex = index;
+                                $('#Images').append('<li><img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img"><div class="operate"><a href="javascript:;" class="layui-btn layui-btn-danger layui-btn-fluid img_del" >删除</a></div></li>')
+                                //设置图片的高度
+                                $("#Images li img").height($("#Images li img").width());
+                            });
+                        }
+                        ,done: function(res){
                             layer.close(loadindex1);
-                            console.log(t)
-                            0 == t.code ? r.val(t.data.src) : e.msg(t.msg, {
-                                icon: 5
-                            })
+                            if(!res || !res.data.src) {
+                                layer.msg('上传失败，请重新上传', {
+                                    icon: 5
+                                });
+                                return false;
+                            }
+                            var _file = {};
+                            _file.index = imgindex;
+                            _file.filepath = res.data.src;
+                            files.push(_file);
                         },
-					})
-                        //表单提交验证
+                        error: function(index, upload) {
+                            layer.close(loadindex1);
+                            layer.msg('上传失败，请重新上传',{
+                                icon: 5
+                            });
+                        }
+
+                    });
+                    $("body").on("click",".img_del",function(){
+                        var _this = $(this);
+                        layer.confirm('确定删除图片吗？',{icon:3, title:'提示信息'},function(index){
+                            _this.parents("li").hide(1000);
+                            var _k = 0;
+                            var _index = _this.attr('index');
+                            _.each(files,function(v,k){
+                                if(v.index == _index) {
+                                    _k = k;
+                                }
+                            });
+                            files.splice(_k,1);
+                            setTimeout(function(){_this.parents("li").remove();},950);
+                            layer.close(index);
+                        });
+                    })
+                    layedit.set({
+                        //暴露layupload参数设置接口 --详细查看layupload参数说明
+                        uploadImage: {
+                            url: '/noc/uploadFile',
+                            accept: 'image',
+                            acceptMime: 'image/*',
+                            exts: 'jpg|png|gif|bmp|jpeg',
+                            size: '10240'
+                        }
+                        //开发者模式 --默认为false
+                        , devmode: false
+                        //插入代码设置
+                        , codeConfig: {
+                            hide: true,  //是否显示编码语言选择框
+                            default: 'javascript' //hide为true时的默认语言格式
+                        }
+                        , tool: [
+                            'html', 'code', 'strong', 'italic', 'underline', 'del', 'addhr', '|', 'fontFomatt', 'colorpicker', 'face'
+                            , '|', 'left', 'center', 'right', '|', 'link', 'unlink','images', 'image_alt', 'anchors'
+                            , '|','table', 'fullScreen'
+                        ]
+                        , height: '90%'
+                    });
+                    $('#closePopBut').on('click', function () {
+                        // 关闭layer弹出层
+                        parent.layer.close(windowindex);
+                    });
+                    var ieditor = layedit.build('layeditDemo');
+					//表单提交验证
                     form.on('submit(addOrEdit)', function(data){
+                        data.field.introduction = layedit.getContent(ieditor);
                         var nodes = treeObj.getCheckedNodes();
-                        data.field.parentId = 0;
+                        data.field.typeId = 0;
                         if(nodes.length>0){
-                            data.field.parentId = nodes[0].id;
+                            data.field.typeId = nodes[0].id;
                         }
                         var loadindex;
                         $.ajax({
-                            url: "/noc/food/insertType",
+                            url: "/noc/food/insertFood",
                             type: 'post',
                             async : true,
                             dataType: 'json',
@@ -233,6 +612,69 @@
                     });
                 });
 			})
+            function _addFoodSpec(d) {
+                d.id = ggData.length + 1;
+                ggData.push(d);
+                ggObj.loadPage();
+                reloadKcData()
+            }
+            function _getFoodSpec(id) {
+                var _g = {};
+                _.each(ggData,function (g) {
+					if(g.id = id) {
+					    _g = g;
+					}
+                })
+                return _g;
+            }
+            function reloadKcData() {
+                var _s = _.groupBy(ggData, 'name');
+                var _h = 1;
+                var _w = 1;
+                _.each(_s,function(v1,k1){
+                    _h = _h * v1.length;
+                    if(v1.length > _w) {
+                        _w = v1.length
+					}
+                })
+                for (var i = 0; i < _h; i++) {
+
+                }
+                console.log(_s)
+				var _sd = [];
+                _.each(_s,function(v1,k1){
+                    _sd.push(v1);
+				})
+                var temp = _sd[0];
+                for (var i = 1; i < _sd.length; i++) {
+                    temp = zuhe_ar(temp, _sd[i]);
+                }
+                console.log(temp)
+            }
+            function zuhe_ar(ar1, ar2) {
+                var new_ar = new Array();
+                for (var i = 0; i < ar1.length; i++) {
+                    for (var j = 0; j < ar2.length; j++) {
+                        //可能是白，也可能是[白,x]
+                        var temp = cloneAr(ar1[i]);
+                        new_ar.push([temp.key, ar2[j].key]);
+                        // if (temp.vanme) {
+                        //     new_ar.push([temp, ar2[j]]); //白的情况
+                        // } else {
+                        //     temp.push(ar2[j]);
+                        //     new_ar.push(temp);
+                        // }
+                    }
+                }
+                return new_ar;
+            }
+            function cloneAr(ar) {
+                var new_ar = [];
+                for (var i in ar) {
+                    new_ar[i] = ar[i];
+                }
+                return new_ar;
+            }
 		</script>
 	</body>
 

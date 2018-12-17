@@ -180,15 +180,8 @@
                             exts: 'jpg|png|gif|bmp|jpeg',
                             size: '10240'
                         }
-                        //右键删除图片/视频时的回调参数，post到后台删除服务器文件等操作，
-                        //传递参数：
-                        //图片： imgpath --图片路径
-                        //视频： filepath --视频路径 imgpath --封面路径
-                        , calldel: {
-                            url: '/Attachment/DeleteFile'
-                        }
                         //开发者模式 --默认为false
-                        , devmode: true
+                        , devmode: false
                         //插入代码设置
                         , codeConfig: {
                             hide: true,  //是否显示编码语言选择框
