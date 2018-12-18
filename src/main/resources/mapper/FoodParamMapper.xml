@@ -118,4 +118,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <delete id="deleteByFoodId" parameterType="java.lang.Long" >
+    delete from yl_food_param
+    where food_id = #{food_id}
+  </delete>
 </mapper>

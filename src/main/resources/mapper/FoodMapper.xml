@@ -280,4 +280,9 @@
       is_del = #{isDel,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="delFood" parameterType="java.lang.Long" >
+    update yl_food
+    set is_del = 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

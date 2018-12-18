@@ -21,4 +21,6 @@ public interface FoodCarouselMapper {
     int updateByPrimaryKey(FoodCarousel record);
 
     List<FoodCarousel> selectByParams(Map<String, Object> map);
+
+    int deleteByFoodId(Long food_id);
 }

@@ -1,8 +1,7 @@
 package cn.jy.service;
 
 import cn.jy.dto.ResultMap;
-import cn.jy.entity.Food;
-import cn.jy.entity.FoodType;
+import cn.jy.entity.*;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,34 @@ public interface FoodService {
      */
     List<Food> getFoodList(Map<String, Object> params) throws Exception;
     /**
+     * 列表
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    List<FoodCarousel> getCarouselList(Map<String, Object> params) throws Exception;
+    /**
+     * 列表
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    List<FoodSpec> getSpecList(Map<String, Object> params) throws Exception;
+    /**
+     * 列表
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    List<FoodStock> getStockList(Map<String, Object> params) throws Exception;
+    /**
+     * 列表
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    List<FoodParam> getParamList(Map<String, Object> params) throws Exception;
+    /**
      * 插入数据
      * @param foodType
      * @return
@@ -48,6 +75,12 @@ public interface FoodService {
     ResultMap updateFoodType(FoodType foodType);
 
     /**
+     * 更新数据
+     * @param food
+     * @return
+     */
+    ResultMap updateFood(Food food) throws Exception;
+    /**
      * 获取信息
      * @param id
      * @return
@@ -55,9 +88,23 @@ public interface FoodService {
     FoodType getFoodTypeById(Long id);
 
     /**
+     * 获取信息
+     * @param id
+     * @return
+     */
+    Food getFoodById(Long id);
+
+    /**
      * 逻辑删除
      * @param id
      * @return
      */
     ResultMap delFoodType(Long id);
+
+    /**
+     * 逻辑删除
+     * @param id
+     * @return
+     */
+    ResultMap delFood(Long id);
 }

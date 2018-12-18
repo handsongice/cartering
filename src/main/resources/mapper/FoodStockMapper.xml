@@ -11,9 +11,11 @@
     <result column="pic" property="pic" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="skeys" property="skeys" jdbcType="VARCHAR" />
+    <result column="keystr" property="keystr" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, food_id, food_spec_ids, food_spec_names, price, num, pic, create_time, update_time
+    id, food_id, food_spec_ids, food_spec_names, price, num, pic, create_time, update_time,skeys,keystr
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -43,11 +45,12 @@
   <insert id="insert" parameterType="cn.jy.entity.FoodStock" >
     insert into yl_food_stock (id, food_id, food_spec_ids, 
       food_spec_names, price, num, 
-      pic, create_time, update_time
+      pic, create_time, update_time,skeys,keystr
       )
     values (#{id,jdbcType=BIGINT}, #{foodId,jdbcType=BIGINT}, #{foodSpecIds,jdbcType=VARCHAR}, 
       #{foodSpecNames,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER}, 
-      #{pic,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      #{pic,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+      #{skeys,jdbcType=VARCHAR}, #{keystr,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.jy.entity.FoodStock" >
@@ -80,6 +83,12 @@
       <if test="updateTime != null" >
         update_time,
       </if>
+      <if test="skeys != null" >
+        skeys,
+      </if>
+      <if test="keystr != null" >
+        keystr,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -108,6 +117,12 @@
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skeys != null" >
+        #{skeys,jdbcType=VARCHAR},
+      </if>
+      <if test="keystr != null" >
+        #{keystr,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,6 +153,12 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="skeys != null" >
+        skeys = #{skeys,jdbcType=VARCHAR},
+      </if>
+      <if test="keystr != null" >
+        keystr = #{keystr,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -150,7 +171,13 @@
       num = #{num,jdbcType=INTEGER},
       pic = #{pic,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      skeys = #{skeys,jdbcType=VARCHAR},
+      keystr = #{keystr,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <delete id="deleteByFoodId" parameterType="java.lang.Long" >
+    delete from yl_food_stock
+    where food_id = #{food_id}
+  </delete>
 </mapper>

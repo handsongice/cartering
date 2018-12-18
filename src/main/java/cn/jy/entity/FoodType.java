@@ -19,6 +19,8 @@ public class FoodType {
 
     private Long sort;
 
+    private boolean checked = false;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
@@ -105,5 +107,13 @@ public class FoodType {
 
     public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }

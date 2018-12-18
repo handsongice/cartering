@@ -93,4 +93,9 @@
       pic = #{pic,jdbcType=VARCHAR},`index` = #{index,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <delete id="deleteByFoodId" parameterType="java.lang.Long" >
+    delete from yl_food_carousel
+    where food_id = #{food_id}
+  </delete>
 </mapper>

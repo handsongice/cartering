@@ -2,9 +2,7 @@ package cn.jy.controller.enterprise;
 
 import cn.jy.controller.BaseController;
 import cn.jy.dto.ResultMap;
-import cn.jy.entity.Enterprise;
-import cn.jy.entity.Food;
-import cn.jy.entity.FoodType;
+import cn.jy.entity.*;
 import cn.jy.pojo.LayUiPageParams;
 import cn.jy.service.FoodService;
 import com.github.pagehelper.PageHelper;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -86,6 +85,28 @@ public class FoodController extends BaseController {
         Long _id = Long.parseLong(params.get("id").toString());
         FoodType foodType = foodService.getFoodTypeById(_id);
         mv.addObject("foodType", foodType);
+        return mv;
+    }
+    /**
+     * 编辑菜单页面
+     * @param params
+     * @return
+     */
+    @RequestMapping(value = "/main/food/editFood")
+    public ModelAndView editFood(@RequestParam Map<String, Object> params) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/food/editFood");
+        Long _id = Long.parseLong(params.get("id").toString());
+        Food food = foodService.getFoodById(_id);
+        mv.addObject("food", food);
+        Map<String, Object> params1 = new HashMap<>();
+        params1.put("food_id",_id);
+        try {
+            List<FoodCarousel> foodCarousels = foodService.getCarouselList(params1);
+            mv.addObject("foodCarousels", foodCarousels);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mv;
     }
     /**
@@ -188,13 +209,96 @@ public class FoodController extends BaseController {
             Enterprise enterprise = getLoginEnterprise();
             params.put("enterprise_id",enterprise.getId());
             List<FoodType> foodTypes = foodService.getFoodTypeList(params);
+            if(null !=params.get("tid")) {
+                for (FoodType foodType:foodTypes) {
+                    if(params.get("tid").toString().equals(String.valueOf(foodType.getId()))) {
+                        foodType.setChecked(true);
+                    }
+                }
+            }
             return foodTypes;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+    /**
+     * 菜品信息
+     * @param params
+     * @param request
+     * @return
+     */
+    @RequestMapping("/noc/food/getFoodInfo")
+    @ResponseBody
+    public Object getFoodInfo(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+        try {
+            Food food = foodService.getFoodById(Long.parseLong(params.get("food_id").toString()));
+            List<FoodCarousel> foodCarousels = foodService.getCarouselList(params);
+            List<FoodSpec> foodSpecs = foodService.getSpecList(params);
+            List<FoodStock> foodStocks = foodService.getStockList(params);
+            List<FoodParam> foodParams = foodService.getParamList(params);
+            food.setFoodCarousels(foodCarousels);
+            food.setFoodSpecs(foodSpecs);
+            food.setFoodStocks(foodStocks);
+            food.setFoodParams(foodParams);
 
+            return food;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 规格列表
+     * @param params
+     * @param request
+     * @return
+     */
+    @RequestMapping("/noc/food/allSpecList")
+    @ResponseBody
+    public Object allSpecList(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+        try {
+            List<FoodSpec> foodSpecs = foodService.getSpecList(params);
+            return foodSpecs;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 库存列表
+     * @param params
+     * @param request
+     * @return
+     */
+    @RequestMapping("/noc/food/allStockList")
+    @ResponseBody
+    public Object allStockList(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+        try {
+            List<FoodStock> foodStocks = foodService.getStockList(params);
+            return foodStocks;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 库存列表
+     * @param params
+     * @param request
+     * @return
+     */
+    @RequestMapping("/noc/food/allParamList")
+    @ResponseBody
+    public Object allParamList(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+        try {
+            List<FoodParam> foodParams = foodService.getParamList(params);
+            return foodParams;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     @RequestMapping(value = "/noc/food/insertType")
     @ResponseBody
     public ResultMap insertType(HttpServletRequest request, FoodType foodType) {
@@ -225,9 +329,25 @@ public class FoodController extends BaseController {
         return foodService.updateFoodType(foodType);
     }
 
+    @RequestMapping(value = "/noc/food/updateFood")
+    @ResponseBody
+    public ResultMap updateFood(HttpServletRequest request, Food food) {
+        try {
+            return foodService.updateFood(food);
+        } catch (Exception e) {
+            return ResultMap.fail(e.getMessage());
+        }
+    }
+
     @RequestMapping(value = "/noc/food/delType")
     @ResponseBody
     public ResultMap delType(@RequestParam Map<String, Object> params,HttpServletRequest request) {
         return foodService.delFoodType(Long.parseLong(params.get("id").toString()));
+    }
+
+    @RequestMapping(value = "/noc/food/delFood")
+    @ResponseBody
+    public ResultMap delFood(@RequestParam Map<String, Object> params,HttpServletRequest request) {
+        return foodService.delFood(Long.parseLong(params.get("id").toString()));
     }
 }

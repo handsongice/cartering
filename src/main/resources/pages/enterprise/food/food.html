@@ -54,8 +54,13 @@
 <script>
     var sgshObj = {};
     $(document).ready(function () {
-        layui.use(['table', 'laypage', 'layer', 'laydate'], function () {
+        layui.config({
+            base: '/static/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index','table', 'laypage', 'layer', 'laydate'], function () {
             var table = layui.table,laypage = layui.laypage,laydate = layui.laydate,layer = layui.layer;
+            var a = (layui.laytpl, layui.setter, layui.view, layui.admin);
             sgshObj = {
                 loadPage: function () {
                     var _this = this;
@@ -69,7 +74,11 @@
                             {field: 'code', title: '拼音', sort: true},
                             {
                                 field: 'pic', title: '图片', templet: function (res) {
-                                    return '<img src="'+res.pic+'" alt="" style="width: 40px;height: 40px;border-radius: 100%">';
+                                    if(res.pic) {
+                                        return '<a href="javascript:;" layadmin-event="avartatPreviews" class="layui-table-link" >'+res.pic+'</a>';
+                                    } else {
+                                        return ''
+                                    }
                                 }
                             },
                             {field: 'price', title: '市场价', sort: true},
@@ -155,7 +164,7 @@
                             var index = layer.open({
                                 title: "编辑",
                                 type: 2,
-                                content: "/main/food/editType?id="+dataId,
+                                content: "/main/food/editFood?id="+dataId,
                                 success: function(layero, index) {
                                     setTimeout(function() {
                                         layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -173,7 +182,7 @@
                             layer.confirm('是否确认删除?',{icon: 3, title:'温馨提示'}, function(index) {
                                 var loadindex;
                                 $.ajax({
-                                    url: "/noc/food/delType",
+                                    url: "/noc/food/delFood",
                                     type: 'post',
                                     async : true,
                                     dataType: 'json',
@@ -221,7 +230,20 @@
                 }
             }
             sgshObj.loadPage();
-
+            a.events.avartatPreviews = function (t) {
+                var i = $(this).html();
+                layer.photos({
+                    photos: {
+                        title: "查看头像",
+                        data: [{
+                            src: i
+                        }]
+                    },
+                    shade: .01,
+                    closeBtn: 1,
+                    anim: 5
+                })
+            };
             $('#searchBut').on('click', function () {
                 sgshObj.loadPage();
             });

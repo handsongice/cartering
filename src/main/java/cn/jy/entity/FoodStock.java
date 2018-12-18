@@ -20,6 +20,10 @@ public class FoodStock {
 
     private String pic;
 
+    private String skeys;
+
+    private String keystr;
+
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createTime;
 
@@ -96,5 +100,21 @@ public class FoodStock {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getSkeys() {
+        return skeys;
+    }
+
+    public void setSkeys(String skeys) {
+        this.skeys = skeys;
+    }
+
+    public String getKeystr() {
+        return keystr;
+    }
+
+    public void setKeystr(String keystr) {
+        this.keystr = keystr;
     }
 }

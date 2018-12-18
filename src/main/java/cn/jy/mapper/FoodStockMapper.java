@@ -21,4 +21,6 @@ public interface FoodStockMapper {
     int updateByPrimaryKey(FoodStock record);
 
     List<FoodStock> selectByParams(Map<String, Object> map);
+
+    int deleteByFoodId(Long food_id);
 }
