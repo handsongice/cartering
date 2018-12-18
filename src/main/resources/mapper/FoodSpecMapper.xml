@@ -11,7 +11,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, food_id, name, key, pic, create_time, update_time
+    id, food_id, `name`, `key`, pic, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -28,6 +28,12 @@
       <if test="food_id != null">
         and food_id = #{food_id}
       </if>
+      <if test="name != null">
+        and `name` = #{name}
+      </if>
+      <if test="key != null">
+        and `key` = #{key}
+      </if>
       <if test="id != null">
         and id = #{id}
       </if>
@@ -39,8 +45,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.jy.entity.FoodSpec" >
-    insert into yl_food_spec (id, food_id, name, 
-      key, pic, create_time, 
+    insert into yl_food_spec (id, food_id, `name`,
+      `key`, pic, create_time,
       update_time)
     values (#{id,jdbcType=BIGINT}, #{foodId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{key,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
@@ -56,10 +62,10 @@
         food_id,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="key != null" >
-        key,
+        `key`,
       </if>
       <if test="pic != null" >
         pic,
@@ -102,10 +108,10 @@
         food_id = #{foodId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="key != null" >
-        key = #{key,jdbcType=VARCHAR},
+        `key` = #{key,jdbcType=VARCHAR},
       </if>
       <if test="pic != null" >
         pic = #{pic,jdbcType=VARCHAR},
@@ -122,8 +128,8 @@
   <update id="updateByPrimaryKey" parameterType="cn.jy.entity.FoodSpec" >
     update yl_food_spec
     set food_id = #{foodId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
-      key = #{key,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `key` = #{key,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}

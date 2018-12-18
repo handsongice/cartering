@@ -5,9 +5,10 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="food_id" property="foodId" jdbcType="BIGINT" />
     <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="index" property="index" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, food_id, pic
+    id, food_id, pic,`index`
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -35,9 +36,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.jy.entity.FoodCarousel" >
-    insert into yl_food_carousel (id, food_id, pic
+    insert into yl_food_carousel (id, food_id, pic,`index`
       )
-    values (#{id,jdbcType=BIGINT}, #{foodId,jdbcType=BIGINT}, #{pic,jdbcType=VARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{foodId,jdbcType=BIGINT}, #{pic,jdbcType=VARCHAR}, #{index,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.jy.entity.FoodCarousel" >
@@ -52,6 +53,9 @@
       <if test="pic != null" >
         pic,
       </if>
+      <if test="index != null" >
+        `index`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -62,6 +66,9 @@
       </if>
       <if test="pic != null" >
         #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="index != null" >
+        #{index,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -74,13 +81,16 @@
       <if test="pic != null" >
         pic = #{pic,jdbcType=VARCHAR},
       </if>
+      <if test="index != null" >
+        `index` = #{index,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.jy.entity.FoodCarousel" >
     update yl_food_carousel
     set food_id = #{foodId,jdbcType=BIGINT},
-      pic = #{pic,jdbcType=VARCHAR}
+      pic = #{pic,jdbcType=VARCHAR},`index` = #{index,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

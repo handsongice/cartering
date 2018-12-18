@@ -7,6 +7,8 @@ public class FoodCarousel {
 
     private String pic;
 
+    private String index;
+
     public Long getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class FoodCarousel {
 
     public void setPic(String pic) {
         this.pic = pic == null ? null : pic.trim();
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

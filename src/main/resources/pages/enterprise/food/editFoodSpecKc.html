@@ -15,15 +15,15 @@
 					<form class="layui-form" action="" lay-filter="component-form-group">
 						<div class="layui-form-item">
 							<input type="hidden" class="fid" name="id" th:value="${id}">
-							<label class="layui-form-label">规格名<span style='color:red'>*</span></label>
+							<label class="layui-form-label">售价<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="name" lay-verType="tips" lay-verify="required|hm" placeholder="请输入规格名" autocomplete="off" class="layui-input name">
+								<input type="text" name="price" lay-verType="tips" lay-verify="required|number" placeholder="请输入售价" autocomplete="off" class="layui-input price">
 							</div>
 						</div>
 						<div class="layui-form-item">
-							<label class="layui-form-label">规格值<span style='color:red'>*</span></label>
+							<label class="layui-form-label">数量<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="key" lay-verType="tips" lay-verify="required|hm" placeholder="请输入规格值" autocomplete="off" class="layui-input key">
+								<input type="text" name="num" lay-verType="tips" lay-verify="required|number" placeholder="请输入数量" autocomplete="off" class="layui-input num">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -65,10 +65,10 @@
                     var laydate = layui.laydate;
                     var s = layui.upload;
                     var a = (layui.laytpl, layui.setter, layui.view, layui.admin);
-					var fsdata = parent._getFoodSpec($('.fid').val());
+					var fsdata = parent._getFoodSpecKc($('.fid').val());
 					if(fsdata) {
-					    $('.name').val(fsdata.name)
-                        $('.key').val(fsdata.key)
+					    $('.price').val(fsdata.price)
+                        $('.num').val(fsdata.num)
                         $('.pic').val(fsdata.pic)
 					}
                     var r = $("#pic");
@@ -116,7 +116,7 @@
                     //表单提交验证
                     form.on('submit(addOrEdit)', function(data){
                         console.log(data.field)
-                        parent._editFoodSpec(data.field)
+                        parent._editFoodSpecKc(data.field)
                         parent.layer.close(windowindex);
                         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
                     });

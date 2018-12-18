@@ -1,10 +1,14 @@
 package cn.jy.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.ToString;
+import org.apache.ibatis.type.Alias;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+@ToString
+@Alias("Food")
 public class Food {
     private Long id;
 
@@ -29,6 +33,16 @@ public class Food {
     private Long typeId;
 
     private String sign;
+
+    private String carousels;
+
+    private String keys;
+
+    private String params;
+
+    private String specs;
+
+    private String stocks;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createTime;
@@ -176,5 +190,45 @@ public class Food {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction == null ? null : introduction.trim();
+    }
+
+    public String getCarousels() {
+        return carousels;
+    }
+
+    public void setCarousels(String carousels) {
+        this.carousels = carousels;
+    }
+
+    public String getKeys() {
+        return keys;
+    }
+
+    public void setKeys(String keys) {
+        this.keys = keys;
+    }
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public String getSpecs() {
+        return specs;
+    }
+
+    public void setSpecs(String specs) {
+        this.specs = specs;
+    }
+
+    public String getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(String stocks) {
+        this.stocks = stocks;
     }
 }

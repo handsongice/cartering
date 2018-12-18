@@ -15,27 +15,15 @@
 					<form class="layui-form" action="" lay-filter="component-form-group">
 						<div class="layui-form-item">
 							<input type="hidden" class="fid" name="id" th:value="${id}">
-							<label class="layui-form-label">规格名<span style='color:red'>*</span></label>
+							<label class="layui-form-label">参数名<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="name" lay-verType="tips" lay-verify="required|hm" placeholder="请输入规格名" autocomplete="off" class="layui-input name">
+								<input type="text" name="name" lay-verType="tips" lay-verify="required|hm" placeholder="请输入参数名" autocomplete="off" class="layui-input name">
 							</div>
 						</div>
 						<div class="layui-form-item">
-							<label class="layui-form-label">规格值<span style='color:red'>*</span></label>
+							<label class="layui-form-label">参数值<span style='color:red'>*</span></label>
 							<div class="layui-input-block">
-								<input type="text" name="key" lay-verType="tips" lay-verify="required|hm" placeholder="请输入规格值" autocomplete="off" class="layui-input key">
-							</div>
-						</div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">图片</label>
-							<div class="layui-input-inline">
-								<input type="text" name="pic" id="pic"  placeholder="图片地址" class="layui-input pic">
-							</div>
-							<div class="layui-input-inline layui-btn-container" style="width: auto;">
-								<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
-									<i class="layui-icon">&#xe67c;</i>上传图片
-								</button>
-								<button type="button" class="layui-btn layui-btn-primary" layadmin-event="avartatPreview">查看图片</button >
+								<input type="text" name="key" lay-verType="tips" lay-verify="required|hm" placeholder="请输入参数值" autocomplete="off" class="layui-input key">
 							</div>
 						</div>
 						<div class="layui-form-item layui-layout-admin">
@@ -65,50 +53,12 @@
                     var laydate = layui.laydate;
                     var s = layui.upload;
                     var a = (layui.laytpl, layui.setter, layui.view, layui.admin);
-					var fsdata = parent._getFoodSpec($('.fid').val());
+					var fsdata = parent._getFoodParam($('.fid').val());
 					if(fsdata) {
 					    $('.name').val(fsdata.name)
                         $('.key').val(fsdata.key)
-                        $('.pic').val(fsdata.pic)
 					}
-                    var r = $("#pic");
-                    var loadindex1;
-                    s.render({
-                        url: "/noc/uploadFile",
-                        elem: "#LAY_avatarUpload",
-                        accept: "images",
-                        before: function(obj){
-                            loadindex1 = layer.load(2, {
-                                time: 1500,
-                                shade: [0.3,'#000'],
-                            });
-                        },
-                        done: function (t) {
-                            console.log(t)
-                            layer.close(loadindex1);
-                            0 == t.code ? r.val(t.data.src) : e.msg(t.msg, {
-                                icon: 5
-                            })
-                        },
-                        error: function(index, upload) {
-                            layer.close(loadindex1);
-                            layer.msg('上传失败，请重新上传');
-                        }
-                    });
-                    a.events.avartatPreview = function (t) {
-                        var i = r.val();
-                        layer.photos({
-                            photos: {
-                                title: "查看头像",
-                                data: [{
-                                    src: i
-                                }]
-                            },
-                            shade: .01,
-                            closeBtn: 1,
-                            anim: 5
-                        })
-                    };
+
                     $('#closePopBut').on('click', function () {
                         // 关闭layer弹出层
                         parent.layer.close(windowindex);
@@ -116,7 +66,7 @@
                     //表单提交验证
                     form.on('submit(addOrEdit)', function(data){
                         console.log(data.field)
-                        parent._editFoodSpec(data.field)
+                        parent._editFoodParam(data.field)
                         parent.layer.close(windowindex);
                         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
                     });

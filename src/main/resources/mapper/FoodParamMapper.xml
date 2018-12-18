@@ -10,7 +10,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, food_id, name, key, create_time, update_time
+    id, food_id, `name`, `key`, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -38,8 +38,8 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.jy.entity.FoodParam" >
-    insert into yl_food_param (id, food_id, name, 
-      key, create_time, update_time
+    insert into yl_food_param (id, food_id, `name`,
+      `key`, create_time, update_time
       )
     values (#{id,jdbcType=BIGINT}, #{foodId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{key,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
@@ -55,10 +55,10 @@
         food_id,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="key != null" >
-        key,
+        `key`,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -95,10 +95,10 @@
         food_id = #{foodId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="key != null" >
-        key = #{key,jdbcType=VARCHAR},
+        `key` = #{key,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -112,8 +112,8 @@
   <update id="updateByPrimaryKey" parameterType="cn.jy.entity.FoodParam" >
     update yl_food_param
     set food_id = #{foodId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
-      key = #{key,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `key` = #{key,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

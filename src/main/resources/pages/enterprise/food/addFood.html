@@ -72,9 +72,9 @@
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">商品图片</label>
+						<label class="layui-form-label">商品图片<span style='color:red'>*</span></label>
 						<div class="layui-input-inline">
-							<input type="text" name="pic" id="logo"  placeholder="图片地址" class="layui-input">
+							<input type="text" name="pic" id="logo" lay-verType="tips" lay-verify="required" placeholder="图片地址" class="layui-input">
 						</div>
 						<div class="layui-input-inline layui-btn-container" style="width: auto;">
 							<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
@@ -84,7 +84,7 @@
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">内页轮播图</label>
+						<label class="layui-form-label">内页轮播图<span style='color:red'>*</span></label>
 						<div class="layui-input-block">
 							<div class="layui-upload">
 								<button type="button" class="layui-btn layui-btn-normal" id="test2">选择多文件</button>
@@ -142,6 +142,18 @@
 							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>设置</a>
 						</script>
 					</div>
+				</div>
+			</div>
+			<div class="layui-card">
+				<div class="layui-card-header">菜品参数</div>
+				<div class="layui-card-body" style="padding: 15px;">
+					<div class="layui-form-item">
+						<table class="layui-table" id="paramTable" lay-filter="paramTable"></table>
+						<script type="text/html" id="ptableOperation">
+							<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+							<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+						</script>
+					</div>
 					<div class="layui-form-item layui-layout-admin">
 						<div class="layui-input-block">
 							<div class="layui-footer" style="left: 0;">
@@ -189,6 +201,8 @@
             var ggData = [];
             var kcObj = {};
             var kcData = [];
+            var paramObj = {};
+            var paramData = [];
             $(document).ready(function () {
                 layui.config({
                     base: '/static/layuiadmin/' //静态资源所在路径
@@ -211,6 +225,8 @@
                     var _bjkc = {
                         id: 1,
                         keys:['标准'],
+                        skeys:['规格:标准'],
+                        keystr:'标准',
                         price:0,
                         num:0,
                         pic:'',
@@ -244,7 +260,7 @@
 											}
                                         }
                                     },
-                                    {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
+                                    {fixed: 'right', field: 'id', title: '操作', width: '15%', toolbar: '#tableOperation'}]
                             ];
                             table.render({
                                 id: "ggDataList",
@@ -312,6 +328,7 @@
                                         });
                                         ggData.splice(_k,1);
                                         ggObj.loadPage();
+                                        reloadKcData()
                                         layer.close(index);
                                     });
                                 }
@@ -352,7 +369,7 @@
                                             }
                                         }
                                     },
-                                    {fixed: 'right', title: '操作', width: '15%', toolbar: '#kctableOperation'}]
+                                    {fixed: 'right', field: 'id', title: '操作', width: '15%', toolbar: '#kctableOperation'}]
                             ];
                             table.render({
                                 id: "kcDataList",
@@ -390,6 +407,88 @@
                         },
                     }
                     kcObj.loadPage();
+                    paramObj = {
+                        loadPage: function () {
+                            var _this = this;
+                            _this.tableRender();
+                        },
+                        tableRender: function () {
+                            var _this = this;
+                            var colsData = [
+                                [
+                                    {field: 'name', title: '参数名称', sort: true},
+                                    {field: 'key', title: '参数值', sort: true},
+                                    {fixed: 'right', field: 'id', title: '操作', width: '15%', toolbar: '#ptableOperation'}]
+                            ];
+                            table.render({
+                                id: "paramDataList",
+                                elem: '#paramTable',
+                                data: paramData,
+                                toolbar: '#toolbarDemo' ,
+                                title: '数据列表',
+                                cols: colsData,
+                                even: true, //开启隔行背景
+                                done: function (res, curr, count) {
+                                    //alert(res);
+                                }
+                            });
+                            table.on('toolbar(paramTable)', function(obj){
+                                switch(obj.event){
+                                    case 'add':
+                                        //添加通知单
+                                        var index = layer.open({
+                                            title: "新建",
+                                            type: 2,
+                                            content: "/main/food/addFoodParam",
+                                            area: ['500px', '350px'],
+                                            success: function(layero, index) {
+                                                setTimeout(function() {
+                                                    layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                                        tips: 3
+                                                    });
+                                                }, 500)
+                                            }
+                                        })
+                                        break;
+                                };
+                            });
+                            // 列表按钮
+                            table.on('tool(paramTable)', function (obj) {
+                                var tableEvent = obj.event;
+                                var data = obj.data;
+                                var dataId = data.id;
+
+                                if (tableEvent === 'edit') {
+                                    var index = layer.open({
+                                        title: "编辑",
+                                        type: 2,
+                                        content: "/main/food/editFoodParam?id="+dataId,
+                                        area: ['500px', '350px'],
+                                        success: function(layero, index) {
+                                            setTimeout(function() {
+                                                layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                                                    tips: 3
+                                                });
+                                            }, 500)
+                                        }
+                                    })
+                                } else if (tableEvent === 'del') {
+                                    layer.confirm('是否确认删除?',{icon: 3, title:'温馨提示'}, function(index) {
+                                        var _k = 0;
+                                        _.each(paramData,function(v,k){
+                                            if(v.id == dataId) {
+                                                _k = k;
+                                            }
+                                        });
+                                        paramData.splice(_k,1);
+                                        paramObj.loadPage();
+                                        layer.close(index);
+                                    });
+                                }
+                            });
+                        },
+                    }
+                    paramObj.loadPage();
                     //类型
                     var loadindex;
                     $.ajax({
@@ -559,6 +658,22 @@
                         if(nodes.length>0){
                             data.field.typeId = nodes[0].id;
                         }
+                        if(files.length <=0) {
+                            layer.msg('请设置轮播图！')
+                            return false
+                        }
+						if(ggData.length <=0) {
+						    layer.msg('请选择规格！')
+							return false
+						}
+                        if(kcData.length <=0) {
+                            layer.msg('请设置库存！')
+                            return false
+                        }
+                        data.field.carousels = JSON.stringify(files);
+                        data.field.params = JSON.stringify(paramData);
+                        data.field.specs = JSON.stringify(ggData);
+                        data.field.stocks = JSON.stringify(kcData);
                         var loadindex;
                         $.ajax({
                             url: "/noc/food/insertFood",
@@ -618,38 +733,121 @@
                 ggObj.loadPage();
                 reloadKcData()
             }
+            function _addFoodParam(d) {
+                d.id = paramData.length + 1;
+                paramData.push(d);
+                paramObj.loadPage();
+            }
+            function _editFoodSpec(d) {
+                _.each(ggData,function (g) {
+                    if(g.id == d.id) {
+                        g.name = d.name;
+                        g.key = d.key;
+                        g.pic = d.pic;
+                    }
+                })
+                ggObj.loadPage();
+                reloadKcData()
+            }
+            function _editFoodSpecKc(d) {
+                _.each(kcData,function (g) {
+                    if(g.id == d.id) {
+                        g.price = d.price;
+                        g.num = d.num;
+                        g.pic = d.pic;
+                    }
+                })
+                kcObj.loadPage();
+            }
+            function _editFoodParam(d) {
+                _.each(paramData,function (g) {
+                    if(g.id == d.id) {
+                        g.price = d.price;
+                        g.num = d.num;
+                    }
+                })
+                paramObj.loadPage();
+            }
             function _getFoodSpec(id) {
                 var _g = {};
                 _.each(ggData,function (g) {
-					if(g.id = id) {
+					if(g.id == id) {
 					    _g = g;
 					}
                 })
                 return _g;
             }
+            function _getFoodSpecKc(id) {
+                var _g = {};
+                _.each(kcData,function (g) {
+                    if(g.id == id) {
+                        _g = g;
+                    }
+                })
+                return _g;
+            }
+            function _getFoodParam(id) {
+                var _g = {};
+                _.each(paramData,function (g) {
+                    if(g.id == id) {
+                        _g = g;
+                    }
+                })
+                return _g;
+            }
             function reloadKcData() {
                 var _s = _.groupBy(ggData, 'name');
-                var _h = 1;
-                var _w = 1;
-                _.each(_s,function(v1,k1){
-                    _h = _h * v1.length;
-                    if(v1.length > _w) {
-                        _w = v1.length
-					}
-                })
-                for (var i = 0; i < _h; i++) {
-
-                }
+                // var _h = 1;
+                // var _w = 1;
+                // _.each(_s,function(v1,k1){
+                //     _h = _h * v1.length;
+                //     if(v1.length > _w) {
+                //         _w = v1.length
+				// 	}
+                // })
+                // for (var i = 0; i < _h; i++) {
+				//
+                // }
                 console.log(_s)
 				var _sd = [];
                 _.each(_s,function(v1,k1){
+                    // _.each(v1,function (v2) {
+                    //     v2.specname = k1
+                    // })
                     _sd.push(v1);
 				})
                 var temp = _sd[0];
                 for (var i = 1; i < _sd.length; i++) {
                     temp = zuhe_ar(temp, _sd[i]);
                 }
-                console.log(temp)
+                kcData = [];
+                _.each(temp,function (v,k) {
+                    var _kd = {}
+                    _kd.id = k
+                    _kd.price = 0
+                    _kd.num = 0
+                    _kd.pic = ''
+					var keys = []
+                    var skeys = []
+					if(_.isArray(v)){
+                        _.each(v,function (v1) {
+                            keys.push(v1.key)
+                        })
+                        _.each(v,function (v2) {
+                            skeys.push(v2.name + ':'+ v2.key)
+                        })
+					} else {
+                        keys.push(v.key)
+                        skeys.push(v.name + ':'+ v.key)
+					}
+
+                    _kd.skeys = skeys
+                    _kd.keys = keys
+                    _kd.keystr = keys.join(',')
+                    kcData.push(_kd)
+                })
+                console.log(kcData)
+				kcObj.loadPage()
             }
             function zuhe_ar(ar1, ar2) {
                 var new_ar = new Array();
@@ -657,19 +855,22 @@
                     for (var j = 0; j < ar2.length; j++) {
                         //可能是白，也可能是[白,x]
                         var temp = cloneAr(ar1[i]);
-                        new_ar.push([temp.key, ar2[j].key]);
-                        // if (temp.vanme) {
-                        //     new_ar.push([temp, ar2[j]]); //白的情况
-                        // } else {
-                        //     temp.push(ar2[j]);
-                        //     new_ar.push(temp);
-                        // }
+                        // new_ar.push([temp.key, ar2[j].key]);
+                        if (temp.key) {
+                            new_ar.push([temp, ar2[j]]); //白的情况
+                        } else {
+                            temp.push(ar2[j]);
+                            new_ar.push(temp);
+                        }
                     }
                 }
                 return new_ar;
             }
             function cloneAr(ar) {
-                var new_ar = [];
+                var new_ar = {};
+                if(_.isArray(ar)) {
+					new_ar = [];
+				}
                 for (var i in ar) {
                     new_ar[i] = ar[i];
                 }

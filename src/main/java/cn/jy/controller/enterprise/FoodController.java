@@ -67,6 +67,14 @@ public class FoodController extends BaseController {
         return "enterprise/food/addFoodSpec";
     }
     /**
+     * 添加菜品参数页面
+     * @return
+     */
+    @RequestMapping(value = "/main/food/addFoodParam")
+    public String addFoodParam() {
+        return "enterprise/food/addFoodParam";
+    }
+    /**
      * 编辑菜单页面
      * @param params
      * @return
@@ -89,6 +97,32 @@ public class FoodController extends BaseController {
     public ModelAndView editFoodSpec(@RequestParam Map<String, Object> params) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("enterprise/food/editFoodSpec");
+        Long _id = Long.parseLong(params.get("id").toString());
+        mv.addObject("id", _id);
+        return mv;
+    }
+    /**
+     * 编辑规格库存页面
+     * @param params
+     * @return
+     */
+    @RequestMapping(value = "/main/food/editFoodSpecKc")
+    public ModelAndView editFoodSpecKc(@RequestParam Map<String, Object> params) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/food/editFoodSpecKc");
+        Long _id = Long.parseLong(params.get("id").toString());
+        mv.addObject("id", _id);
+        return mv;
+    }
+    /**
+     * 编辑参数页面
+     * @param params
+     * @return
+     */
+    @RequestMapping(value = "/main/food/editFoodParam")
+    public ModelAndView editFoodParam(@RequestParam Map<String, Object> params) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/food/editFoodParam");
         Long _id = Long.parseLong(params.get("id").toString());
         mv.addObject("id", _id);
         return mv;
@@ -168,6 +202,18 @@ public class FoodController extends BaseController {
         foodType.setEnterpriseId(enterprise.getId());
         try {
             return foodService.addFoodType(foodType);
+        } catch (Exception e) {
+            return ResultMap.fail(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/noc/food/insertFood")
+    @ResponseBody
+    public ResultMap insertFood(HttpServletRequest request, Food food) {
+        Enterprise enterprise = getLoginEnterprise();
+        food.setEnterpriseId(enterprise.getId());
+        try {
+            return foodService.addFood(food);
         } catch (Exception e) {
             return ResultMap.fail(e.getMessage());
         }

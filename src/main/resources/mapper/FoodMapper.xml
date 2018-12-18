@@ -78,7 +78,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
       #{isDel,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.jy.entity.Food" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="cn.jy.entity.Food" >
     insert into yl_food
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

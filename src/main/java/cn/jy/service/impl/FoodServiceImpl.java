@@ -2,21 +2,18 @@ package cn.jy.service.impl;
 
 import cn.jy.constent.Constent;
 import cn.jy.dto.ResultMap;
-import cn.jy.entity.Food;
-import cn.jy.entity.FoodType;
-import cn.jy.mapper.FoodMapper;
-import cn.jy.mapper.FoodTypeMapper;
+import cn.jy.entity.*;
+import cn.jy.mapper.*;
 import cn.jy.service.FoodService;
+import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
@@ -27,6 +24,18 @@ public class FoodServiceImpl implements FoodService {
 
     @Autowired
     FoodMapper foodMapper;
+
+    @Autowired
+    FoodCarouselMapper foodCarouselMapper;
+
+    @Autowired
+    FoodSpecMapper foodSpecMapper;
+
+    @Autowired
+    FoodStockMapper foodStockMapper;
+
+    @Autowired
+    FoodParamMapper foodParamMapper;
 
     @Override
     public List<FoodType> getFoodTypeList(Map<String, Object> params) throws Exception {
@@ -43,7 +52,6 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public ResultMap addFoodType(FoodType foodType) throws Exception {
         try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             //设置创建时间
             foodType.setCreateTime(new Date());
             Long maxSort = foodTypeMapper.maxSort(foodType.getParentId());
@@ -73,19 +81,99 @@ public class FoodServiceImpl implements FoodService {
                 return ResultMap.fail(Constent.DB_INSERT_FAILURE);
             }
         }catch (Exception e){
-            // 工作单号 字段唯一 错误判断
-            int index =e.getMessage().indexOf("Duplicate");
-            if(index >= 0){
-                return ResultMap.fail(Constent.DB_UNIQUE_GZDH_FAILURE);
-            }else {
-                return ResultMap.fail(Constent.DB_INSERT_FAILURE);
-            }
+            return ResultMap.fail(Constent.DB_INSERT_FAILURE);
         }
     }
 
     @Override
     public ResultMap addFood(Food food) throws Exception {
-        return null;
+        try {
+            food.setCreateTime(new Date());
+            int dbResult = foodMapper.insertSelective(food);
+            if(dbResult <=0 || null == food.getId()){
+                throw new RuntimeException(Constent.DB_INSERT_FAILURE);
+            }
+            //插入轮播
+            JSONArray carousels = JSONArray.parseArray(food.getCarousels());
+            if(null != carousels) {
+                for (int i=0;i<carousels.size();i++) {
+                    FoodCarousel foodCarousel = new FoodCarousel();
+                    foodCarousel.setFoodId(food.getId());
+                    foodCarousel.setPic(carousels.getJSONObject(i).get("filepath").toString());
+                    foodCarousel.setIndex(carousels.getJSONObject(i).get("index").toString());
+                    int dbResult1 = foodCarouselMapper.insertSelective(foodCarousel);
+                    if(dbResult1 <=0){
+                        throw new RuntimeException("轮播插入失败！");
+                    }
+                }
+            }
+            //插入规格
+            JSONArray specs = JSONArray.parseArray(food.getSpecs());
+            if(null != specs) {
+                for (int i=0;i<specs.size();i++) {
+                    FoodSpec foodSpec = new FoodSpec();
+                    foodSpec.setFoodId(food.getId());
+                    foodSpec.setName(specs.getJSONObject(i).get("name").toString());
+                    foodSpec.setPic(specs.getJSONObject(i).get("pic").toString());
+                    foodSpec.setKey(specs.getJSONObject(i).get("key").toString());
+                    foodSpec.setCreateTime(new Date());
+                    int dbResult2 = foodSpecMapper.insertSelective(foodSpec);
+                    if(dbResult2 <=0){
+                        throw new RuntimeException("规格插入失败！");
+                    }
+                }
+            }
+            //插入库存
+            JSONArray stocks = JSONArray.parseArray(food.getStocks());
+            if(null != stocks) {
+                for (int i=0;i<stocks.size();i++) {
+                    String skeystr = stocks.getJSONObject(i).get("skeys").toString();
+                    JSONArray skeys = JSONArray.parseArray(skeystr);
+                    List<String> specIds = new ArrayList<>();
+                    for (int j=0;j<skeys.size();j++) {
+                        String[] sa = skeys.get(j).toString().split(":");
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("food_id",food.getId());
+                        params.put("name",sa[0]);
+                        params.put("key",sa[1]);
+                        List<FoodSpec> foodSpecs = foodSpecMapper.selectByParams(params);
+                        if(null != foodSpecs && foodSpecs.size() > 0) {
+                            specIds.add(String.valueOf(foodSpecs.get(0).getId()));
+                        }
+                    }
+                    FoodStock foodStock = new FoodStock();
+                    foodStock.setFoodId(food.getId());
+                    foodStock.setFoodSpecIds(StringUtils.join(specIds,","));
+                    foodStock.setFoodSpecNames(stocks.getJSONObject(i).get("keystr").toString());
+                    foodStock.setPrice(stocks.getJSONObject(i).getBigDecimal("price"));
+                    foodStock.setNum(stocks.getJSONObject(i).getInteger("num"));
+                    foodStock.setPic(stocks.getJSONObject(i).getString("pic"));
+                    foodStock.setCreateTime(new Date());
+                    int dbResult3 = foodStockMapper.insertSelective(foodStock);
+                    if(dbResult3 <=0){
+                        throw new RuntimeException("库存插入失败！");
+                    }
+                }
+            }
+            //插入参数
+            JSONArray params = JSONArray.parseArray(food.getParams());
+            if(null != params) {
+                for (int i=0;i<params.size();i++) {
+                    FoodParam foodParam = new FoodParam();
+                    foodParam.setFoodId(food.getId());
+                    foodParam.setName(params.getJSONObject(i).get("name").toString());
+                    foodParam.setKey(params.getJSONObject(i).get("key").toString());
+                    foodParam.setCreateTime(new Date());
+                    int dbResult4 = foodParamMapper.insertSelective(foodParam);
+                    if(dbResult4 <=0){
+                        throw new RuntimeException("规格参数失败！");
+                    }
+                }
+            }
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        return ResultMap.success(Constent.DB_INSERT_SUCCESS);
     }
 
     @Override
