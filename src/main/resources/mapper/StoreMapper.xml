@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jy.mapper.StoreMapper" >
+  <resultMap id="BaseResultMap" type="cn.jy.entity.Store" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="simple" property="simple" jdbcType="VARCHAR" />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="modes" property="modes" jdbcType="INTEGER" />
+    <result column="format" property="format" jdbcType="INTEGER" />
+    <result column="cook_style" property="cookStyle" jdbcType="INTEGER" />
+    <result column="cut_off_time" property="cutOffTime" jdbcType="INTEGER" />
+    <result column="consume" property="consume" jdbcType="VARCHAR" />
+    <result column="order_phone" property="orderPhone" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="call" property="call" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DECIMAL" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.jy.entity.Store" extends="BaseResultMap" >
+    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterprise_id, name, simple, linkman, telphone, address, phone, email, modes, 
+    format, cook_style, cut_off_time, consume, order_phone, area, call, sign, create_time, 
+    update_time, is_del
+  </sql>
+  <sql id="Blob_Column_List" >
+    introduction
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yl_store
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from yl_store
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.jy.entity.Store" >
+    insert into yl_store (id, enterprise_id, name, 
+      simple, linkman, telphone, 
+      address, phone, email, 
+      modes, format, cook_style, 
+      cut_off_time, consume, order_phone, 
+      area, call, sign, create_time, 
+      update_time, is_del, introduction
+      )
+    values (#{id,jdbcType=BIGINT}, #{enterpriseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{simple,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{modes,jdbcType=INTEGER}, #{format,jdbcType=INTEGER}, #{cookStyle,jdbcType=INTEGER}, 
+      #{cutOffTime,jdbcType=INTEGER}, #{consume,jdbcType=VARCHAR}, #{orderPhone,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{call,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{createTime,jdbcType=DECIMAL}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jy.entity.Store" >
+    insert into yl_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="simple != null" >
+        simple,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="modes != null" >
+        modes,
+      </if>
+      <if test="format != null" >
+        format,
+      </if>
+      <if test="cookStyle != null" >
+        cook_style,
+      </if>
+      <if test="cutOffTime != null" >
+        cut_off_time,
+      </if>
+      <if test="consume != null" >
+        consume,
+      </if>
+      <if test="orderPhone != null" >
+        order_phone,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="call != null" >
+        call,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="simple != null" >
+        #{simple,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="modes != null" >
+        #{modes,jdbcType=INTEGER},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=INTEGER},
+      </if>
+      <if test="cookStyle != null" >
+        #{cookStyle,jdbcType=INTEGER},
+      </if>
+      <if test="cutOffTime != null" >
+        #{cutOffTime,jdbcType=INTEGER},
+      </if>
+      <if test="consume != null" >
+        #{consume,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null" >
+        #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="call != null" >
+        #{call,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.Store" >
+    update yl_store
+    <set >
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="simple != null" >
+        simple = #{simple,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="modes != null" >
+        modes = #{modes,jdbcType=INTEGER},
+      </if>
+      <if test="format != null" >
+        format = #{format,jdbcType=INTEGER},
+      </if>
+      <if test="cookStyle != null" >
+        cook_style = #{cookStyle,jdbcType=INTEGER},
+      </if>
+      <if test="cutOffTime != null" >
+        cut_off_time = #{cutOffTime,jdbcType=INTEGER},
+      </if>
+      <if test="consume != null" >
+        consume = #{consume,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null" >
+        order_phone = #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="call != null" >
+        call = #{call,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.jy.entity.Store" >
+    update yl_store
+    set enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      simple = #{simple,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      modes = #{modes,jdbcType=INTEGER},
+      format = #{format,jdbcType=INTEGER},
+      cook_style = #{cookStyle,jdbcType=INTEGER},
+      cut_off_time = #{cutOffTime,jdbcType=INTEGER},
+      consume = #{consume,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      call = #{call,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.Store" >
+    update yl_store
+    set enterprise_id = #{enterpriseId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      simple = #{simple,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      modes = #{modes,jdbcType=INTEGER},
+      format = #{format,jdbcType=INTEGER},
+      cook_style = #{cookStyle,jdbcType=INTEGER},
+      cut_off_time = #{cutOffTime,jdbcType=INTEGER},
+      consume = #{consume,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      call = #{call,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
