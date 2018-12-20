@@ -28,7 +28,7 @@
     <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, enterprise_id, name, simple, linkman, telphone, address, phone, email, modes, 
+    id, enterprise_id, `name`, simple, linkman, telphone, address, phone, email, modes,
     format, cook_style, cut_off_time, consume, order_phone, area, call, sign, create_time, 
     update_time, is_del
   </sql>
@@ -48,7 +48,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.jy.entity.Store" >
-    insert into yl_store (id, enterprise_id, name, 
+    insert into yl_store (id, enterprise_id, `name`,
       simple, linkman, telphone, 
       address, phone, email, 
       modes, format, cook_style, 
@@ -75,7 +75,7 @@
         enterprise_id,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="simple != null" >
         simple,
@@ -211,7 +211,7 @@
         enterprise_id = #{enterpriseId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="simple != null" >
         simple = #{simple,jdbcType=VARCHAR},
@@ -276,7 +276,7 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.jy.entity.Store" >
     update yl_store
     set enterprise_id = #{enterpriseId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
       simple = #{simple,jdbcType=VARCHAR},
       linkman = #{linkman,jdbcType=VARCHAR},
       telphone = #{telphone,jdbcType=VARCHAR},
@@ -301,7 +301,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.jy.entity.Store" >
     update yl_store
     set enterprise_id = #{enterpriseId,jdbcType=BIGINT},
-      name = #{name,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
       simple = #{simple,jdbcType=VARCHAR},
       linkman = #{linkman,jdbcType=VARCHAR},
       telphone = #{telphone,jdbcType=VARCHAR},

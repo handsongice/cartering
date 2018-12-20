@@ -86,16 +86,28 @@
                     var a = (layui.laytpl, layui.setter, layui.view, layui.admin);
                     var layedit = layui.layedit;
                     var r = $("#logo");
+					var loadindex1;
                     s.render({
                         url: "/noc/uploadFile",
                         elem: "#LAY_avatarUpload",
                         accept: "images",
+						before: function(obj){
+							loadindex1 = layer.load(2, {
+								time: 1500,
+								shade: [0.3,'#000'],
+							});
+						},
                         done: function (t) {
+							layer.close(loadindex1);
                             console.log(t)
                             0 == t.code ? r.val(t.data.src) : e.msg(t.msg, {
                                 icon: 5
                             })
-                        }
+                        },
+						error: function(index, upload) {
+							layer.close(loadindex1);
+							layer.msg('上传失败，请重新上传');
+						}
                     });
                     a.events.avartatPreview = function (t) {
                         var i = r.val();

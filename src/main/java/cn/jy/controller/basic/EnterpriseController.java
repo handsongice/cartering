@@ -65,7 +65,7 @@ public class EnterpriseController extends BaseController {
                 Response r = ex.response;
                 return LayUiResultData.resultError(r.toString(),null);
             }
-        } catch (UnsupportedEncodingException ex) {
+        } catch (Exception ex) {
             return LayUiResultData.resultError(ex.toString(),null);
         }
         layUiImage.setSrc(sb.toString());
