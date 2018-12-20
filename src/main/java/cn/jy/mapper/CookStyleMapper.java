@@ -1,7 +1,14 @@
 package cn.jy.mapper;
 
 import cn.jy.entity.CookStyle;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
+@Repository
+@Component
 public interface CookStyleMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +21,6 @@ public interface CookStyleMapper {
     int updateByPrimaryKeySelective(CookStyle record);
 
     int updateByPrimaryKey(CookStyle record);
+
+    List<CookStyle> selectByParams(Map<String, Object> map);
 }
