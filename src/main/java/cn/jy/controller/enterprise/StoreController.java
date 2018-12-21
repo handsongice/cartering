@@ -53,7 +53,36 @@ public class StoreController extends BaseController {
         mv.addObject("cookStyles", cookStyles);
         return mv;
     }
+    /**
+     * 编辑门店
+     * @return
+     */
+    @RequestMapping(value = "/main/store/editStore")
+    public ModelAndView editStore(@RequestParam Map<String, Object> params) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/store/editStore");
+        Long _id = Long.parseLong(params.get("id").toString());
+        Store store = storeService.getStoreById(_id);
+        mv.addObject("store", store);
 
+        Map<String, Object> params1 = new HashMap<>();
+        List<Format> formats = storeService.getFormatList(params1);
+
+        for (Format f:formats) {
+            if(f.getId().intValue() == store.getFormat()) {
+                f.setChecked("selected");
+            }
+        }
+        List<CookStyle> cookStyles = storeService.getCookStyleList(params1);
+        for (CookStyle c:cookStyles) {
+            if(c.getId().intValue() == store.getCookStyle()) {
+                c.setChecked("selected");
+            }
+        }
+        mv.addObject("formats", formats);
+        mv.addObject("cookStyles", cookStyles);
+        return mv;
+    }
     /**
      * 列表
      * @param params
@@ -96,5 +125,24 @@ public class StoreController extends BaseController {
             e.printStackTrace();
             return ResultMap.fail(e.getMessage());
         }
+    }
+
+    @RequestMapping(value = "/noc/store/updateStore")
+    @ResponseBody
+    public ResultMap updateStore(HttpServletRequest request, Store store) {
+        try {
+            Enterprise enterprise = getLoginEnterprise();
+            store.setEnterpriseId(enterprise.getId());
+            return storeService.updateStore(store);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultMap.fail(e.getMessage());
+        }
+    }
+
+    @RequestMapping(value = "/noc/store/delStore")
+    @ResponseBody
+    public ResultMap delStore(@RequestParam Map<String, Object> params,HttpServletRequest request) {
+        return storeService.delStore(Long.parseLong(params.get("id").toString()));
     }
 }

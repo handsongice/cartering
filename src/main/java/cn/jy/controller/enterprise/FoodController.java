@@ -333,6 +333,7 @@ public class FoodController extends BaseController {
     @ResponseBody
     public ResultMap updateFood(HttpServletRequest request, Food food) {
         try {
+
             return foodService.updateFood(food);
         } catch (Exception e) {
             return ResultMap.fail(e.getMessage());

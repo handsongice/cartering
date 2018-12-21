@@ -100,16 +100,40 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public ResultMap updateStore(Store store) {
-        return null;
+        Store check = new Store();
+        check.setEnterpriseId(store.getEnterpriseId());
+        check.setName(store.getName());
+        check.setId(store.getId());
+        Store _store = storeMapper.findByParams(check);
+        if(null != _store && null != _store.getId()) {
+            throw new RuntimeException(Constent.ERROR_STORE_1);
+        }
+        store.setUpdateTime(new Date());
+        int dbResult = storeMapper.updateByPrimaryKeySelective(store);
+        if(dbResult <=0 || null == store.getId()){
+            throw new RuntimeException(Constent.DB_UPDATE_FAILURE);
+        }
+        return ResultMap.success(Constent.DB_UPDATE_SUCCESS);
     }
 
     @Override
     public Store getStoreById(Long id) {
-        return null;
+        Store store = storeMapper.selectByPrimaryKey(id);
+        return store;
     }
 
     @Override
     public ResultMap delStore(Long id) {
-        return null;
+        try {
+            int dbResult = storeMapper.delStore(id);
+            if(dbResult >0){
+                return ResultMap.success(Constent.DB_DELETE_SUCCESS);
+            }else{
+                return ResultMap.fail(Constent.DB_DELETE_FAILURE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultMap.fail(Constent.DB_DELETE_FAILURE);
+        }
     }
 }

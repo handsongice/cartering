@@ -5,6 +5,8 @@ public class CookStyle {
 
     private String name;
 
+    private String checked = "";
+
     public Long getId() {
         return id;
     }
@@ -19,5 +21,13 @@ public class CookStyle {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
     }
 }

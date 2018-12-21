@@ -27,4 +27,6 @@ public interface StoreMapper {
     List<Store> selectByParams(Map<String, Object> map);
 
     Store findByParams(Store record);
+
+    int delStore(Long id);
 }
