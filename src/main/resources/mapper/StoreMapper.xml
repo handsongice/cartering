@@ -20,7 +20,7 @@
     <result column="area" property="area" jdbcType="VARCHAR" />
     <result column="call" property="call" jdbcType="VARCHAR" />
     <result column="sign" property="sign" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_del" property="isDel" jdbcType="INTEGER" />
     <result column="style_name" property="styleName" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, enterprise_id, `name`, simple, linkman, telphone, address, phone, email, modes,
-    format, cook_style, cut_off_time, consume, order_phone, area, call, sign, create_time, 
+    format, cook_style, cut_off_time, consume, order_phone, area, `call`, sign, create_time,
     update_time, is_del, status
   </sql>
   <sql id="Blob_Column_List" >
@@ -69,6 +69,23 @@
     </where>
     order by a.create_time desc
   </select>
+  <select id="findByParams" resultMap="BaseResultMap" parameterType="cn.jy.entity.Store" >
+    select
+    <include refid="Base_Column_List" />
+    from yl_store
+    <where>
+      is_del = 0
+      <if test="enterpriseId != null">
+        and enterprise_id = #{enterpriseId}
+      </if>
+      <if test="name != null">
+        and `name` = #{name}
+      </if>
+      <if test="id != null">
+        and id != #{id}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from yl_store
     where id = #{id,jdbcType=BIGINT}
@@ -79,7 +96,7 @@
       address, phone, email, 
       modes, format, cook_style, 
       cut_off_time, consume, order_phone, 
-      area, call, sign, create_time, 
+      area, `call`, sign, create_time,
       update_time, is_del, introduction,status
       )
     values (#{id,jdbcType=BIGINT}, #{enterpriseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
@@ -87,11 +104,11 @@
       #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{modes,jdbcType=INTEGER}, #{format,jdbcType=INTEGER}, #{cookStyle,jdbcType=INTEGER}, 
       #{cutOffTime,jdbcType=INTEGER}, #{consume,jdbcType=VARCHAR}, #{orderPhone,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR}, #{call,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{createTime,jdbcType=DECIMAL}, 
+      #{area,jdbcType=VARCHAR}, #{call,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.jy.entity.Store" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="cn.jy.entity.Store" >
     insert into yl_store
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -143,7 +160,7 @@
         area,
       </if>
       <if test="call != null" >
-        call,
+        `call`,
       </if>
       <if test="sign != null" >
         sign,
@@ -220,7 +237,7 @@
         #{sign,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DECIMAL},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
@@ -285,13 +302,13 @@
         area = #{area,jdbcType=VARCHAR},
       </if>
       <if test="call != null" >
-        call = #{call,jdbcType=VARCHAR},
+        `call` = #{call,jdbcType=VARCHAR},
       </if>
       <if test="sign != null" >
         sign = #{sign,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DECIMAL},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -325,9 +342,9 @@
       consume = #{consume,jdbcType=VARCHAR},
       order_phone = #{orderPhone,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR},
-      call = #{call,jdbcType=VARCHAR},
+      `call` = #{call,jdbcType=VARCHAR},
       sign = #{sign,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_del = #{isDel,jdbcType=INTEGER},
       introduction = #{introduction,jdbcType=LONGVARCHAR},
@@ -351,9 +368,9 @@
       consume = #{consume,jdbcType=VARCHAR},
       order_phone = #{orderPhone,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR},
-      call = #{call,jdbcType=VARCHAR},
+      `call` = #{call,jdbcType=VARCHAR},
       sign = #{sign,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_del = #{isDel,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER}

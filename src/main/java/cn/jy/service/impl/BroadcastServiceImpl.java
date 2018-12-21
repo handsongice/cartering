@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletionException;
 
 @Service
 @Transactional
@@ -56,9 +57,9 @@ public class BroadcastServiceImpl implements BroadcastService {
     public ResultMap addBroadcastEmployee(BroadcastEmployee broadcastEmployee) throws Exception {
         int adbResult = broadcastEmployeeMapper.insertSelective(broadcastEmployee);
         if(adbResult <=0){
-            throw new RuntimeException("标记失败");
+            throw new RuntimeException(Constent.ERROR_BROADCAST_1);
         }
-        return ResultMap.success("标记成功");
+        return ResultMap.success(Constent.SUCCESS_BROADCAST_1);
     }
 
     @Override
@@ -73,12 +74,12 @@ public class BroadcastServiceImpl implements BroadcastService {
                 if(null == broadcastEmployee || null == broadcastEmployee.getId()) {
                     int adbResult = broadcastEmployeeMapper.insertSelective(input);
                     if(adbResult <=0){
-                        throw new RuntimeException("标记失败");
+                        throw new RuntimeException(Constent.ERROR_BROADCAST_1);
                     }
                 }
             }
         }
-        return ResultMap.success("标记成功");
+        return ResultMap.success(Constent.SUCCESS_BROADCAST_1);
     }
 
     @Override

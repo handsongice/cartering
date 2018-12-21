@@ -44,21 +44,21 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         input.setName(enterprise.getName());
         Enterprise _enterprise = enterpriseMapper.findByParams(input);
         if(_enterprise != null && _enterprise.getId() != null) {
-            throw new RuntimeException("用户名重复！");
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_1);
         }
         //税号验证
         input = new Enterprise();
         input.setTaxNum(enterprise.getTaxNum());
         _enterprise = enterpriseMapper.findByParams(input);
         if(_enterprise != null && _enterprise.getId() != null) {
-            throw new RuntimeException("税号重复！");
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_2);
         }
         //账号验证
         input = new Enterprise();
         input.setLoginCode(enterprise.getLoginCode());
         _enterprise = enterpriseMapper.findByParams(input);
         if(_enterprise != null && _enterprise.getId() != null) {
-            throw new RuntimeException("登录账号重复！");
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_3);
         }
         //设置创建时间
         enterprise.setCreateTime(new Date());
@@ -81,7 +81,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         _employee.setCreateTime(new Date());
         int edbResult = employeeMapper.insertSelective(_employee);
         if(edbResult <=0){
-            throw new RuntimeException("管理员添加失败");
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_4);
         }
         Employee input_employee = new Employee();
         input_employee.setId(_employee.getId());
@@ -99,7 +99,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         input.setId(enterprise.getId());
         Enterprise _enterprise = enterpriseMapper.findByParams(input);
         if(_enterprise != null && _enterprise.getId() != null) {
-            return ResultMap.fail("用户名重复！");
+            return ResultMap.fail(Constent.ERROR_ENTERPRISE_1);
         }
         //税号验证
         input = new Enterprise();
@@ -107,7 +107,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         input.setId(enterprise.getId());
         _enterprise = enterpriseMapper.findByParams(input);
         if(_enterprise != null && _enterprise.getId() != null) {
-            return ResultMap.fail("税号重复！");
+            return ResultMap.fail(Constent.ERROR_ENTERPRISE_2);
         }
         try {
             //设置创建时间

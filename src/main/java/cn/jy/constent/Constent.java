@@ -15,9 +15,22 @@ public class Constent {
     public static String DB_UPDATE_FAILURE = "更新失败！";
     public static String DB_UPDATE_SUCCESS = "更新成功！";
     public static String DB_UNIQUE_GZDH_FAILURE = "该【工作单号】已存在，操作失败！";
-    public static String DB_UPDATE_KPLX_SUCCESS = "作废成功！";
-    public static String DB_UPDATE_KPLX_FAILURE = "作废成功！数据库开票类型更新失败！";
-    public static String DB_QUERY_YKFP_FAILURE = "发票信息查询失败！";
+
+    public static String ERROR_BROADCAST_1 = "标记失败";
+    public static String SUCCESS_BROADCAST_1 = "标记成功";
+
+    public static String SUCCESS_EMPLOYEE_1 = "当前密码错误！";
+
+    public static String ERROR_ENTERPRISE_1 = "用户名重复！";
+    public static String ERROR_ENTERPRISE_2 = "税号重复！";
+    public static String ERROR_ENTERPRISE_3 = "登录账号重复！";
+    public static String ERROR_ENTERPRISE_4 = "管理员添加失败！";
+
+    public static String ERROR_FOOD_1 = "轮播插入失败！";
+    public static String ERROR_FOOD_2 = "规格插入失败！";
+    public static String ERROR_FOOD_3 = "库存插入失败！";
+    public static String ERROR_FOOD_4 = "规格参数失败！";
+
 
     //session
     public static String SESSION_EMPLOYEE = "employee";
@@ -29,5 +42,7 @@ public class Constent {
     public static String QN_SECRET_KEY = "oEmtd_oIbfytfSiVQc9oD2eT30xmqvu9-QUprbkH";
     public static String QN_DOMAIN = "http://img.qdjingci.com/";
     public static String QN_BUCKET = "qdjingci";
+
+    public static String ERROR_STORE_1 = "门店名称重复！";
 
 }

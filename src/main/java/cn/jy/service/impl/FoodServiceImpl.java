@@ -125,7 +125,7 @@ public class FoodServiceImpl implements FoodService {
                     foodCarousel.setIndex(carousels.getJSONObject(i).get("index").toString());
                     int dbResult1 = foodCarouselMapper.insertSelective(foodCarousel);
                     if(dbResult1 <=0){
-                        throw new RuntimeException("轮播插入失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_1);
                     }
                 }
             }
@@ -141,7 +141,7 @@ public class FoodServiceImpl implements FoodService {
                     foodSpec.setCreateTime(new Date());
                     int dbResult2 = foodSpecMapper.insertSelective(foodSpec);
                     if(dbResult2 <=0){
-                        throw new RuntimeException("规格插入失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_2);
                     }
                 }
             }
@@ -176,7 +176,7 @@ public class FoodServiceImpl implements FoodService {
                     foodStock.setCreateTime(new Date());
                     int dbResult3 = foodStockMapper.insertSelective(foodStock);
                     if(dbResult3 <=0){
-                        throw new RuntimeException("库存插入失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_3);
                     }
                 }
             }
@@ -191,7 +191,7 @@ public class FoodServiceImpl implements FoodService {
                     foodParam.setCreateTime(new Date());
                     int dbResult4 = foodParamMapper.insertSelective(foodParam);
                     if(dbResult4 <=0){
-                        throw new RuntimeException("规格参数失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_4);
                     }
                 }
             }
@@ -236,7 +236,7 @@ public class FoodServiceImpl implements FoodService {
                     foodCarousel.setIndex(carousels.getJSONObject(i).get("index").toString());
                     int dbResult1 = foodCarouselMapper.insertSelective(foodCarousel);
                     if(dbResult1 <=0){
-                        throw new RuntimeException("轮播插入失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_1);
                     }
                 }
             }
@@ -253,7 +253,7 @@ public class FoodServiceImpl implements FoodService {
                     foodSpec.setCreateTime(new Date());
                     int dbResult2 = foodSpecMapper.insertSelective(foodSpec);
                     if(dbResult2 <=0){
-                        throw new RuntimeException("规格插入失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_2);
                     }
                 }
             }
@@ -289,7 +289,7 @@ public class FoodServiceImpl implements FoodService {
                     foodStock.setCreateTime(new Date());
                     int dbResult3 = foodStockMapper.insertSelective(foodStock);
                     if(dbResult3 <=0){
-                        throw new RuntimeException("库存插入失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_3);
                     }
                 }
             }
@@ -305,7 +305,7 @@ public class FoodServiceImpl implements FoodService {
                     foodParam.setCreateTime(new Date());
                     int dbResult4 = foodParamMapper.insertSelective(foodParam);
                     if(dbResult4 <=0){
-                        throw new RuntimeException("规格参数失败！");
+                        throw new RuntimeException(Constent.ERROR_FOOD_4);
                     }
                 }
             }

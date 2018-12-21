@@ -1,17 +1,22 @@
 package cn.jy.service.impl;
 
+import cn.jy.constent.Constent;
 import cn.jy.dto.ResultMap;
 import cn.jy.entity.CookStyle;
+import cn.jy.entity.Employee;
 import cn.jy.entity.Format;
 import cn.jy.entity.Store;
 import cn.jy.mapper.CookStyleMapper;
+import cn.jy.mapper.EmployeeMapper;
 import cn.jy.mapper.FormatMapper;
 import cn.jy.mapper.StoreMapper;
 import cn.jy.service.StoreService;
+import cn.jy.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +36,9 @@ public class StoreServiceImpl implements StoreService {
 
     @Autowired
     FormatMapper formatMapper;
+
+    @Autowired
+    EmployeeMapper employeeMapper;
 
     @Override
     public List<Store> getStoreList(Map<String, Object> params) throws Exception {
@@ -52,7 +60,42 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public ResultMap addStore(Store store) throws Exception {
-        return null;
+        Store check = new Store();
+        check.setEnterpriseId(store.getEnterpriseId());
+        check.setName(store.getName());
+        Store _store = storeMapper.findByParams(check);
+        if(null != _store && null != _store.getId()) {
+            throw new RuntimeException(Constent.ERROR_STORE_1);
+        }
+        store.setCreateTime(new Date());
+        int dbResult = storeMapper.insertSelective(store);
+        if(dbResult <=0 || null == store.getId()){
+            throw new RuntimeException(Constent.DB_INSERT_FAILURE);
+        }
+        Employee input = new Employee();
+        input.setLoginCode(store.getLoginCode());
+        Employee employee = employeeMapper.findByParams(input);
+        if(null != employee && null != employee.getId()) {
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_2);
+        }
+        input.setEnterpriseId(store.getEnterpriseId());
+        input.setStoreId(store.getId());
+        input.setName(store.getLoginCode());
+        input.setPhone(store.getAdminPhone());
+        input.setType(3);
+        input.setIsAdmin(1);
+        input.setPassword(MD5.md5(store.getPassword()));
+        input.setCreateTime(new Date());
+        int edbResult = employeeMapper.insertSelective(input);
+        if(edbResult <=0 || null == input.getId()){
+            throw new RuntimeException(Constent.DB_INSERT_FAILURE);
+        }
+        Employee updateData = new Employee();
+        updateData.setUpdateTime(new Date());
+        updateData.setId(input.getId());
+        updateData.setCode("E"+input.getId());
+        employeeMapper.updateByPrimaryKeySelective(updateData);
+        return ResultMap.success(Constent.DB_INSERT_SUCCESS);
     }
 
     @Override

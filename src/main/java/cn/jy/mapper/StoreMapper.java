@@ -25,4 +25,6 @@ public interface StoreMapper {
     int updateByPrimaryKey(Store record);
 
     List<Store> selectByParams(Map<String, Object> map);
+
+    Store findByParams(Store record);
 }

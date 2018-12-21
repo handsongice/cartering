@@ -39,7 +39,7 @@ public class Store {
 
     private String sign;
 
-    private Long createTime;
+    private Date createTime;
 
     private Date updateTime;
 
@@ -203,11 +203,11 @@ public class Store {
         this.sign = sign == null ? null : sign.trim();
     }
 
-    public Long getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Long createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

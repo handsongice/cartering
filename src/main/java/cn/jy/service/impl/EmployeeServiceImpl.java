@@ -63,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public ResultMap updateMyPassword(Map<String, Object> params) {
         Employee _employee = employeeMapper.selectByPrimaryKey(Long.parseLong(params.get("id").toString()));
         if(!_employee.getPassword().equals(MD5.md5(params.get("oldPassword").toString()))) {
-            throw new RuntimeException("当前密码错误！");
+            throw new RuntimeException(Constent.SUCCESS_EMPLOYEE_1);
         }
         Employee input = new Employee();
         input.setId(Long.parseLong(params.get("id").toString()));
