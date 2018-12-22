@@ -163,7 +163,13 @@ public class EnterpriseController extends BaseController {
     @RequestMapping(value = "/noc/updateEnterprise")
     @ResponseBody
     public ResultMap updateEnterprise(HttpServletRequest request, Enterprise enterprise) {
-        ResultMap ret = enterpriseService.updateEnterprise(enterprise);
+        ResultMap ret = null;
+        try {
+            ret = enterpriseService.updateEnterprise(enterprise);
+        } catch (Exception e) {
+            ResultMap.fail(e.getMessage());
+            e.printStackTrace();
+        }
         Enterprise _enterprise = enterpriseService.getEnterpriseById(enterprise.getId());
         HttpSession session = request.getSession();
         session.setAttribute(Constent.SESSION_ENTERPRISE,_enterprise);

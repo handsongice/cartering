@@ -6,6 +6,7 @@ import cn.jy.entity.Employee;
 import cn.jy.mapper.EmployeeMapper;
 import cn.jy.service.EmployeeService;
 import cn.jy.util.MD5;
+import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,12 +41,46 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ResultMap addEmployee(Employee employee) throws Exception {
-        return null;
+        Employee input = new Employee();
+        input.setLoginCode(employee.getLoginCode());
+        Employee _employee = employeeMapper.findByParams(input);
+        if(null != _employee && null != _employee.getId()) {
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_2);
+        }
+        employee.setPassword(MD5.md5(employee.getPassword()));
+        employee.setCreateTime(new Date());
+        int edbResult = employeeMapper.insertSelective(employee);
+        if(edbResult <=0 || null == employee.getId()){
+            throw new RuntimeException(Constent.DB_INSERT_FAILURE);
+        }
+        Employee updateData = new Employee();
+        updateData.setUpdateTime(new Date());
+        updateData.setId(employee.getId());
+        updateData.setCode("E"+employee.getId());
+        employeeMapper.updateByPrimaryKeySelective(updateData);
+        return ResultMap.success(Constent.DB_INSERT_SUCCESS);
     }
 
     @Override
-    public ResultMap updateEmployee(Employee employee) {
-        return null;
+    public ResultMap updateEmployee(Employee employee) throws Exception {
+        Employee input = new Employee();
+        input.setLoginCode(employee.getLoginCode());
+        input.setId(employee.getId());
+        Employee _employee = employeeMapper.findByParams(input);
+        if(null != _employee && null != _employee.getId()) {
+            throw new RuntimeException(Constent.ERROR_ENTERPRISE_2);
+        }
+        employee.setUpdateTime(new Date());
+        if(StringUtil.isNotEmpty(employee.getPassword())) {
+            employee.setPassword(MD5.md5(employee.getPassword()));
+        } else {
+            employee.setPassword(null);
+        }
+        int dbResult = employeeMapper.updateByPrimaryKeySelective(employee);
+        if(dbResult <=0){
+            throw new RuntimeException(Constent.DB_UPDATE_FAILURE);
+        }
+        return ResultMap.success(Constent.DB_UPDATE_SUCCESS);
     }
 
     @Override
@@ -85,6 +120,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ResultMap delEmployee(Long id) {
-        return null;
+        try {
+            int dbResult = employeeMapper.delEmployee(id);
+            if(dbResult >0){
+                return ResultMap.success(Constent.DB_DELETE_SUCCESS);
+            }else{
+                return ResultMap.fail(Constent.DB_DELETE_FAILURE);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultMap.fail(Constent.DB_DELETE_FAILURE);
+        }
     }
 }

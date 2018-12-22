@@ -31,7 +31,7 @@ public interface EnterpriseService {
      * @param enterprise
      * @return
      */
-    ResultMap updateEnterprise(Enterprise enterprise);
+    ResultMap updateEnterprise(Enterprise enterprise) throws Exception;
 
     /**
      * 获取信息

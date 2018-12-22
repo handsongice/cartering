@@ -38,7 +38,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public ResultMap addEnterprise(Enterprise enterprise) {
+    public ResultMap addEnterprise(Enterprise enterprise) throws Exception {
         //用户名验证
         Enterprise input = new Enterprise();
         input.setName(enterprise.getName());
@@ -92,7 +92,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public ResultMap updateEnterprise(Enterprise enterprise) {
+    public ResultMap updateEnterprise(Enterprise enterprise) throws Exception {
         //用户名验证
         Enterprise input = new Enterprise();
         input.setName(enterprise.getName());

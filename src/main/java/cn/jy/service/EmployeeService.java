@@ -38,7 +38,7 @@ public interface EmployeeService {
      * @param employee
      * @return
      */
-    ResultMap updateEmployee(Employee employee);
+    ResultMap updateEmployee(Employee employee) throws Exception;
 
     /**
      * 更新个人信息

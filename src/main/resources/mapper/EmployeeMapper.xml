@@ -13,7 +13,7 @@
     <result column="department_id" property="departmentId" jdbcType="BIGINT" />
     <result column="store_id" property="storeId" jdbcType="BIGINT" />
     <result column="type" property="type" jdbcType="INTEGER" />
-    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -36,13 +36,14 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="cn.jy.entity.Employee" extends="BaseResultMap" >
     <result column="pic" property="pic" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, nick_name, code, login_code, invite_code, enterprise_id, brand_id, region_id, 
-    department_id, store_id, `type`, role_id, `name`, phone, password, sex, birthday, idcard,
+    department_id, store_id, `type`, role_name, `name`, phone, password, sex, birthday, idcard,
     bankcard, wxcode, qq, email, work_type, address, in_date, regular_date, is_admin, 
     is_online, `desc`, is_del, groupid, status, create_time, update_time
   </sql>
@@ -59,26 +60,33 @@
   </select>
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select
-    <include refid="Base_Column_List" />
-    from yl_employee
+    a.*,s.name store_name
+    from yl_employee a
+    left join yl_store s on s.id = a.store_id
     <where>
-      is_del = 0
+      a.is_del = 0
       <if test="username != null">
         and login_code = #{username}
       </if>
+      <if test="login_code != null">
+        and a.`login_code` like CONCAT('%',#{login_code},'%')
+      </if>
       <if test="name != null">
-        and `name` like CONCAT('%',#{name},'%')
+        and a.`name` like CONCAT('%',#{name},'%')
       </if>
       <if test="phone != null">
-        and `phone` like CONCAT('%',#{phone},'%')
+        and a.`phone` like CONCAT('%',#{phone},'%')
       </if>
       <if test="enterprise_id != null">
-        and `enterprise_id` = #{enterprise_id}
+        and a.`enterprise_id` = #{enterprise_id}
+      </if>
+      <if test="store_id != null">
+        and a.`store_id` = #{store_id}
       </if>
       <if test="type != null">
-        and `type` = #{type}
+        and a.`type` = #{type}
       </if>
-      order by create_time desc
+      order by a.create_time desc
     </where>
   </select>
   <select id="findByParams" resultMap="BaseResultMap" parameterType="cn.jy.entity.Employee" >
@@ -103,7 +111,7 @@
     insert into yl_employee (id, nick_name, code, 
       login_code, invite_code, enterprise_id, 
       brand_id, region_id, department_id, 
-      store_id, `type`, role_id,
+      store_id, `type`, role_name,
       `name`, phone, password,
       sex, birthday, idcard, 
       bankcard, wxcode, qq, 
@@ -115,7 +123,7 @@
     values (#{id,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{loginCode,jdbcType=VARCHAR}, #{inviteCode,jdbcType=VARCHAR}, #{enterpriseId,jdbcType=BIGINT}, 
       #{brandId,jdbcType=BIGINT}, #{regionId,jdbcType=BIGINT}, #{departmentId,jdbcType=BIGINT}, 
-      #{storeId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{roleId,jdbcType=BIGINT}, 
+      #{storeId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{idcard,jdbcType=VARCHAR}, 
       #{bankcard,jdbcType=VARCHAR}, #{wxcode,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
@@ -161,8 +169,8 @@
       <if test="type != null" >
         `type`,
       </if>
-      <if test="roleId != null" >
-        role_id,
+      <if test="roleName != null" >
+        role_name,
       </if>
       <if test="name != null" >
         `name`,
@@ -268,8 +276,8 @@
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="roleId != null" >
-        #{roleId,jdbcType=BIGINT},
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -375,8 +383,8 @@
       <if test="type != null" >
         `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="roleId != null" >
-        role_id = #{roleId,jdbcType=BIGINT},
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
         `name` = #{name,jdbcType=VARCHAR},
@@ -462,7 +470,7 @@
       department_id = #{departmentId,jdbcType=BIGINT},
       store_id = #{storeId,jdbcType=BIGINT},
       `type` = #{type,jdbcType=INTEGER},
-      role_id = #{roleId,jdbcType=BIGINT},
+      role_name = #{roleName,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -500,7 +508,7 @@
       department_id = #{departmentId,jdbcType=BIGINT},
       store_id = #{storeId,jdbcType=BIGINT},
       `type` = #{type,jdbcType=INTEGER},
-      role_id = #{roleId,jdbcType=BIGINT},
+      role_name = #{roleName,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

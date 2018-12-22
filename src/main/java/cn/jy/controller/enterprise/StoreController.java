@@ -4,9 +4,11 @@ import cn.jy.controller.BaseController;
 import cn.jy.dto.ResultMap;
 import cn.jy.entity.*;
 import cn.jy.pojo.LayUiPageParams;
+import cn.jy.service.EmployeeService;
 import cn.jy.service.StoreService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,9 @@ public class StoreController extends BaseController {
     @Autowired
     StoreService storeService;
 
+    @Autowired
+    EmployeeService employeeService;
+
     /**
      * 门店页面
      * @return
@@ -38,6 +43,60 @@ public class StoreController extends BaseController {
         return "enterprise/store/store";
     }
 
+    /**
+     * 门店员工
+     * @return
+     */
+    @RequestMapping(value = "/main/store/employee")
+    public ModelAndView storeEmployee() throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/store/employee");
+        Map<String, Object> params = new HashMap<>();
+        Enterprise enterprise = getLoginEnterprise();
+        params.put("enterprise_id",enterprise.getId());
+        List<Store> stores = storeService.getStoreList(params);
+        mv.addObject("store_id", 0);
+        mv.addObject("stores", stores);
+        return mv;
+    }
+    /**
+     * 新建门店员工
+     * @return
+     */
+    @RequestMapping(value = "/main/store/addEmployee")
+    public ModelAndView addStoreEmployee(@RequestParam Map<String, Object> params) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/store/addEmployee");
+        Enterprise enterprise = getLoginEnterprise();
+        params.put("enterprise_id",enterprise.getId());
+        if(null != params.get("store_id") && StringUtil.isNotEmpty(params.get("store_id").toString())) {
+            Long _id = Long.parseLong(params.get("store_id").toString());
+            params.put("id",_id);
+        }
+        List<Store> stores = storeService.getStoreList(params);
+        mv.addObject("stores", stores);
+        return mv;
+    }
+    /**
+     * 编辑门店员工
+     * @return
+     */
+    @RequestMapping(value = "/main/store/editEmployee")
+    public ModelAndView editStoreEmployee(@RequestParam Map<String, Object> params) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/store/editEmployee");
+        Long _id = Long.parseLong(params.get("id").toString());
+        Employee employee = employeeService.getEmployeeById(_id);
+        mv.addObject("employee", employee);
+        Map<String, Object> params1 = new HashMap<>();
+        Enterprise enterprise = getLoginEnterprise();
+        params1.put("enterprise_id",enterprise.getId());
+        params1.put("id",employee.getStoreId());
+        List<Store> stores = storeService.getStoreList(params1);
+
+        mv.addObject("stores", stores);
+        return mv;
+    }
     /**
      * 新建门店
      * @return

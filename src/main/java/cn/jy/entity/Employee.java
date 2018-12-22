@@ -27,7 +27,7 @@ public class Employee {
 
     private Integer type;
 
-    private Long roleId;
+    private String roleName;
 
     private String name;
 
@@ -68,6 +68,8 @@ public class Employee {
     private Integer groupid;
 
     private Integer status;
+
+    private String storeName;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
@@ -165,12 +167,12 @@ public class Employee {
         this.type = type;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getName() {
@@ -355,5 +357,13 @@ public class Employee {
 
     public void setPic(String pic) {
         this.pic = pic == null ? null : pic.trim();
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 }
