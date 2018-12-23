@@ -131,17 +131,15 @@
         <!--<table tableName="yl_broadcast_employee" domainObjectName="BroadcastEmployee" enableCountByExample="false" enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 
-        <table tableName="yl_format" domainObjectName="Format" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="yl_goods" domainObjectName="Goods" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
-        <table tableName="yl_cook_style" domainObjectName="CookStyle" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="yl_goods_carousel" domainObjectName="GoodsCarousel" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
-        <table tableName="yl_store" domainObjectName="Store" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="yl_goods_param" domainObjectName="GoodsParam" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
-        <!--<table tableName="yl_food_key" domainObjectName="FoodKey" enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
-        <!--<table tableName="yl_food_spec" domainObjectName="FoodSpec" enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
-        <!--<table tableName="yl_food_stock" domainObjectName="FoodStock" enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
+        <table tableName="yl_goods_spec" domainObjectName="GoodsSpec" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="yl_goods_stock" domainObjectName="GoodsStock" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

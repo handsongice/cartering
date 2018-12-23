@@ -59,6 +59,29 @@ public class StoreController extends BaseController {
         mv.addObject("stores", stores);
         return mv;
     }
+
+    /**
+     * 门店员工
+     * @return
+     */
+    @RequestMapping(value = "/main/store/goods")
+    public ModelAndView storeGoods() throws Exception {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("enterprise/store/goods");
+        Map<String, Object> params = new HashMap<>();
+        Enterprise enterprise = getLoginEnterprise();
+        params.put("enterprise_id",enterprise.getId());
+        List<Store> stores = storeService.getStoreList(params);
+        if(null != stores && stores.size() >0) {
+            mv.addObject("store_id", stores.get(0).getId());
+        } else {
+            mv.addObject("store_id", 0);
+        }
+        stores.get(0).setStyle("layui-this");
+        mv.addObject("stores", stores);
+        return mv;
+    }
+
     /**
      * 新建门店员工
      * @return
@@ -166,7 +189,30 @@ public class StoreController extends BaseController {
             return null;
         }
     }
+    /**
+     * 列表
+     * @param params
+     * @return
+     */
+    @RequestMapping("/noc/store/pageGoodsList")
+    @ResponseBody
+    public Object pageGoodsList(@RequestParam Map<String, Object> params) {
+        int pageNum = params.get("page") == null ? 1 : Integer.parseInt(params.get("page").toString());
+        int pageSize = params.get("limit") == null ? 10 : Integer.parseInt(params.get("limit").toString());
+        PageHelper.startPage(pageNum, pageSize, true);
+        Enterprise enterprise = getLoginEnterprise();
+        params.put("enterprise_id",enterprise.getId());
+        try {
+            List<Store> stores = storeService.getStoreList(params);
+            PageInfo<Store> pageInfo = new PageInfo<>(stores);
 
+            LayUiPageParams<Food> pageParams = LayUiPageParams.defaultResult(pageInfo.getTotal(), stores);
+            return pageParams;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     /**
      * 插入
      * @param request

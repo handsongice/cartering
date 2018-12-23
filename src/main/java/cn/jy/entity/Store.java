@@ -59,6 +59,8 @@ public class Store {
 
     private String password;
 
+    private String style;
+
     public Long getId() {
         return id;
     }
@@ -281,5 +283,13 @@ public class Store {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 }

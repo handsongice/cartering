@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.jy.mapper.FoodMapper" >
-  <resultMap id="BaseResultMap" type="cn.jy.entity.Food" >
+<mapper namespace="cn.jy.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="cn.jy.entity.Goods" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="enterprise_id" property="enterpriseId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="food_id" property="foodId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
@@ -19,12 +21,12 @@
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="is_del" property="isDel" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="cn.jy.entity.Food" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="cn.jy.entity.Goods" extends="BaseResultMap" >
     <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, enterprise_id, `name`, code, price, sale_price, is_new, is_hot, pic, unit, type_id,
-    sign, create_time, update_time, status, is_del
+    id, enterprise_id, store_id, food_id, `name`, code, price, sale_price, is_new, is_hot,
+    pic, unit, type_id, sign, create_time, update_time, status, is_del
   </sql>
   <sql id="Blob_Column_List" >
     introduction
@@ -34,7 +36,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from yl_food
+    from yl_goods
     where id = #{id,jdbcType=BIGINT}
   </select>
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
@@ -42,11 +44,14 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from yl_food
+    from yl_goods
     <where>
       is_del = 0
       <if test="enterprise_id != null">
         and enterprise_id = #{enterprise_id}
+      </if>
+      <if test="store_id != null">
+        and store_id = #{store_id}
       </if>
       <if test="name != null">
         and `name` like CONCAT('%',#{name},'%')
@@ -61,25 +66,27 @@
     order by create_time desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from yl_food
+    delete from yl_goods
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="cn.jy.entity.Food" >
-    insert into yl_food (id, enterprise_id, `name`,
-      code, price, sale_price, 
-      is_new, is_hot, pic, 
-      unit, type_id, sign, 
-      create_time, update_time, status, 
-      is_del, introduction)
-    values (#{id,jdbcType=BIGINT}, #{enterpriseId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, 
-      #{isNew,jdbcType=INTEGER}, #{isHot,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, 
-      #{unit,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, #{sign,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
-      #{isDel,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="cn.jy.entity.Goods" >
+    insert into yl_goods (id, enterprise_id, store_id, 
+      food_id, name, code, 
+      price, sale_price, is_new, 
+      is_hot, pic, unit, type_id, 
+      sign, create_time, update_time, 
+      status, is_del, introduction
+      )
+    values (#{id,jdbcType=BIGINT}, #{enterpriseId,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, 
+      #{foodId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, #{isNew,jdbcType=INTEGER}, 
+      #{isHot,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, 
+      #{sign,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="cn.jy.entity.Food" >
-    insert into yl_food
+  <insert id="insertSelective" parameterType="cn.jy.entity.Goods" >
+    insert into yl_goods
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -87,8 +94,14 @@
       <if test="enterpriseId != null" >
         enterprise_id,
       </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="foodId != null" >
+        food_id,
+      </if>
       <if test="name != null" >
-        `name`,
+        name,
       </if>
       <if test="code != null" >
         code,
@@ -140,6 +153,12 @@
       <if test="enterpriseId != null" >
         #{enterpriseId,jdbcType=BIGINT},
       </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="foodId != null" >
+        #{foodId,jdbcType=BIGINT},
+      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
@@ -187,14 +206,20 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.Food" >
-    update yl_food
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.Goods" >
+    update yl_goods
     <set >
       <if test="enterpriseId != null" >
         enterprise_id = #{enterpriseId,jdbcType=BIGINT},
       </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="foodId != null" >
+        food_id = #{foodId,jdbcType=BIGINT},
+      </if>
       <if test="name != null" >
-        `name` = #{name,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
@@ -241,10 +266,12 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.jy.entity.Food" >
-    update yl_food
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.jy.entity.Goods" >
+    update yl_goods
     set enterprise_id = #{enterpriseId,jdbcType=BIGINT},
-      `name` = #{name,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      food_id = #{foodId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       sale_price = #{salePrice,jdbcType=DECIMAL},
@@ -261,10 +288,12 @@
       introduction = #{introduction,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.Food" >
-    update yl_food
+  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.Goods" >
+    update yl_goods
     set enterprise_id = #{enterpriseId,jdbcType=BIGINT},
-      `name` = #{name,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      food_id = #{foodId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       sale_price = #{salePrice,jdbcType=DECIMAL},
@@ -280,8 +309,8 @@
       is_del = #{isDel,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="delFood" parameterType="java.lang.Long" >
-    update yl_food
+  <update id="delGoods" parameterType="java.lang.Long" >
+    update yl_goods
     set is_del = 1
     where id = #{id,jdbcType=BIGINT}
   </update>

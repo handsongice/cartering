@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jy.mapper.GoodsCarouselMapper" >
+  <resultMap id="BaseResultMap" type="cn.jy.entity.GoodsCarousel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="food_carousel_id" property="foodCarouselId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="index" property="index" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, food_carousel_id, goods_id, index, pic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from yl_goods_carousel
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from yl_goods_carousel
+    <where>
+      1 = 1
+      <if test="goods_id != null">
+        and goods_id = #{goods_id}
+      </if>
+      <if test="food_carousel_id != null">
+        and food_carousel_id = #{food_carousel_id}
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+    </where>
+    order by id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from yl_goods_carousel
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.jy.entity.GoodsCarousel" >
+    insert into yl_goods_carousel (id, food_carousel_id, goods_id, 
+      index, pic)
+    values (#{id,jdbcType=BIGINT}, #{foodCarouselId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, 
+      #{index,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jy.entity.GoodsCarousel" >
+    insert into yl_goods_carousel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="foodCarouselId != null" >
+        food_carousel_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="index != null" >
+        index,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="foodCarouselId != null" >
+        #{foodCarouselId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="index != null" >
+        #{index,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.GoodsCarousel" >
+    update yl_goods_carousel
+    <set >
+      <if test="foodCarouselId != null" >
+        food_carousel_id = #{foodCarouselId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="index != null" >
+        index = #{index,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.GoodsCarousel" >
+    update yl_goods_carousel
+    set food_carousel_id = #{foodCarouselId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      index = #{index,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByGoodsId" parameterType="java.lang.Long" >
+    delete from yl_goods_carousel
+    where goods_id = #{goods_id}
+  </delete>
+</mapper>

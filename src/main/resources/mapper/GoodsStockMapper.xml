@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jy.mapper.GoodsStockMapper" >
+  <resultMap id="BaseResultMap" type="cn.jy.entity.GoodsStock" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="food_stock_id" property="foodStockId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_spec_ids" property="goodsSpecIds" jdbcType="VARCHAR" />
+    <result column="goods_spec_names" property="goodsSpecNames" jdbcType="VARCHAR" />
+    <result column="skeys" property="skeys" jdbcType="VARCHAR" />
+    <result column="keystr" property="keystr" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, food_stock_id, goods_id, goods_spec_ids, goods_spec_names, skeys, keystr, price, 
+    num, pic, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from yl_goods_stock
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from yl_goods_stock
+    <where>
+      1 = 1
+      <if test="goods_id != null">
+        and goods_id = #{goods_id}
+      </if>
+      <if test="food_stock_id != null">
+        and food_stock_id = #{food_stock_id}
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+    </where>
+    order by id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from yl_goods_stock
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.jy.entity.GoodsStock" >
+    insert into yl_goods_stock (id, food_stock_id, goods_id, 
+      goods_spec_ids, goods_spec_names, skeys, 
+      keystr, price, num, 
+      pic, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{foodStockId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, 
+      #{goodsSpecIds,jdbcType=VARCHAR}, #{goodsSpecNames,jdbcType=VARCHAR}, #{skeys,jdbcType=VARCHAR}, 
+      #{keystr,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER}, 
+      #{pic,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jy.entity.GoodsStock" >
+    insert into yl_goods_stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="foodStockId != null" >
+        food_stock_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsSpecIds != null" >
+        goods_spec_ids,
+      </if>
+      <if test="goodsSpecNames != null" >
+        goods_spec_names,
+      </if>
+      <if test="skeys != null" >
+        skeys,
+      </if>
+      <if test="keystr != null" >
+        keystr,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="foodStockId != null" >
+        #{foodStockId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSpecIds != null" >
+        #{goodsSpecIds,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSpecNames != null" >
+        #{goodsSpecNames,jdbcType=VARCHAR},
+      </if>
+      <if test="skeys != null" >
+        #{skeys,jdbcType=VARCHAR},
+      </if>
+      <if test="keystr != null" >
+        #{keystr,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jy.entity.GoodsStock" >
+    update yl_goods_stock
+    <set >
+      <if test="foodStockId != null" >
+        food_stock_id = #{foodStockId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsSpecIds != null" >
+        goods_spec_ids = #{goodsSpecIds,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSpecNames != null" >
+        goods_spec_names = #{goodsSpecNames,jdbcType=VARCHAR},
+      </if>
+      <if test="skeys != null" >
+        skeys = #{skeys,jdbcType=VARCHAR},
+      </if>
+      <if test="keystr != null" >
+        keystr = #{keystr,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jy.entity.GoodsStock" >
+    update yl_goods_stock
+    set food_stock_id = #{foodStockId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_spec_ids = #{goodsSpecIds,jdbcType=VARCHAR},
+      goods_spec_names = #{goodsSpecNames,jdbcType=VARCHAR},
+      skeys = #{skeys,jdbcType=VARCHAR},
+      keystr = #{keystr,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      num = #{num,jdbcType=INTEGER},
+      pic = #{pic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByGoodsId" parameterType="java.lang.Long" >
+    delete from yl_goods_stock
+    where goods_id = #{goods_id}
+  </delete>
+</mapper>

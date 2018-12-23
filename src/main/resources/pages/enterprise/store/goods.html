@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>员工管理</title>
+    <title>菜品管理</title>
     <link rel="stylesheet" href="/static/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/static/layuiadmin/style/admin.css" media="all">
 </head>
@@ -13,10 +13,9 @@
     <div class="layui-card">
         <div class="layui-card-body">
             <div class="layui-tab layui-tab-brief" lay-filter="component-tabs-hash">
-                <input type="hidden" class="store_id">
+                <input type="hidden" class="store_id" th:value="${store_id}">
                 <ul class="layui-tab-title">
-                    <li class="layui-this" lay-id="">全部</li>
-                    <li th:each="s: ${stores}" th:attr="lay-id=${s['id']}" th:text="${s['name']}"></li>
+                    <li th:each="s: ${stores}" th:class="${s['style']}" th:attr="lay-id=${s['id']}" th:text="${s['name']}"></li>
                 </ul>
                 <div class="layui-tab-content" >
 
@@ -30,9 +29,9 @@
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <label class="layui-form-label">登录名：</label>
+                                <label class="layui-form-label">拼音：</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="login_code" placeholder="请输入登录名" autocomplete="off"
+                                    <input type="text" name="code" placeholder="请输入拼音" autocomplete="off"
                                            class="layui-input login_code">
                                 </div>
                             </div>
@@ -84,35 +83,54 @@
                     var colsData = [
                         [
                             {field: 'name', title: '名称', sort: true},
-                            {field: 'loginCode', title: '登录名', sort: true},
-                            {field: 'phone', title: '手机号', sort: true},
+                            {field: 'code', title: '拼音', sort: true},
                             {
-                                field: 'status', title: '状态', templet: function (res) {
-                                    if(res.status == 1) {
-                                        return '<span style="color: #009688;">启用</span>';
+                                field: 'pic', title: '图片', templet: function (res) {
+                                    if(res.pic) {
+                                        return '<a href="javascript:;" layadmin-event="avartatPreviews" class="layui-table-link" >'+res.pic+'</a>';
                                     } else {
-                                        return '停用'
+                                        return ''
                                     }
                                 }
                             },
+                            {field: 'price', title: '市场价', sort: true},
+                            {field: 'salePrice', title: '售价', sort: true},
                             {
-                                field: 'isAdmin', title: '管理员', templet: function (res) {
-                                    if(res.isAdmin == 1) {
+                                field: 'isNew', title: '新品', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.isNew == 1) {
                                         return '<span style="color: #009688;">是</span>';
                                     } else {
-                                        return '否'
+                                        return '否';
                                     }
                                 }
                             },
-                            {field: 'storeName', title: '所属门店', sort: true},
-                            {field: 'roleName', title: '岗位', sort: true},
-                            {field: 'createTime', title: '创建时间', sort: true},
+                            {
+                                field: 'isHot', title: '推荐', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.isHot == 1) {
+                                        return '<span style="color: #009688;">是</span>';
+                                    } else {
+                                        return '否';
+                                    }
+                                }
+                            },
+                            {
+                                field: 'status', title: '状态', unresize: true, sort: true, templet: function (res) {
+
+                                    if (res.status == 2) {
+                                        return '<span style="color: #009688;">在售</span>';
+                                    } else {
+                                        return '下架';
+                                    }
+                                }
+                            },
                             {fixed: 'right', title: '操作', width: '15%', toolbar: '#tableOperation'}]
                     ];
                     table.render({
                         id: "dataList",
                         elem: '#test',
-                        url: '/noc/pageEmployeeList',
+                        url: '/noc/store/pageGoodsList',
                         toolbar: '#toolbarDemo' ,
                         where: _this.getRequestParams(),
                         title: '数据列表',
@@ -224,10 +242,9 @@
                     if($('.store_id').val()) {
                         params.store_id = $('.store_id').val();
                     }
-                    if($('.login_code').val()) {
-                        params.login_code = $('.login_code').val();
+                    if($('.code').val()) {
+                        params.code = $('.code').val();
                     }
-                    params.type = 3;
                     params.timestamp = (new Date()).getTime();
                     return params;
                 }
